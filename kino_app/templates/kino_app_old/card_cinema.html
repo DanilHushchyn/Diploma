@@ -1,0 +1,182 @@
+{% extends 'kino_app/base.html' %}
+{% load static %}
+{% block title %} {{ cinema.name }} {% endblock %}
+{% block content %}
+<div class="card mb-3 text-black" style="margin-top: 130px;">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" >
+
+        <div class="carousel-item active" >
+
+            <img src="{% static 'kino_app/images/cinemas/banner/' %}{{ cinema.banner }}" class="img-fluid" alt="Responsive image">
+
+            <div class="carousel-caption"style="margin-bottom: -100px;margin-left: -190px; width: 100%;height: 175px; background: rgba(0, 0, 0, 0.8);">
+               <h1 class="text-center">{{ cinema.name}}</h1>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="container-marketing-colo">
+      <div class="row">
+          <div class="col-lg-2 ">
+                <div  class="container" style="background-color: black;width: 100%;height: 600px">
+                    <p class="text-center text-white">Контекстная реклама</p>
+                </div>
+                <h5 >Количество залов {{ halls_num }}</h5>
+                <div class="container ">
+                            {%  for hall in halls %}
+                                <a style="text-decoration: none" href="{% url 'hall' hall.id %}">
+                                <div class="btn btn-success mt-1" style="width: 100%">
+                                Зал {{ hall.number }}
+                                </div>
+                                </a>
+                            {% endfor %}
+
+
+                </div>
+                <br>
+                <h5>Смотрите сегодня</h5>
+                <div class="container">
+                            {% for seance in seances %}
+
+
+                            <a style="text-decoration: none" href="#">
+                            <div class="btn btn-success mt-1" style="width: 100%">
+                                {{ seance.film.name}}({{ seance.time }})
+                            </div>
+                            </a>
+
+                            {% endfor %}
+                </div>
+                <br>
+                <a class="text-black btn btn-outline-success" style="" href="{% url 'schedule' %}"><h6>Расписание всех сеансов</h6> </a>
+
+          </div>
+          <div class="col-lg-10">
+              <div class="card-body" style="margin-bottom: 25px">
+                <div class="container-marketing-colo">
+                    <div class="row">
+                        <div class="col-lg-4">
+                             <h3>Оскар</h3>
+                             <img src="../../static/kino_app/images/oscar.png" height="100px" width="100px" class="" alt="..." style="margin-left: 125px">
+                        </div>
+                        <div class="col-lg-3">
+                            <a class="text-black btn btn-outline-success" style="" href="{% url 'schedule' %}"><h5>Расписание сеансов</h5> </a>
+
+                            <div class="btn-group border rounded bg-dark me-0" style="margin-top: 30px; " >
+                                 <a class ='me-1 border rounded  text-white' style="background: red " href="https://uk-ua.facebook.com/"><h8>3D</h8></a>
+                                 <a class ='me-1 border rounded  text-white' style="background: green " href="https://twitter.com/?lang=ru"><h8>D-BOX</h8> </a>
+                                 <a class ='me-1 border rounded  text-white' style="background: blue " href="https://www.tiktok.com/uk-UA/"><h8>DOLBY-ATMOS</h8></a>
+                                 <a class =' border rounded  text-white' style="background: gold " href="https://web.telegram.org/"><h8>VIP</h8></a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <p class="card-text">
+                    {{ cinema.description }}
+                </p>
+                <h3 class="text-center">Условия</h3>
+                <br>
+                <div class="container bg-dark">
+                    <div class="row" >
+                        <div class="col-lg-3"style="margin-top: 50px;margin-left: 50px;margin-bottom: 50px">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <a href="#"> <h5 class="card-title">Card title</h5></a>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                                    vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
+                                </p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"style="margin-top: 50px;margin-left: 50px;margin-bottom: 50px">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <a href="#"> <h5 class="card-title">Card title</h5></a>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                                    vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
+                                </p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"style="margin-top: 50px;margin-left: 50px;margin-bottom: 50px">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <a href="#"> <h5 class="card-title">Card title</h5></a>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                                    vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
+                                </p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"style="margin-top: 50px;margin-left: 50px;margin-bottom: 50px">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <a href="#"> <h5 class="card-title">Card title</h5></a>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                                    vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
+                                </p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"style="margin-top: 50px;margin-left: 50px;margin-bottom: 50px">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <a href="#"> <h5 class="card-title">Card title</h5></a>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                                    vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
+                                </p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"style="margin-top: 50px;margin-left: 50px;margin-bottom: 50px">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <a href="#"> <h5 class="card-title">Card title</h5></a>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                                    vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
+                                </p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h4 class="text-center">ФОТОГАЛЕРЕЯ</h4>
+                <br>
+                <div class="album py-2" id="album-carousel">
+                       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              {% for img in cinema_imgs %}
+                                        <div class="carousel-item {% if forloop.counter0 == 0%}
+                                            active{% endif %}"  data-bs-interval="1000">
+                                          <img src="{% static 'kino_app/images/cinemas/cinemas_imgs/' %}{{ img.link }}" class="d-block w-100" alt="...">
+                                        </div>
+                              {% endfor %}
+                          </div>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                      </div>
+                </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+{% endblock %}

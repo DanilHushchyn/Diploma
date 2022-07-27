@@ -1,0 +1,140 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+                                <div class="row" style="margin-left: 1000px">
+                                      <div class="col-lg-2" >
+                                      </div>
+                                       <div class="col-lg-8 " >
+                                           <div class="btn-group">
+                                               <a href="stock_card.html" style="text-decoration: none">
+                                                  <button type="button"  style="width: 100%; " class="btn-sm btn-block btn-secondary">
+                                                         <h6>Русский</h6></button></a>
+
+                                                         <button type="button"  style="width: 100%; " class="btn-sm btn-block btn-secondary">
+                                                         <h6>Украинский</h6></button></a>
+
+
+
+                                           </div>
+                                       </div>
+                                </div><!-- /.row -->
+
+
+     <div class="content-wrapper">
+        <div class="content">
+            <div class="container">
+                <!-- Small boxes (Stat box) -->
+                    <form action="{% url 'update_contacts' %}" runat="server" method="post" id='contacts_form' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ contacts_formset.management_form }}
+                    {% for form in contacts_formset %}
+
+                    <div class="card card-danger mt-3 contact-form ">
+
+                          <div class="card-body">
+
+                              <div class="container-fluid">
+                            <!-- Small boxes (Stat box) -->
+                                    <div class="l " style="text-align: right" >
+                                        <input type="checkbox">
+                                        <label class="" >Вкл</label>
+                                    </div>
+
+                                        {% for row in form %}
+                                            <div class="row">
+
+                                                      <label for="{{ row.id_for_label }}" class="col-sm-2 form-label">{{ row.label }}:</label>
+                                                      <div class="col-sm-10">
+                                                        {{ row }}
+                                                      </div>
+
+                                            </div>
+
+                                         {% endfor %}
+
+
+
+                              </div>
+
+                          </div>
+
+
+
+                    </div>
+
+                    {% endfor %}
+                    <button id="add-contact-form" class="btn btn-success my-3">Добавить кинотеатр</button>
+                    <button id="add-contact-form" class="btn btn-danger delete-contact-form my-3"><ion-icon name="trash-outline" style="width: 30px;height: 30px"></ion-icon></button>
+
+
+                     <div class="container-fluid">
+                                      <input type="submit"  name="submit" value="Сохранить" class=" btn btn-success mt-5 " />
+                     </div>
+                </form>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+
+  <!-- /.content-wrapper -->
+
+{% endblock %}
+{% block scripts %}
+
+    <!-- date-range-picker -->
+    <script src=" {% static 'plugins/daterangepicker/daterangepicker.js' %} "></script>
+    <script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script>
+    $(function () {
+      //Date picker
+   //Date picker
+    const imageForm = document.getElementsByClassName("contact-form");
+        const mainForm = document.querySelector("#contacts_form");
+        const addImageFormBtn = document.querySelector("#add-contact-form");
+        const submitFormBtn = document.querySelector('[type="submit"]');
+        const totalForms = document.querySelector("#id_form-TOTAL_FORMS");
+
+        let formCount = imageForm.length - 1;
+
+        function updateForms() {
+            let count = 0;
+            for (let form of imageForm) {
+                const formRegex = RegExp(`form-(\\d){1}-`, 'g');
+                form.innerHTML = form.innerHTML.replace(formRegex, `form-${count++}-`)
+            }
+        }
+
+        addImageFormBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const newImageForm = imageForm[imageForm.length-1].cloneNode(true);
+            const formRegex = RegExp(`form-(\\d){1}-`, 'g');
+
+            formCount++;
+
+            newImageForm.innerHTML = newImageForm.innerHTML.replace(formRegex, `form-${formCount}-`);
+            mainForm.insertBefore(newImageForm, addImageFormBtn);
+            totalForms.setAttribute('value', `${formCount + 1}`);
+        });
+
+        mainForm.addEventListener("click", function (event) {
+            if (event.target.classList.contains("delete-contact-form")) {
+
+                imageForm[imageForm.length-1].remove();
+                formCount--;
+
+                totalForms.setAttribute('value', `${formCount + 1}`);
+            }
+        });
+
+
+        $("#datetimepicker1").datetimepicker();
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+    });
+    </script>
+{% endblock %}

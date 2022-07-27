@@ -1,0 +1,198 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="container">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="card card-danger">
+
+                          <div class="card-body">
+                              <div class="mb-5">
+                                <h3 class="text-center">SMS</h3>
+                              </div>
+                              <div class="container-fluid">
+                            <!-- Small boxes (Stat box) -->
+                                    <div class="row">
+                                          <div class="col-lg-2 col-6">
+                                                <h6>Кому слать:</h6>
+                                          </div>
+                                          <div class="col-lg-4 col-6">
+                                              <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="type_choosing">
+                                                      <label class="form-check-label">Все пользователи</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-1 col-6">
+                                              <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="type_choosing">
+                                                      <label class="form-check-label">Выборочно</label>
+                                              </div>
+                                          </div>
+                                           <div class="col-lg-5 col-6">
+                                              <div class="form-check">
+                                                  <a href="choose_client.html"style="text-decoration: none">
+                                                     <button type="button" style="width: 70%; margin-left: 70px;text-align: left " class="btn-sm rounded-pill btn-block btn-success">
+                                                    <h6 class="text-center">Выбрать пользователей</h6>
+                                          </button></a>
+                                              </div>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="col-lg-6">
+                                              <div class="form-group">
+                                                  <div class="row">
+                                                  <div class="row">
+                                                            <div class="col-lg-7">
+                                                                <label>Текст смс:</label>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <label >Кол-во символов:  <span id ="charNum">0</span> </label>
+                                                            </div>
+                                                            <textarea class="form-control" id="field" onkeyup="countChar(this)" rows="3"></textarea>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-6">
+                                              <div class="form-group">
+                                                  <div class="row mt-5">
+                                                            <h6>Кол-во смс: 0</h6>
+                                                            <h6>Рассылка выполнена на 45%:  20 000  </h6>                                                  </div>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+
+
+
+                                    </div>
+                                    <div class="row mt-5" style="margin-left: 400px;">
+                                          <button type="button" style="width: 30%; text-align: center " class="btn-sm rounded-pill btn-block btn-secondary">
+                                                    <h6>Начать рассылку</h6>
+                                          </button>
+                                </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card card-danger">
+
+                          <div class="card-body">
+                              <div class="mb-5">
+                                <h3 class="text-center">E-mail</h3>
+                              </div>
+                              <div class="container-fluid">
+                            <!-- Small boxes (Stat box) -->
+                                    <div class="row">
+                                          <div class="col-lg-2 col-6">
+                                                <h6>Кому слать:</h6>
+                                          </div>
+                                          <div class="col-lg-4 col-6">
+                                              <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="type_choosing">
+                                                      <label class="form-check-label">Все пользователи</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-1 col-6">
+                                              <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="type_choosing">
+                                                      <label class="form-check-label">Выборочно</label>
+                                              </div>
+                                          </div>
+                                           <div class="col-lg-5 col-6">
+                                              <div class="form-check text-center">
+                                                  <a href="choose_client.html"style="text-decoration: none">
+                                                     <button type="button" style="width: 70%; margin-left: 70px;text-align: left " class="btn-sm rounded-pill btn-block btn-secondary">
+                                                    <h6 class="text-center" >Выбрать пользователей</h6>
+                                                     </button></a>
+                                              </div>
+                                          </div>
+                                    </div>
+
+                                    <div class="row">
+                                          <div class="col-lg-6 col-6">
+                                               <div class="card card-danger mt-5">
+                                                    <div class="card-body">
+                                                        <div class="mb-5">
+                                                            <h6>Список последних загруженных шаблонов</h6>
+                                                             <div class="form-check">
+                                                                  <input class="form-check-input" type="checkbox" name="one">
+                                                                  <label class="form-check-label">Рассылка новостей</label>
+                                                                  <ion-icon name="trash-outline" ></ion-icon>
+
+                                                             </div>
+                                                             <div class="form-check">
+                                                                  <input class="form-check-input" type="checkbox" name="one">
+                                                                  <label class="form-check-label">Рассылка новостей</label>
+                                                                  <ion-icon name="trash-outline" ></ion-icon>
+                                                             </div>
+                                                             <div class="form-check">
+                                                                  <input class="form-check-input" type="checkbox" name="one">
+                                                                  <label class="form-check-label">Рассылка новостей</label>
+                                                                  <ion-icon name="trash-outline" ></ion-icon>
+                                                             </div>
+                                                             <div class="form-check">
+                                                                  <input class="form-check-input" type="checkbox" name="one">
+                                                                  <label class="form-check-label">Рассылка новостей</label>
+                                                                  <ion-icon name="trash-outline" ></ion-icon>
+                                                             </div>
+                                                             <div class="form-check">
+                                                                  <input class="form-check-input" type="checkbox" name="one">
+                                                                  <label class="form-check-label">Рассылка новостей</label>
+                                                                  <ion-icon name="trash-outline" ></ion-icon>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                               </div>
+                                          </div>
+
+                                          <div class="col-lg-6 col-6">
+
+                                              <div class="form-group">
+                                                  <div class="row mt-5">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" >
+                                                                <label class="custom-file-label" for="exampleInputFile">Загрузить HTML письмо</label>
+                                                            </div>
+                                                            <h6 class="mt-5">Кол-во смс: 0</h6>
+
+                                                            <h6>Рассылка выполнена на 45%:  20 000  </h6>                                                  </div>
+                                                  </div>
+                                              </div>
+
+
+
+                                          </div>
+
+
+
+
+                                    </div>
+                                    <div class="row mt-5" style="margin-left: 400px;">
+                                          <button type="button" style="width: 30%; text-align: center " class="btn-sm rounded-pill btn-block btn-secondary">
+                                                    <h6 class="text-center">Начать рассылку</h6>
+                                          </button>
+                                </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- /.content-wrapper -->
+
+{% endblock %}
+{% block scripts %}
+    <script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script>
+      function countChar(val) {
+        var len = val.value.length;
+          $('#charNum').text(len);
+
+      };
+    </script>
+{% endblock %}

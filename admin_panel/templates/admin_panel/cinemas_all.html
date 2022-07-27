@@ -1,0 +1,52 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="content-wrapper">
+    <div class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="content-header">
+              <div class="container-fluid">
+                <div class="row mb-5">
+                    <h2 class="m-0 text-center">Кинотеатры</h2>
+                </div><!-- /.row -->
+              </div><!-- /.container-fluid -->
+            </div>
+          <!-- ./col -->
+          {% for cinema in cinemas %}
+          <div class="col-lg-4 col-6">
+              <div class="container fs-4" style="position: relative">
+                    <a href="{% url 'cinema_card' cinema.name %}">
+                        <img class="bd-placeholder-img rounded-square" width="300" height="240" src="../../../media/{{ cinema.banner }}" alt="">
+                    </a>
+              </div>
+              <h2 class="text-center">{{ cinema.name}}</h2>
+
+          </div>
+           {% endfor %}
+
+          <div class="col-lg-4 col-6">
+              <div class="container fs-4" style="position: relative;text-align: center">
+                    <a href="cinema_card.html">
+                        <img class="bd-placeholder-img rounded-square" width="150" height="150" src="{% static 'dist/img/plus.png' %}" alt="">
+
+                    </a>
+                   <h2 class="text-center">Добавить</h2>
+              </div>
+
+
+          </div>
+        </div>
+        <!-- /.row -->
+
+      </div><!-- /.container-fluid -->
+    <!-- /.content -->
+  </div>
+
+    </div>
+  </div>
+  <!-- /.content-wrapper -->
+
+{% endblock %}

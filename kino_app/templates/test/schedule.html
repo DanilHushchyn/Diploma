@@ -1,0 +1,104 @@
+{% extends 'kino_app/base.html' %}
+{% load static %}
+{% block title %} Расписание{% endblock %}
+
+     {% block content %}
+     <head>
+        <link rel="stylesheet" href="../../static/kino_app/css/schedule_sidebar.css">
+    </head>
+          <div class="container-fluid btn-group " style="margin-top: 200px; margin-bottom: 200px;background-color: lightgray; ">
+              <div class="flex-shrink-0 p-3 bg-light text-black " style=" width: 230px;margin-left: -12px;">
+                    <a href="#" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                      <span class="fs-5 fw-semibold">Фильтр</span>
+                    </a>
+                  <form action="">
+                    <ul class="list-unstyled ps-0">
+                      <li class="mb-1">
+                            <p>Формат:</p>
+                            <input type="checkbox" id="3D" name="3D" value="3D">
+                            <label for="3D"> 3D</label><br>
+                            <input type="checkbox" id="DBOX" name="DBOX" value="DBOX">
+                            <label for="DBOX"> DBOX</label><br>
+                            <input type="checkbox" id="VIP" name="VIP" value="VIP">
+                            <label for="VIP"> VIP</label><br>
+                      </li>
+                      <hr>
+                      <li class="mb-1">
+                            <label for="data_release">Дата показа: </label>
+                            <input type="date"  id="date_release">
+                      </li>
+                    </ul>
+                  </form>
+              </div>
+              <div class="card-body  p-0 py-4 text-black ">
+                  <div class="container-marketing-colo">
+                        <div class="row">
+                            <div class="col-lg-10" >
+                                    <div class="container-marketing-colo" >
+                                       {% for film ,pre_result1,pre_result2 in result %}
+
+                                            <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="container"width="300" height="240" style="position: relative">
+                                                    <img class="bd-placeholder-img rounded-square" width="300" height="340" src="{% static 'kino_app/images/film_card/'%}{{film.main_pic}}" alt="">
+                                                </div>
+                                            </div><!-- /.col-lg-4  Image for film-->
+                                            <div class="col-lg-8 ">
+                                                <div class="container" style="position: relative">
+
+                                                    <h4 class="text-center " style="color: deepskyblue"> {{film.name }}, {{ film.legal_age}}+</h4>
+                                                    <div class="container"style="position: relative">
+                                                    {% for date,halls_uniq in pre_result1 %}
+
+
+
+                                                        <p class="">{{ date }}</p>
+                                                        {% for hall in halls_uniq %}
+
+
+
+
+
+
+
+                                                        <p class="">Зал {{ hall.number }} </p>
+                                                            <div class="container"style="position: relative">
+                                                                {% for item,techs_uniq in pre_result2 %}
+                                                                        {% for  tech_type in techs_uniq %}
+                                                                            <p class=""> {{ tech_type.name }}</p>
+                                                                        {% endfor %}
+                                                                {% endfor %}
+                                                                    <div class="row" style=>
+
+
+                                                                        {% for seance in seances %}
+
+                                                                        <div class="col-lg-2">
+                                                                            <a   href="#"> {{ seance.time }}</a>
+                                                                        </div>
+                                                                        {% endfor %}
+
+                                                                </div>
+                                                                <br>
+                                                            </div><!--/Зал 2 end-->
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.col-lg-8 Info of film end-->
+
+                                        </div><!-- /.row of film-->
+                                        <hr style=" width: 100%;  border: 1px solid grey;">
+                                        {% endfor %}
+
+                                    </div>
+                            </div>
+                            <div class="col-lg-2 p-0" style="background-color: black;" >
+                                <p class="text-white"> Контекстная реклама</p>
+                            </div>
+                       </div>
+                  </div>
+              </div>
+         </div>
+  {% endblock %}
+

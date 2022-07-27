@@ -1,0 +1,29 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="container">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="card card-danger">
+
+                          <div class="card-body">
+                              <div class="mb-5">
+                                            {% block content2 %}
+                                            {% endblock %}
+
+                                         </div>
+                          </div>
+                          </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+{% endblock %}

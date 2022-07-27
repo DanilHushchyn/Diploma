@@ -1,0 +1,81 @@
+{% extends 'kino_app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card mb-3 text-black" style="margin-top: 130px;">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" >
+        <div class="carousel-item active" >
+
+            <img src="{% static 'kino_app/images/cinemas/halls/banner/' %}{{ hall.banner }}"   class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+  </div>
+  <div class="container-marketing-colo">
+      <div class="row">
+          <div class="col-lg-2 ">
+                <div  class="container" style="background-color: black;width: 100%;height: 600px">
+                     <p class="text-center text-white">Контекстная реклама</p>
+                </div>
+                <h5>Смотрите сегодня</h5>
+                <div class="container">
+                    {% for seance in seances %}
+                        <a style="text-decoration: none" href="hall.html">
+                            <div class="btn btn-success mt-1" style="width: 100%">
+                                {{ seance.film.name }}({{ seance.time}})
+                            </div>
+                            </a>
+                    {% endfor %}
+
+
+                </div>
+                <br>
+                <a class="text-black btn btn-outline-success" style="" href=" "><h6>Расписание всех сеансов</h6> </a>
+
+          </div>
+          <div class="col-lg-10">
+              <div class="card-body" style="margin-bottom: 25px">
+                <br>
+                <h4 class="text-center">ЗАЛ НОМЕР {{ hall.number }}</h4>
+                <br>
+                <p class="card-text">
+                    {{ hall.description }}
+                </p>
+                <br>
+                <h4 class="text-center">КАРТА ЗАЛА</h4>
+                <br>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner" >
+                    <div class="carousel-item active" >
+                        <img src="{% static 'kino_app/images/cinemas/halls/scheme/' %}{{ hall.scheme }}" width="90%"  class="img-fluid" alt="Responsive image">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <h4 class="text-center">ФОТОГАЛЕРЕЯ</h4>
+                <br>
+                <div class="album py-2" id="album-carousel">
+                       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              {% for img in hall_imgs %}
+                                        <div class="carousel-item {% if forloop.counter0 == 0%}
+                                            active{% endif %}"  data-bs-interval="1000">
+                                          <img src="{% static 'kino_app/images/cinemas/halls/hall_imgs/' %}{{ img.link }}" class="d-block w-100" alt="...">
+                                        </div>
+                              {% endfor %}
+                          </div>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                      </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

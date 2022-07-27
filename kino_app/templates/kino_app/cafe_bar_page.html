@@ -1,0 +1,24 @@
+{% extends 'kino_app/page.html' %}
+
+{% block content3 %}
+    <h4 class="text-center mt-5">Меню Кафе-Бара</h4>
+<table class="text-center table table-bordered table-hover mb-5"  style="width: 100%">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Вес</th>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in menu %}
+          <tr class="menu-form" data-widget="expandable-table" aria-expanded="true">
+            <td>{{ row.name}}</td>
+            <td>{{ row.weight }}</td>
+            <td>{{ row.price }}</td>
+          </tr>
+      {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}

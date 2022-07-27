@@ -1,0 +1,112 @@
+@import 'zeroing.css';
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ADADAD;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.preview {
+  margin: 0 auto;
+  margin-top: 20px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.preview__item {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.preview__item:hover .preview__del {
+  opacity: 1;
+}
+.preview__item:hover .preview__info {
+  opacity: 1;
+  bottom: 0px;
+}
+.preview__img-horizontal {
+  width: 450px;
+  height: 250px;
+}
+.preview__img-vertical {
+  width: 200px;
+  height: 300px;
+}
+.preview__del {
+  opacity: 0;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview__del img {
+  width: 25px;
+  height: 25px;
+}
+.preview__info {
+  font-family: "Arvo", sans-serif;
+  font-size: 15px;
+  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  padding: 0 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  color: #FFFFFF;
+  background-color: #565454;
+  justify-content: space-between;
+  bottom: -30px;
+}
+
+.removing {
+  transform: scale(0);
+  transition: transform 0.3s;
+}
+
+/*# sourceMappingURL=upload.css.map */

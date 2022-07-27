@@ -1,0 +1,48 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" href="{% static 'admin_panel/form.css' %}">
+        <link rel="stylesheet" href="{% static 'upload.css' %}">
+    </head>
+
+        <form  action="{% url 'stocks_table' %}" method="post"    runat="server" enctype="multipart/form-data">
+             {% csrf_token %}
+             <div class="form">
+                 {% for row in stock_form %}
+                      <div class="form__row">
+                          <label class="form__label" for="{{ row.id_for_label }}" class="">{{ row.label }}:</label>
+                          {{ row }}
+                      </div>
+                 {% endfor %}
+             </div>
+            <div class="form">
+                 {{ stockImgs_form.management_form }}
+                  <div class="form__title">Галерея картинок:</div>
+                  {% for form_img in stockImgs_form %}
+                      {{ form_img }}
+                  {% endfor %}
+            </div>
+            <div class="form">
+                 <div class="form__title">SEO блок </div>
+
+                 {% for seo in seo_form %}
+                      <div class="form__row">
+                          <label class="form__label" for="{{ seo.id_for_label }}" class="">{{ seo.label }}:</label>
+                          {{ seo }}
+                      </div>
+
+                 {% endfor %}
+            </div>
+          <div class="form__bottom">
+              <button class="form__btn btn-primary btn-primary_corner">Сохранить</button>
+          </div>
+        </form>
+        <script>
+           let urlImgRemove = "{% static 'imgs/remove.png' %}";
+        </script>
+        <script type="module" src="{% static 'admin_panel/stock/stock_form.js' %}"></script>
+
+{% endblock %}

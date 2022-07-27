@@ -1,0 +1,90 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="content-wrapper">
+    <div class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="content-header">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <h4 class="m-0 text-right ">Список Страниц</h4>
+                    </div>
+                    <div class="col-sm-4 " >
+                        <a href="{% url 'page_form' %}"style="text-decoration: none">
+                        <button type="button"   style="width: 70%; margin-left: 70px;text-align: left " class="btn-sm btn-block btn-success">
+                            <h6><img src="{% static 'dist/img/plus.png' %}" width="20px" height="20px" alt="">   Создать страницу</h6></button></a>
+                    </div>
+                </div><!-- /.row -->
+              </div><!-- /.container-fluid -->
+            </div>
+          <table class="table table-bordered table-hover"  style="width: 90%">
+                  <thead>
+                    <tr>
+                      <th>Название</th>
+                      <th>Дата Создания</th>
+                      <th>Статус</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-widget="expandable-table" aria-expanded="true">
+
+                      <td>Главная страница</td>
+                      <td>05.12.2021</td>
+                      <td>
+                            ВКЛ
+                      </td>
+                      <td><a href="{% url 'update_main_page' %}"><ion-icon name="pencil-outline" style="width: 30px;height: 30px;"></ion-icon></a> </td>
+
+                    </tr>
+                    <tr data-widget="expandable-table" aria-expanded="true">
+
+                      <td>Контакты</td>
+                      <td>05.12.2021</td>
+                      <td>
+                            ВКЛ
+                      </td>
+                      <td><a href="{% url 'update_contacts' %}"><ion-icon name="pencil-outline" style="width: 30px;height: 30px;"></ion-icon></a> </td>
+
+                    </tr>
+                    {% for page in page_list %}
+
+
+
+                        <tr data-widget="expandable-table" aria-expanded="true">
+
+                          <td>{{ page.name }}</td>
+                          <td>{{ page.creation_date }}</td>
+                          <td>
+                              {% if page.turn_on %}
+                                ВКЛ
+                              {% else %}
+                                ВЫКЛ
+
+                              {% endif %}
+
+                          </td>
+                          <td><a href="{% url 'update_page' page.id%}"><ion-icon name="pencil-outline" style="width: 30px;height: 30px;"></ion-icon></a> </td>
+                          {% if page.able_to_del %}
+                            <td><a href="{% url 'delete_page' page.id%}"><ion-icon name="trash-outline" style="width: 30px;height: 30px"></ion-icon></a></td>
+                          {% endif %}
+                        </tr>
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+        </div>
+        <!-- /.row -->
+
+      </div><!-- /.container-fluid -->
+    <!-- /.content -->
+  </div>
+
+    </div>
+  </div>
+  <!-- /.content-wrapper -->
+
+{% endblock %}

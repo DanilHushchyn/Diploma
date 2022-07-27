@@ -1,0 +1,75 @@
+{% extends 'kino_app/base.html' %}
+{% block title %} Реклама {% endblock %}
+{% block content %}
+<div class="card mb-3 text-black" style="margin-top: 130px;">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" >
+        <div class="carousel-item active" >
+
+            <img src="../../../media/{{ page.banner }}"   class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+  </div>
+  <div class="container-marketing-colo">
+      <div class="row">
+
+          <div class="col-lg-10">
+              <div class="card-body" style="margin-bottom: 25px">
+                <h4 class="text-center">{{ page.name }}</h4>
+                <br>
+                <p class="card-text">
+                    {{ page.description }}
+                </p>
+                <div class="container-marketing-colo">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img style="width: 300px;height: 300px" src="../../../media/{{ page.first_pic }}" alt="">
+                        </div>
+                        <div class="col-lg-4">
+                            <img style="width: 300px;height: 300px" src="../../../media/{{ page.second_pic }}" alt="">
+                        </div>
+                        <div class="col-lg-4">
+                            <img style="width: 300px;height: 300px" src="../../../media/{{ page.third_pic }}" alt="">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <p class="card-text">
+                    {{ page.description2 }}
+                </p>
+              {% block content3 %}
+              {% endblock %}
+                <h3 class="text-center">ФОТОГАЛЕРЕЯ</h3>
+                <br>
+                <div class="row">
+                    <div class="album py-2" id="album-carousel">
+                          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              {% for img in page_imgs %}
+                                        <div class="carousel-item {% if forloop.counter0 == 0%}
+                                            active{% endif %}"  data-bs-interval="1000">
+                                          <img src="../../../media/{{ img.img }}" class="d-block w-100" alt="...">
+                                        </div>
+                              {% endfor %}
+                          </div>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-2 " style="background-color: black">
+          <p class="text-white text-center">Контекстная реклама</p>
+          </div>
+
+      </div>
+  </div>
+</div>
+{% endblock %}

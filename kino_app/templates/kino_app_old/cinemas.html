@@ -1,0 +1,48 @@
+{% extends 'kino_app/base.html' %}
+{% load static %}
+{% block title %} Кинотеатры {% endblock %}
+     {% block content %}
+
+
+
+          <div class=" album py-5 " style="margin-top: 100px;margin-bottom: -48px">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner" >
+                    <div class="carousel-item active" >
+
+                        <a href="https://www.youtube.com/watch?v=gYBksoY_RDI&t=1173s"> <img src="../../static/kino_app/images/cinemas.jpg"   class="img-fluid" alt="Responsive image"></a>
+
+                        <div class="carousel-caption"style="margin-bottom: -100px;margin-left: -190px; width: 100%;height: 175px; background: rgba(89,76,76,0.8);">
+                           <h1 class="text-center">Наши кинотеатры</h1>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            <div class="container-marketing-colo " style=" background: rgba(0,0,0,.6);margin-top: -70px;">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="container-marketing-colo" style="margin-top: 50px;">
+                            <div class="row" >
+                                {% for item in cinemas %}
+                                    <div class="col-lg-6">
+                                        <div class="container" style="position: relative">
+                                            <a href="{% url 'card_cinema' item.name %}">
+                                                <img class="bd-placeholder-img rounded-square" width="100%" height="240" src="{% static 'kino_app/images/cinemas/banner/' %}{{ item.banner }}" alt="">
+                                            </a>
+                                        </div>
+                                        <a href="card_cinema.html" style="text-decoration: none"><h2 class="text-center text-white">{{ item.name }}</h2></a>
+                                    </div><!-- /.col-lg-6 -->
+                                {% endfor %}
+                            </div><!-- /.row -->
+                        </div>
+                    </div>
+                    <div class="col-lg-2" style="background-color: black">
+                        <p>Контекстная реклама</p>
+                    </div>
+
+                </div><!-- /.row -->
+            </div>
+          </div>
+    {% endblock %}
+
+

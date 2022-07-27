@@ -1,0 +1,38 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'admin_panel/base.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="header__left">
+                <img class="header__logo" src="{% static 'admin_panel/imgs/home_alone.jpg' %}">
+            </div>
+            <div class="header__right">
+
+            </div>
+        </div>
+        <aside class="sidebar">
+            <ul class="sidebar__list">
+                <a href="{% url 'banners_sliders' %}"><li class="sidebar__li">Баннера/Слайдеры</li></a>
+                <a href="{% url 'statistic' %}"><li class="sidebar__li">Статистика</li></a>
+                <a href="{% url 'films' %}"><li class="sidebar__li">Фильмы</li></a>
+                <a href="{% url 'cinemas' %}"><li class="sidebar__li">Кинотеатры</li></a>
+                <a href="{% url 'news_table' %}"><li class="sidebar__li">Новости</li></a>
+                <a href="{% url 'stocks_table' %}"><li class="sidebar__li">Акции</li></a>
+                <a href="{% url 'pages' %}"><li class="sidebar__li">Страницы</li></a>
+                <a href="{% url 'clients' %}"><li class="sidebar__li">Пользователи</li></a>
+                <a href="#"><li class="sidebar__li">Рассылки</li></a>
+            </ul>
+        </aside>
+        <main class="main">
+               {% block content %}
+               {% endblock %}
+        </main>
+    </div>
+</body>
+</html>

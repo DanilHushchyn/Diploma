@@ -1,0 +1,149 @@
+@import '../../zeroing.css';
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ADADAD;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.main {
+  background: #6C5CE7;
+  padding: 0;
+}
+.main__blocks {
+  display: flex;
+  flex-direction: column;
+  font-family: "Arvo", sans-serif;
+}
+.main__block {
+  background: #ffffff;
+  margin-bottom: 50px;
+  padding: 50px;
+  border-radius: 16px;
+  position: relative;
+}
+.main__title {
+  font-family: "Arvo", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.card__permission {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  font-family: "Arvo", sans-serif;
+  font-weight: bold;
+}
+.card__btn {
+  padding: 10px 50px;
+  font-family: "Arvo", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.25px;
+  border-radius: 16px;
+  color: #ffffff;
+  background: #d53031;
+}
+.card__btn_submit {
+  grid-area: submit;
+}
+.card__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  align-items: center;
+  grid-gap: 20px;
+  margin-bottom: 150px;
+}
+.card__item {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.card__item * {
+  margin-bottom: 20px;
+}
+.card__item_add {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+.card__preview {
+  border-radius: 16px;
+}
+.card__preview_horizontal {
+  width: 300px;
+  height: 150px;
+}
+.card__preview_vertical {
+  width: 250px;
+  height: 350px;
+}
+.card__bottom {
+  display: grid;
+  grid-template-areas: "interval submit";
+  grid-template-columns: 300px 1fr;
+  justify-items: center;
+  align-items: end;
+}
+
+.form__horizontal-img {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.form__vertical-img {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.interval {
+  grid-area: interval;
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=banner_sliders.css.map */

@@ -1,0 +1,47 @@
+{% extends 'kino_app/base.html' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Custom styles for this template -->
+    <link href="../../../kino_app/static/kino_app/css/form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+  {% block title %} Регистрация {% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 100px;margin-bottom: 100px; background: rgba(0,0,0,.9);">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Страница клиента</h2>
+    </div>
+
+    <div class="row g-5">
+
+      <div class="col-md-7 col-lg-8">
+        <form class="needs-validation" method="post" action="{% url 'signup' %}"  >
+          <div class="row g-3">
+            {% csrf_token %}
+            {% for row in user_form %}
+                <div class="row mb-3">
+                    <label for="{{ row.id_for_label }}" class="col-sm-2 form-label">{{ row.label }}:</label>
+                    <div class="col-sm-10">
+                      {{ row }}
+                    </div>
+                </div>
+            {% endfor %}
+
+
+
+          <button class="btn btn-success btn-lg mb-5" style="width: 30%;" type="submit">Зарегистрироваться</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+    <script src="../../../kino_app/static/kino_app/js/form-validation.js"></script>
+  {% endblock %}
+  </body>
+</html>

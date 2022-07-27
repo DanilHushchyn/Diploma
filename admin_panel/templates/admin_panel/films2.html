@@ -1,0 +1,60 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'admin_panel/film/films.css' %}">
+    </head>
+     <div class="films">
+        <div class="films__add-item">
+            <a href="{% url 'film_form' %}">
+                <button class="films__btn btn-primary">Добавить новый фильм</button>
+            </a>
+        </div>
+        <div class="films__title">
+            Фильмы которые сейчас
+        </div>
+        <div class="films__block">
+            {% for film in films %}
+                <div class="films__item">
+                    <a href="{% url 'update_film' film.name %}">
+                        <img class="films__img" src="../../../media/{{ film.card_img }}" alt="">
+                    </a>
+                    <div class="films__name">{{ film.name}}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="films__title">
+            Фильмы которые скоро
+        </div>
+        <div class="films__items">
+            <div class="films__item">
+                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
+                <div class="films__name">Film name1</div>
+            </div>
+            <div class="films__item">
+                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
+                <div class="films__name">Film name1</div>
+            </div>
+            <div class="films__item">
+                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
+                <div class="films__name">Film name1</div>
+            </div>
+            <div class="films__item">
+                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
+                <div class="films__name">Film name1</div>
+            </div>
+            <div class="films__item">
+                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
+                <div class="films__name">Film name1</div>
+            </div>
+            <div class="films__item">
+                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
+                <div class="films__name">Film name1</div>
+            </div>
+        </div>
+     </div>
+
+{% endblock %}
+

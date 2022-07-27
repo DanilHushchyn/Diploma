@@ -1,0 +1,66 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'admin_panel/form.css' %}">
+        <link rel="stylesheet" href="{% static 'upload.css' %}">
+    </head>
+    <form action="{% url 'cinema_card' cinema_name %}" method="post" enctype="multipart/form-data" style="margin-bottom: 150px;">
+         {% csrf_token %}
+         <div class="form">
+             {% for row in form %}
+                  <div class="form__row">
+                      <label class="form__label" for="{{ row.id_for_label }}" class="">{{ row.label }}:</label>
+                      {{ row }}
+                  </div>
+             {% endfor %}
+         </div>
+         <div class="form">
+                 <div class="form__title">SEO блок </div>
+
+                 {% for seo in seo_form %}
+                      <div class="form__row">
+                          <label class="form__label" for="{{ seo.id_for_label }}" class="">{{ seo.label }}:</label>
+                          {{ seo }}
+                      </div>
+                 {% endfor %}
+         </div>
+         <div class="form__bottom">
+              <button class="form__btn btn-primary btn-primary_corner">Сохранить</button>
+         </div>
+    </form>
+    <div class="form">
+          <div class="form__title">Список залов</div>
+             <table class="form__table table">
+                  <thead>
+                   <tr>
+                      <th>Дата Создания</th>
+                      <th>Название</th>
+                      <th>Изменить</th>
+                      <th>Удалить</th>
+                   </tr>
+                  <thead>
+                  <tbody>
+                  {% for hall in halls %}
+                    <tr data-widget="expandable-table" aria-expanded="true">
+                      <td>{{ hall.creation_date }}</td>
+                      <td>Зал {{ hall.number }}</td>
+                      <td><a href="{% url 'update_hall' hall.number %}"><img class="table__icon" src="{% static 'admin_panel/imgs/edit.png' %}" alt=""></a></td>
+                      <td><a href="{% url 'delete_hall' hall.number %}"><img class="table__icon" src="{% static 'admin_panel/imgs/delete.png' %}" alt=""></a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+             </table>
+             <div class="form__bottom">
+                <a href="{% url 'hall_form' %}"> <button type="button" class="form__btn form__btn_w300 btn-primary ">
+                    Создать зал </button></a>
+            </div>
+    </div>
+
+
+     <script>
+           let urlImgRemove = "{% static 'imgs/remove.png' %}";
+     </script>
+    <script type="module" src="{% static 'admin_panel/cinema/cinema_update.js' %}"></script>
+{% endblock %}

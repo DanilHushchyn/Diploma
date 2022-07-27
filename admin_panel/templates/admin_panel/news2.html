@@ -1,0 +1,48 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'admin_panel/form.css' %}">
+    </head>
+
+        <div>
+            <a href="{% url 'news_form' %}">
+                <button type="button"   class="form__btn form__btn_w300 btn-primary btn-primary_corner">
+                  Создать новость</button></a>
+        </div>
+
+        <div class="form__title">Список Новостей</div>
+
+
+
+    <table class="form__table table">
+          <thead>
+            <tr>
+              <th>Название</th>
+              <th>Дата Создания</th>
+              <th>Статус</th>
+              <th>Изменить</th>
+              <th>Удалить</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for new in news_list %}
+                <tr>
+                  <td>{{ new.name }}</td>
+                  <td>{{ new.creation_date }}</td>
+                  <td>
+                      {% if new.turn_on %}
+                        ВКЛ
+                      {% else %}
+                        ВЫКЛ
+                      {% endif %}
+                  </td>
+                  <td><a href="{% url 'update_news' new.id %}"><img class="table__icon" src="{% static 'imgs/edit.png' %}" alt=""></a> </td>
+                  <td><a href="{% url 'delete_news' new.id %}"><img class="table__icon"  src="{% static 'imgs/x-button.png' %}" alt=""></a></td>
+                </tr>
+            {% endfor %}
+          </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block content %}
+    <head>
+     <!-- Google Font: Source Sans Pro -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+      <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+      <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+    </head>
+    <div class="content-wrapper">
+    <div class="content">
+        <!-- Small boxes (Stat box) -->
+          <div class="content-header">
+              <div class="container-fluid mb-5 mt-3">
+                <div class="row">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-3">
+                        <h4 class="m-0 text-center ">Пользователи</h4>
+                    </div>
+                    <div class="col-sm-4 " >
+                                            </div>
+                </div><!-- /.row -->
+              </div><!-- /.container-fluid -->
+            </div>
+             <div class="card" >
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Дата регистрации</th>
+                    <th>День рождения</th>
+                    <th>Почта</th>
+                    <th>Телефон</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Псевдоним</th>
+                    <th>Изменить</th>
+                    <th>Удалить</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for user in users %}
+
+                  <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.creation_date }}</td>
+                    <td>{{ user.birthday }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.nickname }}</td>
+                   <td><a href="{% url 'update_client' user.id %}"><ion-icon name="pencil-outline" style="width: 30px;height: 30px;"></ion-icon></a> </td>
+                   <td><a href="{% url 'delete_client' user.id %}"><ion-icon name="trash-outline" style="width: 30px;height: 30px"></ion-icon></a></td>
+
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.row -->
+
+      </div><!-- /.container-fluid -->
+    <!-- /.content -->
+  </div>
+
+    </div>
+
+  </div>
+
+  <!-- /.content-wrapper -->
+
+{% endblock %}>
+{% block scripts %}
+     <script  src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <script  src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+
+    <script  src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script  src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script  src="{% static 'dist/js/adminlte.min.js' %}"></script>
+    <script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false, "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Russian.json"
+        }
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Russian.json"
+        }
+    });
+  });
+</script>
+{% endblock %}

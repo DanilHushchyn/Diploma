@@ -1,0 +1,204 @@
+{% extends 'kino_app/base.html' %}
+{% load static %}
+{% block title %} {{ film.name }}{% endblock %}
+{% block content %}
+<div class="card mb-3 text-black" style="margin-top: 130px;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" >
+        <div class="carousel-item active" >
+
+            <a href="{{ film.trailer_link }}"> <img src="{% static 'kino_app/images/film_card/banner/' %}{{ film.main_img }}" class="img-fluid" alt="Responsive image"></a>
+
+            <div class="carousel-caption"style="margin-bottom: -100px;margin-left: -190px; width: 100%;height: 175px; background: rgba(0, 0, 0, 0.8);">
+               <h1 class="text-center">{{ film.name }}</h1>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" style="margin-top: -70px;padding: 0" >
+        <div class="container-fluid btn-group " style="; margin-bottom: 20px;margin-top:10px;background-color: lightgray;width: 100% ">
+              <div class="flex-shrink-0 p-3 bg-light text-black " style=" width: 230px;margin-left: -12px;">
+                    <a href="#" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                      <span class="fs-5 fw-semibold " >Фильтр</span>
+                    </a>
+                  <form action="{% url 'film_card' film.name %}" method="get">
+                    <ul class="list-unstyled ps-0">
+                      <li class=" border-bottom pb-3 mb-3">
+                            <label for="date_title">Дата показа: </label>
+                            <input type="date" name="date_filter">
+                      </li>
+                      <li class=" border-bottom pb-3 mb-3">
+                            <p>Номера залов:</p>
+                            {% for hall_filter in halls_filter %}
+                            <input type="checkbox"   name="halls_filter" value="{{ hall_filter.number }}"  >
+                            <label for="halls_filter">Зал {{ hall_filter.number }} </label><br>
+                            {% endfor %}
+                      </li>
+                      <li class="border-bottom pb-3 mb-3">
+                            <p>Формат:</p>
+                            {% for tech_type in tech_types %}
+                            <input type="checkbox"  name="techs_filter" value="{{ tech_type.name }}">
+                            <label for="{{ tech_type.name }}"> {{ tech_type.name }}</label><br>
+                            {% endfor %}
+                      </li>
+
+                      <button style="margin-bottom: 10px" type="submit" class="btn btn-block btn-info btn-xs">Поиск</button>
+
+                      <button href="{% url 'film_card' film.name %}" class="btn btn-block btn-info btn-xs">Сбросить фильтры</button>
+
+
+                    </ul>
+                  </form>
+              </div>
+              <div class="card-body  p-0 py-4 text-black ">
+                  <div class="container-marketing-colo">
+                        <div class="row">
+                            <div class="col-lg-10" >
+                                    <div class="container-marketing-colo" >
+                                       {% for film ,date_film  in result %}
+                                            <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="container"width="300" height="240" style="position: relative">
+                                                    <img class="bd-placeholder-img rounded-square" width="300" height="340" src="{% static 'kino_app/images/film_card/'%}{{film.main_pic}}" alt="">
+                                                </div>
+                                            </div><!-- /.col-lg-4  Image for film-->
+                                            <div class="col-lg-8 ">
+                                                <div class="container" style="position: relative">
+
+                                                    <h4 class="text-center " style="color: deepskyblue"> {{film.name }}  ({{ film.legal_age}}+)</h4>
+                                                    <div class="container"style="position: relative">
+
+                                                        {% for date,hall_film in date_film %}
+
+
+                                                        <p class="">{{ date }}</p>
+
+
+                                                        {% for hall,tech_film in hall_film %}
+
+
+
+
+
+
+
+
+                                                        <p class="">Зал {{ hall }} </p>
+                                                            {% for tech,seances in tech_film %}
+
+
+
+
+                                                            <div class="container"style="position: relative">
+                                                                    <p class=""> {{ tech }}</p>
+                                                                    <div class="row" style=>
+
+                                                                            {% for seance in seances %}
+                                                                             <div class="col-lg-2">
+
+                                                                            <button type="button" class="btn btn-block btn-info">
+
+                                                                            <a style="text-decoration: none" class="text-white"  href="#"> {{ seance.time }}</a>
+                                                                                </button>
+
+                                                                        </div>
+                                                                        {% endfor %}
+                                                                </div>
+                                                                <br>
+                                                            </div><!--/Зал 2 end-->
+                                                        {% endfor %}
+                                                        {% endfor %}
+                                                            {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.col-lg-8 Info of film end-->
+
+                                        </div><!-- /.row of film-->
+                                        {% endfor %}
+
+                                    </div>
+                            </div>
+                            <div class="col-lg-2 p-0" style="background-color: black;" >
+                                <p class="text-white"> Контекстная реклама</p>
+                            </div>
+                       </div>
+                  </div>
+              </div>
+         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="card-text">
+                        {{ film.description }}
+                    </p>
+                </div>
+                <div class="col-lg-4" style="border-style: ridge;border-color: black">
+                    <dl>
+                            <dt name="year">Год</dd>
+                            <dd>{{ film.year }}</dd>
+                            <dt name="country">Страна</dt>
+                             {% for i in country %}
+                                <dd>{{ i.name }}</dd>
+                            {% endfor %}
+                            <dt name="genre">Жанр</dt>
+                            {% for i in genres %}
+                            <dd>{{ i.name }}</dd>
+                            {% endfor %}
+                            <dt name="operator">Оператор</dt>
+                             {% for i in operator %}
+                            <dd>{{ i.name }}</dd>
+                            {% endfor %}
+                            <dt name="operator">Продюсер</dt>
+                             {% for i in producer %}
+                            <dd>{{ i.name }}</dd>
+                            {% endfor %}
+                            <dt name="director">Режиссёр</dt>
+                             {% for i in editor %}
+                            <dd>{{ i.name }}</dd>
+                            {% endfor %}
+                            <dt name="writters">Сценарист</dt>
+                             {% for i in scriptwriter %}
+                            <dd>{{ i.name }}</dd>
+                            {% endfor %}
+                            <dt name="duration">Бюджет</dt>
+                            <dd>{{ film.budget}}</dd>
+                            <dt name="duration">Время</dt>
+                            <dd>длительность</dd>
+                            <dt name="age_limit">Возраст</dt>
+                            <dd>+{{ film.legal_age}}</dd>
+
+                    </dl>
+                </div>
+            </div>
+            <br>
+            <h3 class="text-center">ФОТОГАЛЕРЕЯ</h3>
+            <br>
+            <div class="row">
+                <div class="album py-2" id="album-carousel">
+                      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              {% for img in film_imgs %}
+                                        <div class="carousel-item {% if forloop.counter0 == 0%}
+                                            active{% endif %}"  data-bs-interval="1000">
+                                          <img src="{% static 'kino_app/images/film_card/film_imgs/' %}{{ img.link }}" class="d-block w-100" alt="...">
+                                        </div>
+                              {% endfor %}
+                          </div>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div  class="container" style="background-color: black;width: 100%;height: 200px">
+              <p class="text-center text-white">Контекстная реклама</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

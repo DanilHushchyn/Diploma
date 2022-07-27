@@ -1,0 +1,105 @@
+@import '../zeroing.css'
+@import '../buttons'
+@import '../atributes'
+.main
+  padding: 50px
+.form
+  text-align: center
+
+  &__row
+    display: grid
+    margin-bottom: 30px
+    grid-template-columns: 200px 1fr
+    grid-template-areas: 'label input'
+    align-items: baseline
+
+    grid-gap: 10px
+    & input
+      grid-area: input
+    & label
+      grid-area: label
+      font-size: 20px
+      font-weight: 700
+
+  &__elem
+    background: $gray-soft-color
+    border-radius: 16px
+    padding: 20px
+    font-family: $font-family
+    font-size: 18px
+
+  &__title
+    text-align: center
+    font-family: $font-family
+    font-size: 30px
+    font-weight: 700
+    margin-bottom: 30px
+  &__bottom
+    margin-top: 50px
+    text-align: center
+  &__btn
+    padding: 10px 30px
+    margin: 0 auto
+    border-radius: 30px
+
+    &:hover
+     transition: background 0.3s ease
+     background: $purple-dark-color
+     -webkit-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+     -moz-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+     box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+
+
+table
+  width: 1100px
+  margin:  0 auto
+  border-collapse: collapse
+  overflow: hidden
+  box-shadow: 0 0 20px rgba(0,0,0,0.1)
+  border-radius: 16px
+  & img
+    width: 35px
+    height: 35px
+  & th,td
+    padding: 35px
+    background-color: rgba(255,255,255,0.2)
+    color: #fff
+    font-size: 24px
+
+    font-weight: bold
+
+
+  & th
+    text-align: center
+
+
+  & thead
+    border-radius: 16px 16px 0px 0px
+    th
+        background-color: $purple-dark-color
+
+
+
+  & tbody
+    & tr
+      &:hover
+          background-color: rgba(255,255,255,0.3)
+    & td
+      position: relative
+      color: $black-color
+      text-align: center
+      font-size: 18px
+      font-weight: bold
+      background: $gray-soft-color
+      &:hover
+          &:before
+              content: ""
+              position: absolute
+              left: 0
+              right: 0
+              top: -9999px
+              bottom: -9999px
+              background-color: rgba(255,255,255,0.2)
+              z-index: -1
+
+

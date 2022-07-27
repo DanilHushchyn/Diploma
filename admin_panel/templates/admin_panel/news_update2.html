@@ -1,0 +1,41 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" href="{% static 'admin_panel/form.css' %}">
+        <link rel="stylesheet" href="{% static 'upload.css' %}">
+    </head>
+
+        <form  action="{% url 'update_news' news_id %}" method="post"    runat="server" enctype="multipart/form-data">
+             {% csrf_token %}
+             <div class="form">
+                 {% for row in news_form %}
+                      <div class="form__row">
+                          <label class="form__label" for="{{ row.id_for_label }}" class="">{{ row.label }}:</label>
+                          {{ row }}
+                      </div>
+                 {% endfor %}
+             </div>
+            <div class="form">
+                 <div class="form__title">SEO блок </div>
+
+                 {% for seo in seo_form %}
+                      <div class="form__row">
+                          <label class="form__label" for="{{ seo.id_for_label }}" class="">{{ seo.label }}:</label>
+                          {{ seo }}
+                      </div>
+
+                 {% endfor %}
+            </div>
+          <div class="form__bottom">
+              <button class="form__btn btn-primary btn-primary_corner">Сохранить</button>
+          </div>
+        </form>
+        <script>
+           let urlImgRemove = "{% static 'imgs/remove.png' %}";
+        </script>
+        <script type="module" src="{% static 'admin_panel/news/news_update.js' %}"></script>
+
+{% endblock %}

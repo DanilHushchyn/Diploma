@@ -1,0 +1,132 @@
+{% extends 'kino_app/base.html' %}
+{% load static %}
+{% block title %} Расписание{% endblock %}
+
+     {% block content %}
+     <head>
+        <link rel="stylesheet" href="../../static/kino_app/css/schedule_sidebar.css">
+    </head>
+          <div class="container-fluid btn-group  " style="margin-top: 200px; margin-bottom: 200px;background-color: lightgray; ">
+              <div class=" flex-shrink-0 p-3 bg-light text-black " style=" width: 230px;margin-left: -12px;">
+                    <a href="#" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                      <span class="fs-5 fw-semibold " >Фильтр</span>
+                    </a>
+                  <form action="{% url 'schedule' %}" method="get">
+
+                    <ul class="list-unstyled ps-0">
+                      <li class=" border-bottom pb-3 mb-3">
+                            <label for="date_title">Дата показа: </label>
+                            <input type="date" name="date_filter" value={{ date_filter }}>
+                      </li>
+                      <li class=" border-bottom pb-3 mb-3">
+                            <p>Список фильмов:</p>
+
+                            {% for checked,film in film_list %}
+
+                            <input type="checkbox"  name="films_filter" {% if checked == 'checked' %}  checked {% endif %} value="{{ film.id }}"  >
+                            <label for="films_filter">{{ film.name }} </label><br>
+                            {% endfor %}
+                      </li>
+                      <li class=" border-bottom pb-3 mb-3">
+                            <p>Номера залов:</p>
+                            {% for checked, hall in hall_list %}
+                            <input type="checkbox"   name="halls_filter" {% if checked == 'checked' %}  checked {% endif %} value="{{ hall.number }}"  >
+                            <label for="halls_filter">Зал {{ hall.number }} </label><br>
+                            {% endfor %}
+                      </li>
+                      <li class="border-bottom pb-3 mb-3">
+                            <p>Формат:</p>
+                            {% for checked,tech in tech_list %}
+                            <input type="checkbox"  name="techs_filter" {% if checked == 'checked' %}  checked {% endif %} value="{{ tech.name }}">
+                            <label for="{{ tech.name }}"> {{ tech.name }}</label><br>
+                            {% endfor %}
+                      </li>
+
+                      <button style="margin-bottom: 10px" type="submit" class="btn btn-block btn-info btn-xs">Поиск</button>
+
+
+                    </ul>
+                  </form>
+                  <a href="{% url 'schedule' %}"> <button  class="btn btn-block btn-info btn-xs">Сбросить фильтры</button>
+                    </a>
+
+              </div>
+              <div class="card-body  p-0 py-4 text-black ">
+                  <div class="container-marketing-colo">
+                        <div class="row">
+                            <div class="col-lg-10" >
+                                    <div class="container-marketing-colo" >
+                                       {% for film ,date_film  in result %}
+                                            <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="container"width="300" height="240" style="position: relative">
+                                                    <a href='{% url 'film_card' film.name %}'> <img class="bd-placeholder-img rounded-square" width="300" height="340" src="{% static 'kino_app/images/film_card/'%}{{film.main_pic}}" alt="">
+                                                    </a>
+                                                </div>
+                                            </div><!-- /.col-lg-4  Image for film-->
+                                            <div class="col-lg-8 ">
+                                                <div class="container" style="position: relative">
+
+                                                    <h4 class="text-center " style="color: deepskyblue"> {{film.name }}  ({{ film.legal_age}}+)</h4>
+                                                    <div class="container"style="position: relative">
+
+                                                        {% for date,hall_film in date_film %}
+
+
+                                                        <p class="">{{ date }}</p>
+
+
+                                                        {% for hall,tech_film in hall_film %}
+
+
+
+
+
+
+
+
+                                                        <p class="">Зал {{ hall }} </p>
+                                                            {% for tech,seances in tech_film %}
+
+
+
+
+                                                            <div class="container"style="position: relative">
+                                                                    <p class=""> {{ tech }}</p>
+                                                                    <div class="row" style=>
+
+                                                                            {% for seance in seances %}
+                                                                             <div class="col-lg-2">
+
+                                                                            <button type="button" class="btn btn-block btn-info">
+
+                                                                            <a style="text-decoration: none" class="text-white"  href="#"> {{ seance.time }}</a>
+                                                                                </button>
+
+                                                                        </div>
+                                                                        {% endfor %}
+                                                                </div>
+                                                                <br>
+                                                            </div><!--/Зал 2 end-->
+                                                        {% endfor %}
+                                                        {% endfor %}
+                                                            {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.col-lg-8 Info of film end-->
+
+                                        </div><!-- /.row of film-->
+                                        <hr style=" width: 100%;  border: 1px solid grey;">
+                                        {% endfor %}
+
+                                    </div>
+                            </div>
+                            <div class="col-lg-2 p-0" style="background-color: black;" >
+                                <p class="text-white"> Контекстная реклама</p>
+                            </div>
+                       </div>
+                  </div>
+              </div>
+         </div>
+  {% endblock %}
+

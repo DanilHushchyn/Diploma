@@ -1,0 +1,23 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+
+{% block content %}
+            <head>
+               <link rel="stylesheet" href="{% static 'admin_panel/cinema/cinemas.css' %}">
+            </head>
+            <div class="cinemas">
+              <div class="cinemas__title">Кинотеатры</div>
+              <div class="cinemas__items">
+                  {% for cinema in cinemas %}
+                      <a href="{% url  'cinema_card' cinema.name %}">
+                      <div class="cinemas__item">
+                            <img class="cinemas__img" src="../../../media/{{ cinema.banner }}" alt="">
+                            <div class="cinemas__name">{{ cinema.name}}</div>
+                        </div>
+                       </a>
+                   {% endfor %}
+              </div>
+            </div>
+
+
+{% endblock %}

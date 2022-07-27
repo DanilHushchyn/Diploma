@@ -1,0 +1,58 @@
+{% extends 'kino_app/base.html' %}
+{% block title %} Скоро {% endblock %}
+{% load static %}
+     {% block content %}
+
+
+
+          <div class=" album py-5 " style="margin-top: 100px">
+            <div class="container-marketing-colo " >
+                <div class="row  " style="      background: rgba(0,0,0,.6);
+">
+                    <div class="col-lg-2" style="background-color: black">
+                        <p>Контекстная реклама</p>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="container-marketing-colo">
+                            <div class="row ">
+                                {% for film in films %}
+                                    {% if film.released == False %}
+                                        <div class="col-lg-4 ">
+                                            <p class="fs-4 text-center" style="color: lawngreen">с 1 сентября</p>
+                                            <div class="container" style="position: relative">
+                                                <a href="film_card.html/{{ film.id }}/"/>
+                                                    <img class="bd-placeholder-img  " width="300" height="340" src="{%  static '/kino_app/images/film_card/' %}{{film.main_pic}}" alt="">
+                                                    <ul class="text-block " style="list-style-type: none;">
+                                                        {% for tech in techs %}
+                                                            {% if tech.film_id == film.id %}
+                                                                <li class="rounded-pill text-center" style="background-color: #be14ff"><h3>{{ tech.name }}</h3></li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        <li class="rounded-pill text-center" style="background-color: deepskyblue;"><h3>+{{ film.legal_age }}</h3></li>
+
+                                                    </ul>
+
+
+
+
+
+                                                </a>
+
+                                            </div>
+                                            <a href="film_card.html " style="text-decoration: none"><h2 class="text-center text-white">{{ film.name}}</h2></a>
+                                            <p class="text-center "><a class="btn btn-lg btn-success"  width="300" height="240" href="#">Купить билет &raquo;</a></p>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div><!-- /.row -->
+                        </div>
+                    </div>
+
+                </div><!-- /.row -->
+            </div>
+          </div>
+          </div>
+    {% endblock %}
+
+
+
