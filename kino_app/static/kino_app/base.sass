@@ -1,0 +1,194 @@
+@import 'atributes'
+@import 'buttons'
+@import 'zeroing.css'
+body
+  font-family: $font-family
+  color: $gray-dark-color
+  min-height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.container
+  max-width: 1800px
+  margin: 0 auto
+
+.header
+  padding: 50px 50px 0px
+  margin-bottom: 25px
+  &__grid
+    display: grid
+    grid-template-columns: 200px  minmax(10px,1fr) minmax(50px,100px) 250px minmax(10px,50px) 300px minmax(10px,50px) 290px
+    grid-template-rows: 100px 25px 100px
+    grid-template-areas: 'logo . . search . socials . contacts' 'logo . . . . . . .' '. . navbar navbar navbar navbar navbar navbar'
+    & *
+      background: $white-color
+
+  &__logo
+    grid-area: logo
+    height: 100px
+    width: 200px
+  &__search
+    grid-area: search
+    width: 100%
+    height: 50px
+    font-size: 18px
+    padding-left: 10px
+    padding-right: 10px
+
+  &__socials
+    grid-area: socials
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 15px
+    width: 100%
+    height: 50px
+    & img
+      width: 35px
+      height: 35px
+      cursor: pointer
+
+  &__contacts
+    grid-area: contacts
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding: 10px 20px
+
+    & span
+      font-weight: bold
+      color: $gray-dark-color
+      font-size: 30px
+      letter-spacing: 5px
+
+
+
+  &__navbar
+    grid-area: navbar
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+
+  &__link
+
+    width: 100%
+    height: 100%
+    font-size: 18px
+    font-weight: bold
+    text-align: center
+    display: flex
+    align-items: center
+    justify-content: center
+    & a
+      color: inherit
+      background: inherit
+    &:hover
+      transition: background-color ease 0.3s
+      background: $yellow-dark-color
+
+.socials
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 15px
+    width: 100%
+    height: 50px
+    & img
+      width: 35px
+      height: 35px
+      cursor: pointer
+.main
+  flex-grow: 1
+  padding: 50px 50px 0
+
+  &__carousel
+    width: 100%
+    margin-bottom: 50px
+  &__content
+    background: $white-color
+    width: 100%
+    padding-bottom: 200px
+.carousel
+  &__item
+    height: 800px
+    position: relative
+    text-align: center
+  &__title
+    color: $white-color
+    margin-top: 700px
+    font-size: 70px
+    cursor: pointer
+
+  &__title
+
+  &__item
+    width: 100%
+.carousel
+  &__item
+    
+  &__img
+    width: 100%
+
+.item-a
+  width: 300px
+  background: green
+.item-b
+  width: 300px
+  background: #da4939
+.item-c
+  width: 300px
+  background: yellow
+.item-d
+  width: 300px
+  background: burlywood
+.item-e
+  width: 300px
+  background: #00c4ff
+.footer
+  &__grid
+    margin: 0 auto
+    color: $white-color
+    padding: 50px
+    background: $black-color
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(auto-fill, 450px minmax(10px,1fr) 200px minmax(10px,100px) 200px minmax(25px,200px) 200px)
+    grid-template-rows: 200px
+    grid-template-areas: 'mobile . afisha . cinema . socials'
+    justify-content: center
+
+    font-family: $font-family
+    font-size: 18px
+    padding-bottom: 100px
+  &__mobile
+    grid-area: mobile
+    & img
+      width: 200px
+      height: 100px
+  &__afisha
+    grid-area: afisha
+  &__cinema
+    grid-area: cinema
+  &__socials
+    grid-area: socials
+  &__title
+    font-weight: bold
+    font-size: 24px
+    margin-bottom: 20px
+
+  &__text
+  &__link
+    cursor: pointer
+    margin-bottom: 10px
+    & a
+      color: inherit
+    &:hover
+      color: $gray-light-color
+
+  &__row
+    margin-bottom: 60px

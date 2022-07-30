@@ -79,8 +79,7 @@ def films(request):
                 film_obj.save()
                 for file in request.FILES.getlist('img'):
                     FilmImg.objects.create(img=file, film_id=film_obj.id)
-
-    films = Film.objects.all()
+    date = datetime.datetime.today().date()
 
     data = {'films': films, 'title': 'Фильмы'}
     return render(request, 'admin_panel/films2.html', context=data)

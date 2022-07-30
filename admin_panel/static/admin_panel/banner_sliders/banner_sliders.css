@@ -54,8 +54,9 @@
 }
 .main__block {
   background: #ffffff;
-  margin-bottom: 50px;
-  padding: 50px;
+  margin-bottom: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   border-radius: 16px;
   position: relative;
 }
@@ -91,6 +92,7 @@
 }
 .card__grid {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: center;
   align-items: center;

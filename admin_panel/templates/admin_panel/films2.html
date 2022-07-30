@@ -14,7 +14,7 @@
         <div class="films__title">
             Фильмы которые сейчас
         </div>
-        <div class="films__block">
+        <div class="films__items">
             {% for film in films %}
                 <div class="films__item">
                     <a href="{% url 'update_film' film.name %}">
@@ -29,30 +29,14 @@
             Фильмы которые скоро
         </div>
         <div class="films__items">
-            <div class="films__item">
-                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
-                <div class="films__name">Film name1</div>
-            </div>
-            <div class="films__item">
-                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
-                <div class="films__name">Film name1</div>
-            </div>
-            <div class="films__item">
-                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
-                <div class="films__name">Film name1</div>
-            </div>
-            <div class="films__item">
-                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
-                <div class="films__name">Film name1</div>
-            </div>
-            <div class="films__item">
-                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
-                <div class="films__name">Film name1</div>
-            </div>
-            <div class="films__item">
-                <img class="films__img" src="{% static 'imgs/empty.jpg' %}" alt="">
-                <div class="films__name">Film name1</div>
-            </div>
+           {% for film in films %}
+                <div class="films__item">
+                    <a href="{% url 'update_film' film.name %}">
+                        <img class="films__img" src="../../../media/{{ film.card_img }}" alt="">
+                    </a>
+                    <div class="films__name">{{ film.name}}</div>
+                </div>
+            {% endfor %}
         </div>
      </div>
 
