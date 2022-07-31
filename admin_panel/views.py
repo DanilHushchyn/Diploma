@@ -5,6 +5,7 @@ from user import forms as user_forms
 from django.forms import inlineformset_factory, modelformset_factory
 # Create your views here.
 from admin_panel.models import *
+from datetime import date
 
 
 def statistic(request):
@@ -79,9 +80,16 @@ def films(request):
                 film_obj.save()
                 for file in request.FILES.getlist('img'):
                     FilmImg.objects.create(img=file, film_id=film_obj.id)
-    date = datetime.datetime.today().date()
-
-    data = {'films': films, 'title': 'Фильмы'}
+    start_date = date.today()
+    released_films = Film.objects.filter(released__lte=start_date)
+    unreleased_films = Film.objects.filter(released__gte=start_date)
+    data = {
+        'films': {
+            'released_films': released_films,
+            'unreleased_films': unreleased_films,
+        },
+        'title': 'Фильмы'
+    }
     return render(request, 'admin_panel/films2.html', context=data)
 
 
@@ -294,7 +302,6 @@ def banners_sliders(request):
     bottom_carousel_formset = BottomCarouselFormset(queryset=BottomCarousel.objects.all(), prefix='bottom_carousel')
     bottom_carousel_model = BottomCarousel.objects.all()
 
-
     interval = my_forms.FormInterval()
 
     back_img_form = my_forms.BackImgForm()
@@ -325,7 +332,8 @@ def top_carousel(request):
 
 
 def bottom_carousel(request):
-    BottomCarouselFormSet = modelformset_factory(BottomCarousel, form=my_forms.BottomCarouselForm, extra=0,can_delete=True)
+    BottomCarouselFormSet = modelformset_factory(BottomCarousel, form=my_forms.BottomCarouselForm, extra=0,
+                                                 can_delete=True)
     bottom_carousel_formset = BottomCarouselFormSet(request.POST, request.FILES, prefix='bottom_carousel')
 
     interval = my_forms.FormInterval(request.POST)

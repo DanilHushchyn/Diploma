@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import '../zeroing.css';
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ADADAD;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 100px minmax(400px, 1fr);
+  grid-template-areas: "sidebar main";
+}
+.content__main {
+  background: #5C5C5C;
+  grid-area: main;
+}
+.content__ads {
+  text-align: center;
+  color: #ffffff;
+  background: #d53031;
+  grid-area: sidebar;
+}
+.content__menu {
+  margin-bottom: 50px;
+}
+.content__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  grid-gap: 30px;
+  margin-bottom: 150px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+.content__btn {
+  padding: 10px 30px;
+  border-radius: 0px;
+  background: #FDCB6E;
+  color: #ffffff;
+}
+.content__btn:hover {
+  background: #FFEAA7;
+}
+
+.film__item {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.film__img {
+  width: 300px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+.film__text {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 28px;
+  text-align: center;
+  font-family: "Arvo", sans-serif;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.film__text_yellow {
+  color: #FDCB6E;
+}
+.film__btn {
+  padding: 10px 30px;
+  border-radius: 0px;
+  background: #FDCB6E;
+}
+.film__btn:hover {
+  background-color: #FFEAA7;
+}
+
+/*# sourceMappingURL=poster.css.map */

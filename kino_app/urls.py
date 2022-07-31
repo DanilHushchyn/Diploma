@@ -4,7 +4,7 @@ import kino_app.views
 
 urlpatterns = [
     path("main", kino_app.views.main, name='main'),
-    path("cinemas", kino_app.views.cinemas, name='cinemas'),
+    path("cinemas", kino_app.views.cinemas, name='kino_app_cinemas'),
     path("soon", kino_app.views.soon, name='soon'),
     path("schedule", kino_app.views.schedule, name='schedule'),
     path("card_cinema/<str:name>", kino_app.views.card_cinema, name='card_cinema'),

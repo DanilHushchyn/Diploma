@@ -8,7 +8,7 @@ urlpatterns = [
     path("film_form", admin_panel.views.get_film_form, name='film_form'),
     path("update_film/<str:name>", admin_panel.views.update_film, name='update_film'),
     path("films", admin_panel.views.films, name='films'),
-    path("cinemas", admin_panel.views.cinemas, name='cinemas'),
+    path("cinemas", admin_panel.views.cinemas, name='admin_cinemas'),
 
     path("stocks_table", admin_panel.views.stocks, name='stocks_table'),
     path("stock_form", admin_panel.views.get_stock_form, name='stock_form'),

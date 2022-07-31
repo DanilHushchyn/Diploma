@@ -15,7 +15,7 @@
             Фильмы которые сейчас
         </div>
         <div class="films__items">
-            {% for film in films %}
+            {% for film in films.released_films %}
                 <div class="films__item">
                     <a href="{% url 'update_film' film.name %}">
                         <img class="films__img" src="../../../media/{{ film.card_img }}" alt="">
@@ -29,7 +29,7 @@
             Фильмы которые скоро
         </div>
         <div class="films__items">
-           {% for film in films %}
+           {% for film in films.unreleased_films %}
                 <div class="films__item">
                     <a href="{% url 'update_film' film.name %}">
                         <img class="films__img" src="../../../media/{{ film.card_img }}" alt="">

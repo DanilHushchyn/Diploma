@@ -26,13 +26,7 @@ $('.carousel__item').each(function (index,elem) {
             })
     }
 });
-$('body').each(function (index,elem) {
 
-    $(elem).css({
-        'background':` url(${$(elem).data('background')}) center/100% 100% no-repeat`,
-        'background-attachment':`fixed`,
-    })
-})
 $('.carousel__item').on('click',function (event) {
     window.location.href = $(this).data('link');
 

@@ -47,6 +47,10 @@ body {
   font-family: "Arvo", sans-serif;
   color: #5C5C5C;
   min-height: 100%;
+}
+
+.wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -63,7 +67,7 @@ body {
 }
 .header__grid {
   display: grid;
-  grid-template-columns: 200px minmax(10px, 1fr) minmax(50px, 100px) 250px minmax(10px, 50px) 300px minmax(10px, 50px) 290px;
+  grid-template-columns: 200px minmax(10px, 1fr) minmax(0px, 100px) 250px minmax(10px, 50px) 300px minmax(10px, 50px) 290px;
   grid-template-rows: 100px 25px 100px;
   grid-template-areas: "logo . . search . socials . contacts" "logo . . . . . . ." ". . navbar navbar navbar navbar navbar navbar";
 }
@@ -157,15 +161,6 @@ body {
   flex-grow: 1;
   padding: 50px 50px 0;
 }
-.main__carousel {
-  width: 100%;
-  margin-bottom: 50px;
-}
-.main__content {
-  background: #ffffff;
-  width: 100%;
-  padding-bottom: 200px;
-}
 
 .carousel__item {
   height: 800px;
@@ -182,35 +177,6 @@ body {
   width: 100%;
 }
 
-.carousel__img {
-  width: 100%;
-}
-
-.item-a {
-  width: 300px;
-  background: green;
-}
-
-.item-b {
-  width: 300px;
-  background: #da4939;
-}
-
-.item-c {
-  width: 300px;
-  background: yellow;
-}
-
-.item-d {
-  width: 300px;
-  background: burlywood;
-}
-
-.item-e {
-  width: 300px;
-  background: #00c4ff;
-}
-
 .footer__grid {
   margin: 0 auto;
   color: #ffffff;
@@ -218,13 +184,12 @@ body {
   background: #2D3436;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 450px minmax(10px, 1fr) 200px minmax(10px, 100px) 200px minmax(25px, 200px) 200px);
-  grid-template-rows: 200px;
+  grid-template-columns: repeat(auto-fill, 300px minmax(50px, 1fr) 120px minmax(50px, 100px) 170px minmax(50px, 200px) 200px);
   grid-template-areas: "mobile . afisha . cinema . socials";
   justify-content: center;
+  flex-shrink: 1;
   font-family: "Arvo", sans-serif;
   font-size: 18px;
-  padding-bottom: 100px;
 }
 .footer__mobile {
   grid-area: mobile;

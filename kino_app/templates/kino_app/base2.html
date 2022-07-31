@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'kino_app/base.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body data-background = "../../../media/{{banner.img}}">
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__grid">
+                    <a href="{% url 'main' %}"><img class="header__logo" src="{% static 'admin_panel/imgs/home_alone.jpg' %}"></a>
+                    <div class="header__socials socials">
+                        <img src="{% static 'kino_app/imgs/premium-icon-discord-4494732.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-twitter-4494477.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-facebook-4494475.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-instagram-4494488.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-youtube-4494485.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-git-4494740.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-skype-4494482.png' %}" alt="">
+                    </div>
+                    <input class="header__search" type="text">
+
+                    <div class="header__contacts">
+                        <span>098 512 64 21</span>
+                        <span>068 512 64 11</span>
+                    </div>
+
+                    <ul class="header__navbar">
+                        <li class="header__link">
+                            <a  href="{% url 'poster' %}">Афиша</a>
+                        </li>
+                        <li class="header__link">
+                            <a href="{% url 'schedule' %}">Расписание</a>
+                        </li>
+                        <li class="header__link">
+                            <a href="{% url 'kino_app_cinemas' %}">Кинотеатры</a>
+                        </li>
+                        <li class="header__link">
+                            <a href="{% url 'soon' %}">Скоро</a>
+                        </li>
+                        <li class="header__link">
+                            <select class="dropdown" name="" id="">
+                                 <option><a class="dropdown-item text-black" href="{% url 'news' %}">Новости</a></option>
+                                 <option><a class="dropdown-item text-black" href="{% url 'contacts' %}">Контакты</a></option>
+                                 <option><a class="dropdown-item text-black" href="{% url 'mobile_apps' %}">Мобильные приложения</a></option>
+                            </select>
+                        </li>
+                        <li class="header__link">
+                            <a href="{% url 'stocks' %}">Акции</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+             {% block content %}
+             {% endblock %}
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__grid">
+                    <div class="footer__mobile">
+                        <div class="footer__title">
+                            Мобильные приложения
+                        </div>
+                        <div class="footer__row">
+                            <img src="{% static 'kino_app/imgs/GooglePlay.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/app_store_badge_en_0609.png' %}" alt="">
+                        </div>
+                        <div class="footer__text">
+                            Разработка сайтов: Home Alone
+                        </div>
+                    </div>
+                    <div class="footer__afisha">
+                        <div class="footer__title">
+                            Афиша
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Расписание</a>
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Кинотеатры</a>
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Акции</a>
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Залы</a>
+                        </div>
+                    </div>
+                    <div class="footer__cinema">
+                        <div class="footer__title">
+                            О Кинотеатре
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Реклама</a>
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Кафе-Бар</a>
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Контакты</a>
+                        </div>
+                        <div class="footer__link">
+                            <a href="">Новости</a>
+                        </div>
+                    </div>
+                    <div class="footer__socials socials">
+                        <img src="{% static 'kino_app/imgs/premium-icon-instagram-4494488.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-youtube-4494485.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-git-4494740.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-skype-4494482.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'kino_app/base.js' %}" ></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

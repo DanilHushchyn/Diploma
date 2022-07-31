@@ -3,10 +3,14 @@ import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
+
 from admin_panel.models.film import *
 from admin_panel.models.cinema import *
 from admin_panel.models.main_page import *
+from datetime import date
 
+def getBanner():
+    return BackImg.objects.first()
 
 
 # Create your views here.
@@ -37,28 +41,36 @@ def page(request, page_id):
 #     return render(request, '../templates/kino_app/main.html', context=data)
 def main(request):
     top_carousel = TopCarousel.objects.all()
-    banner = BackImg.objects.first()
     bottom_carousel = BottomCarousel.objects.all()
     banners_sliders = { "top_carousel": top_carousel, "bottom_carousel": bottom_carousel}
-    date = datetime.datetime.today().date()
-    seances = Seance.objects.filter(date=date)
-    seances = seances.distinct("film")
-    pages=Page.objects.all()
-    data = { 'seances': seances, 'banners_sliders': banners_sliders, 'pages': pages,
-            "date": date,"banner": banner}
+    today_date = date.today()
+    seances_today = Seance.objects.filter(date=today_date)
+    seances_today = seances_today.distinct("film")
+
+    unreleased_films = Film.objects.filter(released__gt=today_date)
+    data = { 'seances_today': seances_today,'unreleased_films': unreleased_films, 'banners_sliders': banners_sliders,
+            "today_date": today_date.today(),"banner": getBanner()}
     return render(request, '../templates/kino_app/main2.html', context=data)
 
 
 def poster(request):
-    films = Film.objects.filter(released=True)
-    result = []
-    for film in films:
-        result.append((film, (film.technology_types.all())))
-    data = {'result': result, 'title': 'Афиша'}
-    return render(request, '../templates/kino_app/poster.html', context=data)
+    today_date = date.today()
+    unreleased_films = Film.objects.filter(released__gte=today_date)
+    released_films = Film.objects.filter(released__lte=today_date)
+    # films = Film.objects.all()
+    # result = []
+    # for film in films:
+    #     result.append((film, (film.technology_types.all())))
+    data = {
+            'unreleased_films': unreleased_films,
+            'released_films': released_films,
+            "banner": getBanner(),
+            }
+    return render(request, '../templates/kino_app/poster2.html', context=data)
 
 
 def cinemas(request):
+
     mainPage = MainPage.objects.last()
     cinemas = Cinema.objects.all()
     data = {"cinemas": cinemas, 'title': 'Кинотеатры', 'mainPage': mainPage
@@ -67,12 +79,19 @@ def cinemas(request):
 
 
 def soon(request):
-    films = Film.objects.all()
-    techs = TechnologyType.objects.all()
-    data = {'films': films,
-            'title': 'Скоро',
-            'techs': techs}
-    return render(request, '../templates/kino_app/soon.html', context=data)
+    today_date = date.today()
+    unreleased_films = Film.objects.filter(released__gte=today_date)
+    released_films = Film.objects.filter(released__lte=today_date)
+    # films = Film.objects.all()
+    # result = []
+    # for film in films:
+    #     result.append((film, (film.technology_types.all())))
+    data = {
+        'unreleased_films': unreleased_films,
+        'released_films': released_films,
+        "banner": getBanner(),
+    }
+    return render(request, '../templates/kino_app/soon2.html', context=data)
 
 
 # def func7(request):
@@ -187,7 +206,7 @@ def card_cinema(request, name):
     cinema = Cinema.objects.get(name=name)
     cinema_imgs = CinemaImg.objects.filter(cinema_id=cinema.id)
     halls = Hall.objects.filter(cinema_id=cinema.id)
-    seances = Seance.objects.filter(date=datetime.datetime.today())
+    seances = Seance.objects.filter(date=date.today())
 
     data = {'cinema': cinema, "cinema_imgs": cinema_imgs, "halls": halls, "halls_num": halls.__len__(),
             'seances': seances}
@@ -260,7 +279,7 @@ def film_card(request, name):
 def hall(request, id):
     hall = Hall.objects.get(pk=id)
     hall_imgs = HallImg.objects.filter(hall_id=hall.id)
-    seances = Seance.objects.filter(hall=hall, date=datetime.datetime.today())
+    seances = Seance.objects.filter(hall=hall, date=date.today())
     data = {'hall': hall, 'hall_imgs': hall_imgs, 'seances': seances}
 
     return render(request, '../templates/kino_app/hall.html', context=data)
