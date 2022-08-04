@@ -98,9 +98,6 @@ def cinemas(request):
         hall_form = my_forms.HallForm(request.POST, request.FILES)
         seo_form = my_forms.SeoBlockForm(request.POST)
         hall_gallery_form = my_forms.HallImgForm(request.POST, request.FILES)
-        print(hall_gallery_form.is_valid(), "HELLO")
-        print(hall_form.is_valid(), "HELLO")
-        print(hall_gallery_form.errors)
         if seo_form.is_valid():
             seo_obj = seo_form.save()
             if hall_form.is_valid() and hall_gallery_form.is_valid():
@@ -268,7 +265,7 @@ def cinema_card(request, name):
         if cinema_form.is_valid() and seo_form.is_valid():
             cinema_form.save()
             seo_form.save()
-            return redirect('cinemas')
+            return redirect('admin_cinemas')
         else:
             cinema_form = my_forms.CinemaForm(instance=cinema)
             seo_obj = SeoBlock(id=cinema.seo_block.id)

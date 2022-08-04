@@ -5,6 +5,7 @@
 {% endblock %}
 {% block head %}
         <link  rel="stylesheet" href="{% static 'kino_app/node_modules/lightslider/src/css/lightslider.css' %} " />
+        <link  rel="stylesheet" href="{% static 'kino_app/carousel.css' %} " />
         <link  rel="stylesheet" href="{% static 'kino_app/main/main.css' %} " />
 {% endblock %}
 {% block content %}
@@ -50,7 +51,7 @@
                 {% endfor %}
          </div>
          <div class="main__title">Новости и Акции</div>
-         <div  class= "carousel main__carousel" data-number="2">
+         <div  class= "carousel cinema__carousel" data-number="2">
              {% for item in banners_sliders.bottom_carousel %}
                      <div class="carousel__item" data-link="{{ item.link }}" data-background = ../../../media/{{ item.img }} >
                          <div class="carousel__title">
@@ -59,7 +60,7 @@
                      </div>
              {% endfor %}
          </div>
-        <div class="main__ads">
+        <div class="main__ads ">
             Контекстная реклама
         </div>
      </div>

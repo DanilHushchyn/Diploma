@@ -1,0 +1,66 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+{% block title %}
+    {{ cinema.name }}
+{% endblock %}
+{% block head %}
+    <link  rel="stylesheet" href="{% static 'kino_app/node_modules/lightslider/src/css/lightslider.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/carousel.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/cinemas/cinema_card.css' %} " />
+{% endblock %}
+
+{% block content %}
+     <div class="content">
+         <div class="content__banner" data-background="../../../media/{{ cinema.banner }}">
+             <div class="content__title">{{ cinema.name }}</div>
+         </div>
+         <div class="content__grid">
+             <div class="content__main cinema">
+                 <div class="cinema__row">
+                     <img src="../../../media/{{ cinema.logo }}" class="cinema__logo"/>
+                     <div class="cinema__block">
+                         <div class="cinema__btn btn-primary">Расписание сеансов</div>
+                         <div class="cinema__techs">
+                             <img src="{% static 'kino_app/imgs/hd-film.png' %}" alt="">
+                             <img src="{% static 'kino_app/imgs/2d.png' %}" alt="">
+                             <img src="{% static 'kino_app/imgs/3d-display.png' %}" alt="">
+                             <img src="{% static 'kino_app/imgs/4d-movie.png' %}" alt="">
+                             <img src="{% static 'kino_app/imgs/cinema.png' %}" alt="">
+                         </div>
+                     </div>
+                 </div>
+                 <p class="cinema__descr">
+                     {{ cinema.description }}
+                 </p>
+                 <div class="cinema__title">Условия</div>
+                 <div class="cinema__title">ФОТОГАЛЕРЕЯ</div>
+                 <div  class= "carousel cinema__carousel">
+                     {% for item in cinema_imgs %}
+                         <div class="carousel__item"  data-background = ../../../media/{{ item.img }} >
+                         </div>
+                     {% endfor %}
+                 </div>
+             </div>
+             <div class="content__sidebar sidebar">
+                <div class="sidebar__ads">
+                    Контекстная реклама
+                </div>
+                <div class="sidebar__title">Кол-во залов: {{ halls_num }}</div>
+                <div class="sidebar__halls">
+                    {%  for hall in halls %}
+                        <a  href="{% url 'hall' hall.id %}">
+                        <button class="sidebar__btn btn-primary">
+                            Зал {{ hall.number }}
+                        </button>
+                        </a>
+                    {% endfor %}
+                </div>
+             </div>
+         </div>
+     </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'kino_app/node_modules/lightslider/src/js/lightslider.js' %}"></script>
+    <script src="{% static 'kino_app/cinemas/cinemas_card.js' %}"></script>
+{% endblock %}

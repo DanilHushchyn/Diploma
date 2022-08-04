@@ -3,7 +3,7 @@
 
 {% block content %}
     <head>
-        <link rel="stylesheet" href="{% static 'admin_panel/film/film_form/film_form.css' %}">
+        <link rel="stylesheet" href="{% static 'admin_panel/form.css' %}">
         <link rel="stylesheet" href="{% static 'upload.css' %}">
     </head>
     <form action="{% url 'update_film' film_name %}" method="post" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
     <script>
            let urlImgRemove = "{% static 'imgs/remove.png' %}";
      </script>
-    <script type="module" src="{% static 'admin_panel/film/film_form/film_update_form.js' %}"></script>
+    <script type="module" src="{% static 'admin_panel/film/film_form_update.js' %}"></script>
 
 
 {% endblock %}

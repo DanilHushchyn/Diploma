@@ -1,0 +1,55 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+{% block title %}
+   Зал номер {{ hall.number }}
+{% endblock %}
+{% block head %}
+    <link  rel="stylesheet" href="{% static 'kino_app/node_modules/lightslider/src/css/lightslider.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/carousel.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/hall/hall.css' %} " />
+{% endblock %}
+
+{% block content %}
+     <div class="content">
+         <div class="content__banner" data-background="../../../media/{{ hall.banner }}">
+             <div class="content__title">Зал номер {{ hall.number }}</div>
+         </div>
+         <div class="content__grid">
+             <div class="content__main hall">
+
+                 <p class="hall__descr">
+                     {{ hall.description }}
+                 </p>
+                 <div class="hall__title">Условия</div>
+                 <img src="../../../media/{{ hall.scheme }}" alt="" class="hall__scheme">
+                 <div class="hall__title">ФОТОГАЛЕРЕЯ</div>
+                 <div  class= "carousel hall__carousel">
+                     {% for item in hall_imgs %}
+                         <div class="carousel__item"  data-background = ../../../media/{{ item.img }} >
+                         </div>
+                     {% endfor %}
+                 </div>
+             </div>
+             <div class="content__sidebar sidebar">
+                <div class="sidebar__ads">
+                    Контекстная реклама
+                </div>
+                <div class="sidebar__title">Смотрите сегодня</div>
+                <div class="sidebar__seances">
+                    {%  for seance in seances %}
+                        <a  href="{% url 'schedule' %}">
+                        <button class="sidebar__btn btn-primary">
+                            {{ seance.time }} {{ seance.film.name }}
+                        </button>
+                        </a>
+                    {% endfor %}
+                </div>
+             </div>
+         </div>
+     </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'kino_app/node_modules/lightslider/src/js/lightslider.js' %}"></script>
+    <script src="{% static 'kino_app/hall/hall.js' %}"></script>
+{% endblock %}

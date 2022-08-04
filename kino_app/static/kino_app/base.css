@@ -35,7 +35,7 @@
   color: #6C5CE7;
   background: #ffffff;
   border-radius: 8px;
-  border: 1px solid #ADADAD;
+  border: 1px solid #989797;
 }
 .btn-default:hover, .btn-default:focus {
   transition: background 0.3s ease;
@@ -162,21 +162,6 @@ body {
   padding: 50px 50px 0;
 }
 
-.carousel__item {
-  height: 800px;
-  position: relative;
-  text-align: center;
-}
-.carousel__title {
-  color: #ffffff;
-  margin-top: 700px;
-  font-size: 70px;
-  cursor: pointer;
-}
-.carousel__item {
-  width: 100%;
-}
-
 .footer__grid {
   margin: 0 auto;
   color: #ffffff;
@@ -220,7 +205,7 @@ body {
   color: inherit;
 }
 .footer__link:hover {
-  color: #ADADAD;
+  color: #989797;
 }
 .footer__row {
   margin-bottom: 60px;

@@ -1,0 +1,45 @@
+@import '../atributes'
+@import '../buttons'
+@import '../zeroing.css'
+.content
+  background: $white-color
+  &__banner
+    height: 800px
+    background-repeat: no-repeat
+    background-image: linear-gradient(to right, RGBA(96, 96, 96,0.7),RGBA(96, 96, 96,0.7)), url("../imgs/cinemas.jpg")
+    background-position: 0% 100%, top
+    background-size: 100% 150px, cover
+    position: relative
+    text-align: center
+  &__title
+    margin: 0 auto
+    padding-top: 700px
+    font-size: 70px
+    font-family: $font-family
+    color: $white-color
+  &__grid
+    display: grid
+    grid-template-columns: 1fr 100px
+    grid-template-areas: "main ads"
+  &__main
+    grid-area: main
+    padding: 50px
+  &__item
+    width: 600px
+    display: flex
+    flex-direction: column
+    align-items: center
+    & img
+      width: 600px
+      height: 300px
+      margin-bottom: 30px
+  &__text
+    font-family: $font-family
+    font-size: 30px
+    font-weight: bold
+
+  &__ads
+    grid-area: ads
+    background: $red-dark-color
+    color: $white-color
+    text-align: center

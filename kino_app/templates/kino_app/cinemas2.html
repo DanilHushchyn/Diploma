@@ -1,17 +1,34 @@
 {% extends 'kino_app/base2.html' %}
 {% load static %}
 {% block title %}
-    Афиша
+    Кинотеатры
 {% endblock %}
 {% block head %}
-     <link  rel="stylesheet" href="{% static 'kino_app/poster/poster.css' %} " />
+     <link  rel="stylesheet" href="{% static 'kino_app/cinemas/cinemas.css' %} " />
 {% endblock %}
 
 {% block content %}
-         <div class="content">
-
+     <div class="content">
+         <div class="content__banner">
+             <div class="content__title">Наши Кинотеатры</div>
          </div>
+         <div class="content__grid">
+             <div class="content__main">
+                 {% for cinema in cinemas %}
+                     <div class="content__item ">
+                        <a href="{% url 'card_cinema' cinema.name %}">
+                            <img class="content__img" src="../../../media/{{ cinema.banner }}" alt="">
+                        </a>
+                        <div class="content__text">{{ cinema.name}}</div>
+                     </div>
+
+                 {% endfor %}
+             </div>
+             <div class="content__ads">
+                Контекстная реклама
+             </div>
+         </div>
+     </div>
 {% endblock %}
 {% block script %}
-    <script src="{% static 'kino_app/poster/poster.js' %}"></script>
 {% endblock %}

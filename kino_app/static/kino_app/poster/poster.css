@@ -35,7 +35,7 @@
   color: #6C5CE7;
   background: #ffffff;
   border-radius: 8px;
-  border: 1px solid #ADADAD;
+  border: 1px solid #989797;
 }
 .btn-default:hover, .btn-default:focus {
   transition: background 0.3s ease;

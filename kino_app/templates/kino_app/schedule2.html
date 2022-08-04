@@ -1,0 +1,97 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+{% block title %}
+   Расписание
+{% endblock %}
+{% block head %}
+
+    <link  rel="stylesheet" href="{% static 'kino_app/schedule/schedule.css' %} " />
+{% endblock %}
+
+{% block content %}
+     <div class="content">
+         <div class="content__grid">
+             <div class="sidebar">
+                 <div class="sidebar__title"> Фильтры</div>
+                    <hr>
+                     <div class="sidebar__subtitle">Период:</div>
+                     <div class="sidebar__grid">
+                         <input type="radio" name="period" id="today" class="sidebar__input">
+                         <label for="today" class="sidebar__label">Сегодня</label>
+                         <input type="radio" name="period" id="tomorrow" class="sidebar__input">
+                         <label for="tomorrte" class="sidebar__label">Завтра</label>
+                         <input type="radio" name="period" id="week" class="sidebar__input">
+                         <label for="week" class="sidebar__label">Неделя</label>
+                         <input type="radio" name="period" id="month" class="sidebar__input">
+                         <label for="month" class="sidebar__label">Месяц</label>
+                     </div>
+                    <hr>
+                     <div class="sidebar__subtitle">Фильмы:</div>
+                     <div class="sidebar__grid">
+                          {% for checked,film in film_list %}
+                            <input type="checkbox"  name="films_filter" {% if checked == 'checked' %}  checked {% endif %} value="{{ film.id }}"  >
+                            <label for="films_filter">{{ film.name }}</label>
+                          {% endfor %}
+                     </div>
+                    <hr>
+                     <div class="sidebar__subtitle">Залы:</div>
+                     <div class="sidebar__grid">
+                           {% for checked, hall in hall_list %}
+                            <input type="checkbox"   name="halls_filter" {% if checked == 'checked' %}  checked {% endif %} value="{{ hall.number }}"  >
+                            <label for="halls_filter">Зал {{ hall.number }} </label>
+                            {% endfor %}
+                     </div>
+                    <hr>
+                     <div class="sidebar__subtitle">Технологии:</div>
+                     <div class="sidebar__grid">
+                          {% for checked,tech in tech_list %}
+                            <input type="checkbox"  name="techs_filter" {% if checked == 'checked' %}  checked {% endif %} value="{{ tech.name }}">
+                            <label for="{{ tech.name }}"> {{ tech.name }}</label>
+                            {% endfor %}
+                     </div>
+                    :<hr>
+
+
+             </div>
+             <div class="film">
+                 {% for film ,date_film  in result %}
+                 <div class="film__item">
+                     <img src="../../../media/{{ film.card_img }}" class="film__img"/>
+                     <div class="film__title">{{ film.name }} ({{ film.legal_age}}+)</div>
+                     <div class="film__info info">
+                         {% for date,hall_film in date_film %}
+                             <div class="info__date">
+                                 <div class="info__text">{{ date }}</div>
+                                 {% for hall,tech_film in hall_film %}
+                                     <div class="info__hall">
+                                         <div class="info__text">Зал №{{ hall }}</div>
+                                         {% for tech,seances in tech_film %}
+                                             <div class="info__tech">
+                                                 <div class="info__text">{{ tech }}</div>
+                                                 <div class="info__grid">
+                                                     {% for seance in seances %}
+                                                         <button type="button" class="info__time">
+                                                            <div class="info__descr" hidden>Купить билет</div>
+                                                             {{ seance.time }}
+                                                         </button>
+                                                     {% endfor %}
+                                                 </div>
+                                             </div>
+                                         {% endfor %}
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                         {% endfor %}
+                     </div>
+                 </div>
+                 {% endfor %}
+             </div>
+
+             <div class="ads">Контекстная реклама</div>
+         </div>
+     </div>
+{% endblock %}
+{% block script %}
+
+    <script src="{% static 'kino_app/schedule/schedule.js' %}"></script>
+{% endblock %}

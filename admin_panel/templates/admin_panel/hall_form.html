@@ -6,7 +6,7 @@
           <link rel="stylesheet" href="{% static 'admin_panel/form.css' %}">
           <link rel="stylesheet" href="{% static 'upload.css' %}">
       </head>
-         <form id="hall_form"  runat="server" action="{% url 'cinemas' %}" method="post" enctype="multipart/form-data">
+         <form id="hall_form"  runat="server" action="{% url 'admin_cinemas' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="form">
                   {% for row in hall_form %}
