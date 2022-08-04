@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import '../zeroing.css';
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #989797;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.content__banner {
+  height: 800px;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to right, RGBA(96, 96, 96, 0.7), RGBA(96, 96, 96, 0.7)), url("../imgs/cinemas.jpg");
+  background-position: 0% 100%, top;
+  background-size: 100% 150px, cover;
+  position: relative;
+  text-align: center;
+}
+.content__title {
+  margin: 0 auto;
+  padding-top: 700px;
+  font-size: 70px;
+  font-family: "Arvo", sans-serif;
+  color: #ffffff;
+}
+.content__grid {
+  display: grid;
+  grid-template-columns: 300px minmax(300px, 1500px);
+  grid-template-areas: "sidebar main";
+}
+.content__main {
+  background: #ffffff;
+  grid-area: main;
+  padding: 50px;
+}
+.content__item {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content__item img {
+  width: 600px;
+  height: 300px;
+  margin-bottom: 30px;
+}
+.content__text {
+  font-family: "Arvo", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+.content__sidebar {
+  background: #ffffff;
+  grid-area: sidebar;
+}
+
+.cinema__logo {
+  width: 300px;
+  height: 200px;
+  margin-right: 100px;
+}
+.cinema__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-bottom: 50px;
+}
+.cinema__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+}
+.cinema__btn {
+  cursor: pointer;
+  border-radius: 0px;
+  background: #FDCB6E;
+  margin-bottom: 50px;
+  padding: 10px 50px;
+}
+.cinema__btn:hover {
+  background: #FFEAA7;
+}
+.cinema__techs {
+  background: #FDCB6E;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.cinema__techs img {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+.cinema__descr {
+  font-size: 18px;
+  line-height: normal;
+  font-family: "Arvo", sans-serif;
+  text-align: left;
+  margin-bottom: 50px;
+}
+.cinema__title {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 40px;
+  font-family: "Arvo", sans-serif;
+  color: #2D3436;
+  margin-bottom: 50px;
+}
+
+.sidebar {
+  background: #ffffff;
+}
+.sidebar__title {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: "Arvo", sans-serif;
+  font-weight: bold;
+  color: #2D3436;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.sidebar__btn {
+  padding: 20px 0px;
+  width: 100%;
+  border-radius: 0px;
+  margin-bottom: 10px;
+  background: #00B894;
+}
+.sidebar__btn:hover {
+  background: #55EFC4;
+}
+.sidebar__ads {
+  color: #ffffff;
+  font-size: 30px;
+  height: 400px;
+  border-radius: 0px;
+  background: #d53031;
+}
+.sidebar__ads:hover {
+  background: #FF7675;
+}
+.sidebar__halls {
+  padding: 10px;
+}
+
+/*# sourceMappingURL=cinema_card.css.map */
