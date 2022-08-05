@@ -13,16 +13,17 @@
          <div class="content__grid">
              <div class="sidebar">
                  <div class="sidebar__title"> Фильтры</div>
+                 <form id="form-filter" action="#">
                     <hr>
                      <div class="sidebar__subtitle">Период:</div>
                      <div class="sidebar__grid">
-                         <input type="radio" name="period" id="today" class="sidebar__input">
+                         <input type="radio" name="period" id="today" value="today" class="sidebar__input">
                          <label for="today" class="sidebar__label">Сегодня</label>
-                         <input type="radio" name="period" id="tomorrow" class="sidebar__input">
+                         <input type="radio" name="period" id="tomorrow"  value="tomorrow" class="sidebar__input">
                          <label for="tomorrte" class="sidebar__label">Завтра</label>
-                         <input type="radio" name="period" id="week" class="sidebar__input">
+                         <input type="radio" name="period" id="week"  value="week" class="sidebar__input">
                          <label for="week" class="sidebar__label">Неделя</label>
-                         <input type="radio" name="period" id="month" class="sidebar__input">
+                         <input type="radio" name="period" id="month"  value="month" class="sidebar__input">
                          <label for="month" class="sidebar__label">Месяц</label>
                      </div>
                     <hr>
@@ -49,9 +50,7 @@
                             <label for="{{ tech.name }}"> {{ tech.name }}</label>
                             {% endfor %}
                      </div>
-                    :<hr>
-
-
+                 </form>
              </div>
              <div class="film">
                  {% for film ,date_film  in result %}

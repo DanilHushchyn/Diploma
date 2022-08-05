@@ -3,11 +3,13 @@ import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from admin_panel.models.film import *
 from admin_panel.models.cinema import *
 from admin_panel.models.main_page import *
-from datetime import date
+from datetime import date, timedelta
+
 
 def getBanner():
     return BackImg.objects.first()
@@ -42,14 +44,14 @@ def page(request, page_id):
 def main(request):
     top_carousel = TopCarousel.objects.all()
     bottom_carousel = BottomCarousel.objects.all()
-    banners_sliders = { "top_carousel": top_carousel, "bottom_carousel": bottom_carousel}
+    banners_sliders = {"top_carousel": top_carousel, "bottom_carousel": bottom_carousel}
     today_date = date.today()
     seances_today = Seance.objects.filter(date=today_date)
     seances_today = seances_today.distinct("film")
 
     unreleased_films = Film.objects.filter(released__gt=today_date)
-    data = { 'seances_today': seances_today,'unreleased_films': unreleased_films, 'banners_sliders': banners_sliders,
-            "today_date": today_date.today(),"banner": getBanner()}
+    data = {'seances_today': seances_today, 'unreleased_films': unreleased_films, 'banners_sliders': banners_sliders,
+            "today_date": today_date.today(), "banner": getBanner()}
     return render(request, '../templates/kino_app/main2.html', context=data)
 
 
@@ -62,20 +64,19 @@ def poster(request):
     # for film in films:
     #     result.append((film, (film.technology_types.all())))
     data = {
-            'unreleased_films': unreleased_films,
-            'released_films': released_films,
-            "banner": getBanner(),
-            }
+        'unreleased_films': unreleased_films,
+        'released_films': released_films,
+        "banner": getBanner(),
+    }
     return render(request, '../templates/kino_app/poster2.html', context=data)
 
 
 def cinemas(request):
-
     cinemas = Cinema.objects.all()
     data = {
-            "cinemas": cinemas,
-            "banner": getBanner(),
-            }
+        "cinemas": cinemas,
+        "banner": getBanner(),
+    }
     return render(request, '../templates/kino_app/cinemas2.html', context=data)
 
 
@@ -137,22 +138,37 @@ def soon(request):
 #     data = {"result": result, 'halls_filter': halls_filter, 'films_filter': films_filter, "tech_types": tech_types}
 #     return render(request, '../templates/kino_app/schedule.html', context=data)
 
+
+def is_ajax(request):
+    return request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+
 def schedule(request):
+    template = '../templates/kino_app/schedule2.html'
     seances = Seance.objects.all()
-    date_filter = request.GET.get('date_filter')
-    halls_filter = request.GET.getlist('halls_filter')
-    films_filter = request.GET.getlist('films_filter')
-    techs_filter = request.GET.getlist('techs_filter')
+    if is_ajax(request):
+        template = '../templates/kino_app/schedule_items.html'
+        date_filter = request.GET.get('period')
+        halls_filter = request.GET.getlist('halls_filter')
+        films_filter = request.GET.getlist('films_filter')
+        techs_filter = request.GET.getlist('techs_filter')
+        if date_filter:
+            if date_filter == 'tomorrow':
+                seances = seances.filter(date=date.today() + timedelta(days=1))
+            if date_filter == 'week':
+                seances = seances.filter(date__lte=date.today() + timedelta(days=7), date__gte=date.today())
+            if date_filter == 'today':
+                seances = seances.filter(date=date.today())
+            if date_filter == 'months':
+                seances = seances.filter(date=date.today().month)
 
-    if date_filter:
-        new_date = datetime.datetime.strptime(date_filter, '%Y-%m-%d').strftime('%Y-%m-%d')
-        seances = seances.filter(date=new_date)
-    if halls_filter:
-        seances = seances.filter(hall__number__in=halls_filter)
-    if films_filter:
-        seances = seances.filter(film_id__in=films_filter)
-    if techs_filter:
-        seances = seances.filter(tech_type__name__in=techs_filter)
+        if halls_filter:
+            seances = seances.filter(hall__number__in=halls_filter)
+        if films_filter:
+            seances = seances.filter(film_id__in=films_filter)
+        if techs_filter:
+            seances = seances.filter(tech_type__name__in=techs_filter)
+
     result = []
     for film_seance in seances.distinct('film_id'):
         film_seances = seances.filter(film_id=film_seance.film_id)
@@ -177,98 +193,26 @@ def schedule(request):
 
     film_list = []
     for film in Film.objects.order_by('name'):
-        if str(film.id) in films_filter:
-            film_list.append(('checked', film))
-        else:
-            film_list.append(('unchecked', film))
+        film_list.append(('unchecked', film))
     tech_list = []
     for tech in TechnologyType.objects.order_by('name'):
-        if str(tech.name) in techs_filter:
-            tech_list.append(('checked', tech))
-        else:
-            tech_list.append(('unchecked', tech))
+        tech_list.append(('unchecked', tech))
 
     hall_list = []
     for hall in Hall.objects.order_by('number'):
-        if str(hall.number) in halls_filter:
-            hall_list.append(('checked', hall))
-        else:
-            hall_list.append(('unchecked', hall))
-
-    data = {"result": result,
-            'hall_list': hall_list,
-            'film_list': film_list,
-            "tech_list": tech_list,
-            'date_filter': date_filter}
-    return render(request, '../templates/kino_app/schedule.html', context=data)
-
-def schedule2(request):
-    seances = Seance.objects.all()
-    date_filter = request.GET.get('date_filter')
-    halls_filter = request.GET.getlist('halls_filter')
-    films_filter = request.GET.getlist('films_filter')
-    techs_filter = request.GET.getlist('techs_filter')
-
-    if date_filter:
-        new_date = datetime.datetime.strptime(date_filter, '%Y-%m-%d').strftime('%Y-%m-%d')
-        seances = seances.filter(date=new_date)
-    if halls_filter:
-        seances = seances.filter(hall__number__in=halls_filter)
-    if films_filter:
-        seances = seances.filter(film_id__in=films_filter)
-    if techs_filter:
-        seances = seances.filter(tech_type__name__in=techs_filter)
-    result = []
-    for film_seance in seances.distinct('film_id'):
-        film_seances = seances.filter(film_id=film_seance.film_id)
-        date_film = []
-
-        for date_seance in film_seances.distinct('date'):
-            date_seances = film_seances.filter(date=date_seance.date)
-            hall_film = []
-
-            for hall_seance in date_seances.distinct('hall'):
-                hall_seances = date_seances.filter(hall=hall_seance.hall)
-                tech_film = []
-
-                for tech_seance in hall_seances.distinct('tech_type'):
-                    tech_seances = hall_seances.filter(tech_type=tech_seance.tech_type)
-                    tech_film.append((tech_seance.tech_type.name, tech_seances))
-
-                hall_film.append((hall_seance.hall.number, tech_film))
-
-            date_film.append((date_seance.date, hall_film))
-        result.append((film_seance.film, date_film))
-
-    film_list = []
-    for film in Film.objects.order_by('name'):
-        if str(film.id) in films_filter:
-            film_list.append(('checked', film))
-        else:
-            film_list.append(('unchecked', film))
-    tech_list = []
-    for tech in TechnologyType.objects.order_by('name'):
-        if str(tech.name) in techs_filter:
-            tech_list.append(('checked', tech))
-        else:
-            tech_list.append(('unchecked', tech))
-
-    hall_list = []
-    for hall in Hall.objects.order_by('number'):
-        if str(hall.number) in halls_filter:
-            hall_list.append(('checked', hall))
-        else:
-            hall_list.append(('unchecked', hall))
+        hall_list.append(('unchecked', hall))
 
     data = {
 
-            "result": result,
-            "banner": getBanner(),
-            'hall_list': hall_list,
-            'film_list': film_list,
-            "tech_list": tech_list,
-            'date_filter': date_filter}
-    return render(request, '../templates/kino_app/schedule2.html', context=data)
+        "result": result,
+        "banner": getBanner(),
+        'hall_list': hall_list,
+        'film_list': film_list,
+        "tech_list": tech_list,
+    }
+    return render(request, template, context=data)
+
+
 
 def card_cinema(request, name):
     cinema = Cinema.objects.get(name=name)
@@ -277,10 +221,10 @@ def card_cinema(request, name):
     seances = Seance.objects.filter(date=date.today())
 
     data = {
-            'cinema': cinema, "cinema_imgs": cinema_imgs,
-            "halls": halls, "halls_num": halls.__len__(),
-            'seances': seances,
-            'banner': getBanner(),
+        'cinema': cinema, "cinema_imgs": cinema_imgs,
+        "halls": halls, "halls_num": halls.__len__(),
+        'seances': seances,
+        'banner': getBanner(),
     }
     return render(request, '../templates/kino_app/cinema_card2.html', context=data)
 

@@ -56,6 +56,9 @@
   font-family: "Arvo", sans-serif;
   grid-area: sidebar;
   background: #ffffff;
+  height: 720px;
+  position: sticky;
+  top: 0;
 }
 .sidebar__title {
   margin-bottom: 30px;
@@ -80,7 +83,7 @@
 
 .film {
   grid-area: film;
-  background: #989797;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
 }
