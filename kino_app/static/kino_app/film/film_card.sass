@@ -1,0 +1,94 @@
+@import '../atributes'
+@import '../buttons'
+@import '../zeroing.css'
+@import '../schedule/schedule.css'
+.content
+  background: $white-color
+
+  &__banner
+    height: 800px
+    background-repeat: no-repeat
+    background-image: linear-gradient(to right, RGBA(96, 96, 96,0.7),RGBA(96, 96, 96,0.7)), url("../imgs/cinemas.jpg")
+    background-position: 0% 100%, top
+    background-size: 100% 150px, cover
+    position: relative
+    text-align: center
+  &__title
+    margin: 0 auto
+    padding-top: 700px
+    font-size: 70px
+    font-family: $font-family
+    color: $white-color
+  &__subtitle
+    text-align: center
+    margin: 0 auto
+    font-size: 40px
+    font-family: $font-family
+    color: $black-color
+    margin-bottom: 50px
+  &__grid
+    padding-top: 30px
+
+    display: grid
+    grid-template-columns: minmax(300px,1500px) 300px
+    grid-template-areas: "main sidebar"
+  &__main
+
+    grid-area: main
+    padding: 50px
+  &__item
+    width: 600px
+    display: flex
+    flex-direction: column
+    align-items: center
+    & img
+      width: 600px
+      height: 300px
+      margin-bottom: 30px
+  &__text
+    font-family: $font-family
+    font-size: 30px
+    font-weight: bold
+  &__sidebar
+    background: $white-color
+
+    grid-area: sidebar
+  &__ads
+    color: $white-color
+    font-size: 30px
+    height: 200px
+    text-align: center
+    border-radius: 0px
+    background: $red-dark-color
+    &:hover
+      background: $red-light-color
+
+.schedule
+  display: grid
+  grid-template-columns: 300px 1fr
+  grid-template-areas: 'sidebar film'
+
+.card
+  &__descr
+    font-size: 18px
+    line-height: normal
+
+    font-family: $font-family
+    text-align: left
+    margin-bottom: 50px
+
+
+
+
+
+dl
+  border: 1px solid $gray-soft-color
+  margin: 0 0 5px 0
+  padding-left: 30px
+  padding-top: 30px
+dt
+  font-weight: bold
+  margin: 0 0 5px 0
+dd
+  margin: 0 0 15px 0
+

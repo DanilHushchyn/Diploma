@@ -7,6 +7,7 @@ urlpatterns = [
     path("cinemas", kino_app.views.cinemas, name='kino_app_cinemas'),
     path("soon", kino_app.views.soon, name='soon'),
     path("schedule", kino_app.views.schedule, name='schedule'),
+    path("schedule_for_film", kino_app.views.schedule_for_film, name='schedule_for_film'),
     path("card_cinema/<str:name>", kino_app.views.card_cinema, name='card_cinema'),
     path("film_card/<str:name>", kino_app.views.film_card, name='film_card'),
     path("hall/<int:id>", kino_app.views.hall, name='hall'),

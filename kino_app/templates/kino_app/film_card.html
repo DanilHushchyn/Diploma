@@ -134,38 +134,38 @@
                 </div>
                 <div class="col-lg-4" style="border-style: ridge;border-color: black">
                     <dl>
-                            <dt name="year">Год</dd>
-                            <dd>{{ film.year }}</dd>
-                            <dt name="country">Страна</dt>
-                             {% for i in country %}
-                                <dd>{{ i.name }}</dd>
-                            {% endfor %}
-                            <dt name="genre">Жанр</dt>
-                            {% for i in genres %}
+                        <dt name="year">Год</dd>
+                        <dd>{{ film.year }}</dd>
+                        <dt name="country">Страна</dt>
+                         {% for i in countries %}
                             <dd>{{ i.name }}</dd>
-                            {% endfor %}
-                            <dt name="operator">Оператор</dt>
-                             {% for i in operator %}
-                            <dd>{{ i.name }}</dd>
-                            {% endfor %}
-                            <dt name="operator">Продюсер</dt>
-                             {% for i in producer %}
-                            <dd>{{ i.name }}</dd>
-                            {% endfor %}
-                            <dt name="director">Режиссёр</dt>
-                             {% for i in editor %}
-                            <dd>{{ i.name }}</dd>
-                            {% endfor %}
-                            <dt name="writters">Сценарист</dt>
-                             {% for i in scriptwriter %}
-                            <dd>{{ i.name }}</dd>
-                            {% endfor %}
-                            <dt name="duration">Бюджет</dt>
-                            <dd>{{ film.budget}}</dd>
-                            <dt name="duration">Время</dt>
-                            <dd>длительность</dd>
-                            <dt name="age_limit">Возраст</dt>
-                            <dd>+{{ film.legal_age}}</dd>
+                        {% endfor %}
+                        <dt name="genre">Жанр</dt>
+                        {% for i in genres %}
+                        <dd>{{ i.name }}</dd>
+                        {% endfor %}
+                        <dt name="operator">Оператор</dt>
+                         {% for i in operators %}
+                        <dd>{{ i.names }}</dd>
+                        {% endfor %}
+                        <dt name="operator">Продюсер</dt>
+                         {% for i in producers %}
+                        <dd>{{ i.name }}</dd>
+                        {% endfor %}
+                        <dt name="director">Режиссёр</dt>
+                         {% for i in editors %}
+                        <dd>{{ i.name }}</dd>
+                        {% endfor %}
+                        <dt name="writters">Сценарист</dt>
+                         {% for i in scriptwriters %}
+                        <dd>{{ i.name }}</dd>
+                        {% endfor %}
+                        <dt name="duration">Бюджет</dt>
+                        <dd>{{ film.budget}}</dd>
+                        <dt name="duration">Время</dt>
+                        <dd>длительность</dd>
+                        <dt name="age_limit">Возраст</dt>
+                        <dd>+{{ film.legal_age}}</dd>
 
                     </dl>
                 </div>

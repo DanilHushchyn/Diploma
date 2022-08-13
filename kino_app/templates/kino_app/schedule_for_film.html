@@ -1,0 +1,23 @@
+{% for date,hall_film in result %}
+ <div class="info__date">
+     <div class="info__text">{{ date }}</div>
+     {% for hall,tech_film in hall_film %}
+         <div class="info__hall">
+             <div class="info__text">Зал №{{ hall }}</div>
+             {% for tech,seances in tech_film %}
+                 <div class="info__tech">
+                     <div class="info__text">{{ tech }}</div>
+                     <div class="info__grid">
+                         {% for seance in seances %}
+                             <button type="button" class="info__time">
+                                <div class="info__descr" hidden>Купить билет</div>
+                                 {{ seance.time }}
+                             </button>
+                         {% endfor %}
+                     </div>
+                 </div>
+             {% endfor %}
+         </div>
+     {% endfor %}
+ </div>
+{% endfor %}

@@ -1,66 +1,145 @@
 {% extends 'kino_app/base2.html' %}
 {% load static %}
 {% block title %}
-    {{ cinema.name }}
+    {{ film.name }}
 {% endblock %}
 {% block head %}
     <link  rel="stylesheet" href="{% static 'kino_app/node_modules/lightslider/src/css/lightslider.css' %} " />
     <link  rel="stylesheet" href="{% static 'kino_app/carousel.css' %} " />
-    <link  rel="stylesheet" href="{% static 'kino_app/cinemas/cinema_card.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/film/film_card.css' %} " />
 {% endblock %}
 
 {% block content %}
      <div class="content">
-         <div class="content__banner" data-background="../../../media/{{ cinema.banner }}">
-             <div class="content__title">{{ cinema.name }}</div>
+         <div class="content__banner" data-background="../../../media/{{ film.banner }}">
+             <div class="content__title">{{ film.name }}</div>
          </div>
-         <div class="content__grid">
-             <div class="content__main cinema">
-                 <div class="cinema__row">
-                     <img src="../../../media/{{ cinema.logo }}" class="cinema__logo"/>
-                     <div class="cinema__block">
-                         <div class="cinema__btn btn-primary">Расписание сеансов</div>
-                         <div class="cinema__techs">
-                             <img src="{% static 'kino_app/imgs/hd-film.png' %}" alt="">
-                             <img src="{% static 'kino_app/imgs/2d.png' %}" alt="">
-                             <img src="{% static 'kino_app/imgs/3d-display.png' %}" alt="">
-                             <img src="{% static 'kino_app/imgs/4d-movie.png' %}" alt="">
-                             <img src="{% static 'kino_app/imgs/cinema.png' %}" alt="">
-                         </div>
+         <div class="schedule">
+             <div class="schedule__sidebar sidebar">
+                 <div class="sidebar__title"> Фильтры</div>
+                 <form id="form-filter" action="#">
+                    <hr>
+                     <div class="sidebar__subtitle">Период:</div>
+                     <div class="sidebar__grid">
+                         <input type="radio" name="period" id="today" value="today" class="sidebar__input">
+                         <label for="today" class="sidebar__label">Сегодня</label>
+                         <input type="radio" name="period" id="tomorrow"  value="tomorrow" class="sidebar__input">
+                         <label for="tomorrow" class="sidebar__label">Завтра</label>
+                         <input type="radio" name="period" id="week"  value="week" class="sidebar__input">
+                         <label for="week" class="sidebar__label">Неделя</label>
+                         <input type="radio" name="period" id="month"  value="month" class="sidebar__input">
+                         <label for="month" class="sidebar__label">Месяц</label>
+                     </div>
+                    <hr>
+                    <input type="checkbox"  name="films_filter" checked  value="{{ film.id }} " hidden >
+                     <div class="sidebar__subtitle">Залы:</div>
+                     <div class="sidebar__grid">
+                           {% for  hall in hall_list %}
+                            <input type="checkbox"   name="halls_filter" value="{{ hall.number }}"  >
+                            <label for="halls_filter">Зал {{ hall.number }} </label>
+                            {% endfor %}
+                     </div>
+                    <hr>
+                     <div class="sidebar__subtitle">Технологии:</div>
+                     <div class="sidebar__grid">
+                          {% for tech in tech_list %}
+                            <input type="checkbox"  name="techs_filter"  value="{{ tech.name }}">
+                            <label for="{{ tech.name }}"> {{ tech.name }}</label>
+                            {% endfor %}
+                     </div>
+                 </form>
+             </div>
+             <div class="film">
+                 {% for film ,date_film  in result %}
+                 <div class="film__item">
+                     <img src="../../../media/{{ film.card_img }}" class="film__img"/>
+                     <div class="film__title">{{ film.name }} ({{ film.legal_age}}+)</div>
+                     <div class="film__info info">
+                         {% for date,hall_film in date_film %}
+                             <div class="info__date">
+                                 <div class="info__text">{{ date }}</div>
+                                 {% for hall,tech_film in hall_film %}
+                                     <div class="info__hall">
+                                         <div class="info__text">Зал №{{ hall }}</div>
+                                         {% for tech,seances in tech_film %}
+                                             <div class="info__tech">
+                                                 <div class="info__text">{{ tech }}</div>
+                                                 <div class="info__grid">
+                                                     {% for seance in seances %}
+                                                         <button type="button" class="info__time">
+                                                            <div class="info__descr" hidden>Купить билет</div>
+                                                             {{ seance.time }}
+                                                         </button>
+                                                     {% endfor %}
+                                                 </div>
+                                             </div>
+                                         {% endfor %}
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                         {% endfor %}
                      </div>
                  </div>
-                 <p class="cinema__descr">
-                     {{ cinema.description }}
-                 </p>
-                 <div class="cinema__title">Условия</div>
-                 <div class="cinema__title">ФОТОГАЛЕРЕЯ</div>
-                 <div  class= "carousel cinema__carousel">
-                     {% for item in cinema_imgs %}
-                         <div class="carousel__item"  data-background = ../../../media/{{ item.img }} >
-                         </div>
-                     {% endfor %}
-                 </div>
-             </div>
-             <div class="content__sidebar sidebar">
-                <div class="sidebar__ads">
-                    Контекстная реклама
-                </div>
-                <div class="sidebar__title">Кол-во залов: {{ halls_num }}</div>
-                <div class="sidebar__halls">
-                    {%  for hall in halls %}
-                        <a  href="{% url 'hall' hall.id %}">
-                        <button class="sidebar__btn btn-primary">
-                            Зал {{ hall.number }}
-                        </button>
-                        </a>
-                    {% endfor %}
-                </div>
+                 {% endfor %}
              </div>
          </div>
+
+         <div class="content__grid">
+             <div class="content__main card">
+                 <p class="card__descr">
+                     {{ film.description }}
+                 </p>
+             </div>
+             <div class="content__sidebar">
+                <dl>
+                    <dt name="year">Год</dd>
+                    <dd>{{ film.year }}</dd>
+                    <dt name="countries">Страны</dt>
+                     {% for i in countries %}
+                        <dd>{{ i.name }}</dd>
+                    {% endfor %}
+                    <dt name="genres">Жанры</dt>
+                    {% for i in genres %}
+                    <dd>{{ i.name }}</dd>
+                    {% endfor %}
+                    <dt name="operators">Операторы</dt>
+                     {% for i in operators %}
+                    <dd>{{ i.name }}</dd>
+                    {% endfor %}
+                    <dt name="producers">Продюсеры</dt>
+                     {% for i in producers %}
+                    <dd>{{ i.name }}</dd>
+                    {% endfor %}
+                    <dt name="editors">Режиссёры</dt>
+                     {% for i in editors %}
+                    <dd>{{ i.name }}</dd>
+                    {% endfor %}
+                    <dt name="scriptwriters">Сценаристы</dt>
+                     {% for i in scriptwriters %}
+                    <dd>{{ i.name }}</dd>
+                    {% endfor %}
+                    <dt name="duration">Бюджет</dt>
+                    <dd>{{ film.budget}}</dd>
+                    <dt name="duration">Время</dt>
+                    <dd>длительность</dd>
+                    <dt name="age_limit">Возраст</dt>
+                    <dd>+{{ film.legal_age}}</dd>
+
+                </dl>
+             </div>
+         </div>
+         <div class="content__subtitle">ФОТОГАЛЕРЕЯ</div>
+         <div  class= "carousel content__carousel">
+             {% for item in film_imgs %}
+                 <div class="carousel__item"  data-background = ../../../media/{{ item.img }} >
+                 </div>
+             {% endfor %}
+         </div>
+         <div class="content__ads">Контекстная реклама</div>
      </div>
 {% endblock %}
 {% block script %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{% static 'kino_app/node_modules/lightslider/src/js/lightslider.js' %}"></script>
-    <script src="{% static 'kino_app/cinemas/cinemas_card.js' %}"></script>
+    <script src="{% static 'kino_app/film/film_card.js' %}"></script>
 {% endblock %}
