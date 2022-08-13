@@ -20,9 +20,9 @@ body
   margin-bottom: 25px
   &__grid
     display: grid
-    grid-template-columns: 200px  minmax(10px,1fr) minmax(0px,100px) 250px minmax(10px,50px) 300px minmax(10px,50px) 290px
+    grid-template-columns: minmax(0px,200px)  minmax(0px,250px) minmax(210px,1fr) 250px minmax(10px,50px) 300px minmax(10px,50px) 290px
     grid-template-rows: 100px 25px 100px
-    grid-template-areas: 'logo . . search . socials . contacts' 'logo . . . . . . .' '. . navbar navbar navbar navbar navbar navbar'
+    grid-template-areas: 'logo logo . search . socials . contacts' 'logo logo . . . . . .' '. . navbar navbar navbar navbar . sign-in-up'
     & *
       background: $white-color
 
@@ -75,8 +75,15 @@ body
     justify-content: space-between
     align-items: center
 
-  &__link
+  &__sign-in-up
+    grid-area: sign-in-up
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
 
+
+  &__link
     width: 100%
     height: 100%
     font-size: 18px
@@ -89,8 +96,15 @@ body
       color: inherit
       background: inherit
     &:hover
+      color: $white-color
       transition: background-color ease 0.3s
       background: $yellow-dark-color
+    &_green
+      &:hover
+        transition: background-color ease 0.3s
+        background: $green-dark-color
+        color: $white-color
+
 
 .socials
     display: flex
