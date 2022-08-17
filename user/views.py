@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
@@ -93,6 +93,9 @@ def loginView(request):
         'banner': getBanner()
     }
     return render(request, '../templates/user/signin.html', context=data)
+def logoutView(request):
+    logout(request)
+    return redirect('main')
 class SignOut(LogoutView):
     redirect_field_name = reverse_lazy('main')
 
