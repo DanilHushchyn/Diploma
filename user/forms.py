@@ -1,38 +1,38 @@
+from datetime import date
+
 import django.forms as forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.forms import Form
+
 from admin_panel.models import *
 
 
-class UserForm(forms.ModelForm):
-    confirm_password = forms.CharField(widget=forms.PasswordInput(), label='Повторить пароль')
+class UserForm(UserCreationForm):
 
-    class Meta:
-        model = User
-        fields = ['first_name',
-                  'last_name',
-                  'nickname',
-                  'email',
-                  'address',
-                  'sex',
-                  'lang',
-                  'phone_number',
-                  'birthday',
-                  'password'
-                  ]
-
+    class Meta(UserCreationForm):
+        model = Account
+        fields = ['first_name', 'last_name', 'address', 'email', 'sex', 'lang', 'date_of_birth',
+                  'phone']
         widgets = {
-            'sex': forms.RadioSelect(),
-            'lang': forms.RadioSelect(),
-            'password': forms.PasswordInput(),
-            'birthday': forms.DateInput(),
-            'email': forms.EmailInput(),
+            'first_name': forms.TextInput(attrs={'class': 'form__elem', 'size': '10'}),
+            'last_name': forms.TextInput(attrs={'class': 'form__elem', 'size': '10'}),
+            'email': forms.EmailInput(attrs={'class': 'form__elem', 'size': '10'}),
+            'sex': forms.RadioSelect(attrs={'class': 'form__elem form__elem_radio', 'size': '10'}),
+            'lang': forms.RadioSelect(attrs={'class': 'form__elem form__elem_radio', 'size': '10'}),
+            'date_of_birth': forms.SelectDateWidget(attrs={'class': 'form__elem form__elem_date',},
+                                               years=range(1940,date.today().year),),
+            'address': forms.TextInput(attrs={'class': 'form__elem', 'size': '10'}),
+            'phone': forms.TextInput(attrs={'class': 'form__elem', 'size': '10'}),
         }
 
-    def clean(self):
-        cleaned_data = super(UserForm, self).clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
+    password1 = forms.CharField(label=("Пароль"),
+                                widget=forms.PasswordInput(attrs={'class': 'form__elem'}))
+    password2 = forms.CharField(label=("Повторите пароль"),
+                                widget=forms.PasswordInput(attrs={'class': 'form__elem'}),
+                                help_text=("Введите пароль повторно"))
 
-        if password != confirm_password:
-            raise forms.ValidationError(
-                "password and confirm_password does not match"
-            )
+class SignInForm(forms.Form):
+    email = forms.EmailField(label=("Электронная почта"),
+                                widget=forms.EmailInput(attrs={'class': 'form__elem'}))
+    password = forms.CharField(label=("Пароль"),
+                                widget=forms.PasswordInput(attrs={'class': 'form__elem'}))

@@ -17,25 +17,7 @@
                      <button class="content__btn content__btn_afisha btn-primary">Афиша</button>
                      <button class="content__btn content__btn_soon btn-primary">Скоро</button>
                 </div>
-                <section class="afisha" hidden>
-                    <div class="content__grid film">
-                        {% for film in released_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                <button class="film__btn btn-primary">
-                                        Купить билет
-                                </button>
-                            </div>
-
-                        {% endfor %}
-                    </div>
-                </section>
-
-                <section class="soon">
-                    <div class="content__grid film">
+                 <div class="content__grid film">
                         {% for film in unreleased_films %}
                              <div class="film__item">
                                 <a href="{% url 'film_card' film.name %}">
@@ -47,75 +29,7 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        {% for film in unreleased_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                  <div class="film__text film__text_yellow">
-                                        C {{ film.released }}
-                                  </div>
-                            </div>
-                        {% endfor %}
-                        {% for film in unreleased_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                  <div class="film__text film__text_yellow">
-                                        C {{ film.released }}
-                                  </div>
-                            </div>
-                        {% endfor %}
-                        {% for film in unreleased_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                  <div class="film__text film__text_yellow">
-                                        C {{ film.released }}
-                                  </div>
-                            </div>
-                        {% endfor %}
-                        {% for film in unreleased_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                  <div class="film__text film__text_yellow">
-                                        C {{ film.released }}
-                                  </div>
-                            </div>
-                        {% endfor %}
-                        {% for film in unreleased_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                  <div class="film__text film__text_yellow">
-                                        C {{ film.released }}
-                                  </div>
-                            </div>
-                        {% endfor %}
-                        {% for film in unreleased_films %}
-                             <div class="film__item">
-                                <a href="{% url 'film_card' film.name %}">
-                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
-                                </a>
-                                <div class="film__text">{{ film.name}}</div>
-                                  <div class="film__text film__text_yellow">
-                                        C {{ film.released }}
-                                  </div>
-                            </div>
-                        {% endfor %}
-
-                    </div>
-                </section>
+                 </div>
              </div>
          </div>
 {% endblock %}

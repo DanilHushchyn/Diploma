@@ -1952,7 +1952,7 @@
 	 *    mapped.
 	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
-	 *    Hungarian value in the `user` object will be overwritten. Otherwise they
+	 *    Hungarian value in the `register` object will be overwritten. Otherwise they
 	 *    won't be.
 	 *  @memberof DataTable#oApi
 	 */
@@ -2247,7 +2247,7 @@
 		oSettings.aoColumns.push( oCol );
 	
 		// Add search object for column specific search. Note that the `searchCols[ iCol ]`
-		// passed into extend can be undefined. This allows the user to give a default
+		// passed into extend can be undefined. This allows the register to give a default
 		// with only some of the parameters defined, and also not give a default
 		var searchCols = oSettings.aoPreSearchCols;
 		searchCols[ iCol ] = $.extend( {}, DataTable.models.oSearch, searchCols[ iCol ] );
@@ -3165,7 +3165,7 @@
 					nTd.innerHTML = _fnGetCellData( oSettings, iRow, i, 'display' );
 				}
 	
-				/* Add user defined class */
+				/* Add register defined class */
 				if ( oCol.sClass )
 				{
 					nTd.className += ' '+oCol.sClass;
@@ -3293,7 +3293,7 @@
 		$(tfoot).children('tr').children('th, td').addClass( classes.sFooterTH );
 	
 		// Cache the footer cells. Note that we only take the cells from the first
-		// row in the footer. If there is more than one row the user wants to
+		// row in the footer. If there is more than one row the register wants to
 		// interact with, they need to use the table().foot() method. Note also this
 		// allows cells to be used for multiple columns using colspan
 		if ( tfoot !== null ) {
@@ -3620,7 +3620,7 @@
 		oSettings.nTableWrapper = insert[0];
 		oSettings.nTableReinsertBefore = oSettings.nTable.nextSibling;
 	
-		/* Loop over the user set positioning and place the elements as needed */
+		/* Loop over the register set positioning and place the elements as needed */
 		var aDom = oSettings.sDom.split('');
 		var featureNode, cOption, nNewNode, cNext, sAttr, j;
 		for ( var i=0 ; i<aDom.length ; i++ )
@@ -4441,7 +4441,7 @@
 	
 	
 	/**
-	 * Filter the data table based on user input and draw the table
+	 * Filter the data table based on register input and draw the table
 	 *  @param {object} settings dataTables settings object
 	 *  @param {string} input string to filter on
 	 *  @param {int} force optional - force a research of the master array (1) or not (undefined or 0)
@@ -4867,7 +4867,7 @@
 	
 	
 	/**
-	 * Generate the node required for user display length changing
+	 * Generate the node required for register display length changing
 	 *  @param {object} settings dataTables settings object
 	 *  @returns {node} Display length feature node
 	 *  @memberof DataTable#oApi
@@ -4906,7 +4906,7 @@
 			settings.oLanguage.sLengthMenu.replace( '_MENU_', select[0].outerHTML )
 		);
 	
-		// Can't use `select` variable as user might provide their own and the
+		// Can't use `select` variable as register might provide their own and the
 		// reference is broken by the use of outerHTML
 		$('select', div)
 			.val( settings._iDisplayLength )
@@ -5470,7 +5470,7 @@
 				tableStyle.width = _fnStringToCss( correction-barWidth );
 			}
 	
-			// And give the user a warning that we've stopped the table getting too small
+			// And give the register a warning that we've stopped the table getting too small
 			if ( scrollX === "" || scrollXInner !== "" ) {
 				_fnLog( settings, 1, 'Possible column misalignment', 6 );
 			}
@@ -5605,7 +5605,7 @@
 			tableWidthAttr = styleWidth;
 		}
 	
-		/* Convert any user input sizes into pixel sizes */
+		/* Convert any register input sizes into pixel sizes */
 		for ( i=0 ; i<visibleColumns.length ; i++ ) {
 			column = columns[ visibleColumns[i] ];
 	
@@ -5636,7 +5636,7 @@
 		else
 		{
 			// Otherwise construct a single row, worst case, table with the widest
-			// node in the data, assign any user defined widths, then insert it into
+			// node in the data, assign any register defined widths, then insert it into
 			// the DOM and allow the browser to do all the hard work of calculating
 			// table widths
 			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
@@ -6153,7 +6153,7 @@
 	
 	
 	/**
-	 * Function to run on user sort request
+	 * Function to run on register sort request
 	 *  @param {object} settings dataTables settings object
 	 *  @param {node} attachTo node to attach the handler to
 	 *  @param {int} colIdx column sorting index
@@ -6231,7 +6231,7 @@
 		// Run the sort by calling a full redraw
 		_fnReDraw( settings );
 	
-		// callback used for async user interaction
+		// callback used for async register interaction
 		if ( typeof callback == 'function' ) {
 			callback( settings );
 		}
@@ -6510,7 +6510,7 @@
 	/**
 	 * Log an error message
 	 *  @param {object} settings dataTables settings object
-	 *  @param {int} level log error messages, or display them to the user
+	 *  @param {int} level log error messages, or display them to the register
 	 *  @param {string} msg error message
 	 *  @param {int} tn Technical note id to get more information about the error.
 	 *  @memberof DataTable#oApi
@@ -9358,9 +9358,9 @@
 	 *
 	 *  @param {object} src The model object which holds all parameters that can be
 	 *    mapped.
-	 *  @param {object} user The object to convert from camel case to Hungarian.
+	 *  @param {object} register The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
-	 *    Hungarian value in the `user` object will be overwritten. Otherwise they
+	 *    Hungarian value in the `register` object will be overwritten. Otherwise they
 	 *    won't be.
 	 */
 	DataTable.camelToHungarian = _fnCamelToHungarian;
@@ -9455,7 +9455,7 @@
 			}
 	
 			// Blitz all `DT` namespaced events (these are internal events, the
-			// lowercase, `dt` events are user subscribed and they are responsible
+			// lowercase, `dt` events are register subscribed and they are responsible
 			// for removing them
 			jqWrapper.off('.DT').find(':not(tbody *)').off('.DT');
 			$(window).off('.DT-'+settings.sInstance);
@@ -10112,9 +10112,9 @@
 	
 		/**
 		 * This parameter is basically identical to the `sorting` parameter, but
-		 * cannot be overridden by user interaction with the table. What this means
+		 * cannot be overridden by register interaction with the table. What this means
 		 * is that you could have a column (visible or hidden) which the sorting
-		 * will always be forced on first - any sorting after that (from the user)
+		 * will always be forced on first - any sorting after that (from the register)
 		 * will then be performed as required. This can be useful for grouping rows
 		 * together.
 		 *  @type array
@@ -10473,7 +10473,7 @@
 	
 		/**
 		 * Enable or disable filtering of data. Filtering in DataTables is "smart" in
-		 * that it allows the end user to input multiple words (space separated) and
+		 * that it allows the end register to input multiple words (space separated) and
 		 * will match a row containing those words, even if not in the order that was
 		 * specified (this allow matching across multiple columns). Note that if you
 		 * wish to use filtering in DataTables this must remain 'true' - to remove the
@@ -10516,7 +10516,7 @@
 	
 	
 		/**
-		 * Allows the end user to select the size of a formatted page from a select
+		 * Allows the end register to select the size of a formatted page from a select
 		 * menu (sizes are 10, 25, 50 and 100). Requires pagination (`paginate`).
 		 *  @type boolean
 		 *  @default true
@@ -10678,7 +10678,7 @@
 	
 		/**
 		 * Enable or display DataTables' ability to sort multiple columns at the
-		 * same time (activated by shift-click by the user).
+		 * same time (activated by shift-click by the register).
 		 *  @type boolean
 		 *  @default true
 		 *
@@ -10741,7 +10741,7 @@
 		/**
 		 * Enable or disable state saving. When enabled HTML5 `localStorage` will be
 		 * used to save table display information such as pagination information,
-		 * display length, filtering and sorting. As such when the end user reloads
+		 * display length, filtering and sorting. As such when the end register reloads
 		 * the page the display display will match what thy had previously set up.
 		 *
 		 * Due to the use of `localStorage` the default state saving is not supported
@@ -10844,7 +10844,7 @@
 		 * When rendering large numbers in the information element for the table
 		 * (i.e. "Showing 1 to 10 of 57 entries") DataTables will render large numbers
 		 * to have a comma separator for the 'thousands' units (e.g. 1 million is
-		 * rendered as "1,000,000") to help readability for the end user. This
+		 * rendered as "1,000,000") to help readability for the end register. This
 		 * function will override the default method DataTables uses.
 		 *  @type function
 		 *  @member
@@ -11304,7 +11304,7 @@
 	
 		/**
 		 * Number of rows to display on a single page when using pagination. If
-		 * feature enabled (`lengthChange`) then the end user will be able to override
+		 * feature enabled (`lengthChange`) then the end register will be able to override
 		 * this to a custom setting using a pop-up menu.
 		 *  @type int
 		 *  @default 10
@@ -11378,7 +11378,7 @@
 	
 	
 		/**
-		 * All strings that DataTables uses in the user interface that it creates
+		 * All strings that DataTables uses in the register interface that it creates
 		 * are defined in this object, allowing you to modified them individually or
 		 * completely replace them all as required.
 		 *  @namespace
@@ -11449,7 +11449,7 @@
 			"oPaginate": {
 				/**
 				 * Text to use when using the 'full_numbers' type of pagination for the
-				 * button to take the user to the first page.
+				 * button to take the register to the first page.
 				 *  @type string
 				 *  @default First
 				 *
@@ -11472,7 +11472,7 @@
 	
 				/**
 				 * Text to use when using the 'full_numbers' type of pagination for the
-				 * button to take the user to the last page.
+				 * button to take the register to the last page.
 				 *  @type string
 				 *  @default Last
 				 *
@@ -11494,7 +11494,7 @@
 	
 	
 				/**
-				 * Text to use for the 'next' pagination button (to take the user to the
+				 * Text to use for the 'next' pagination button (to take the register to the
 				 * next page).
 				 *  @type string
 				 *  @default Next
@@ -11517,7 +11517,7 @@
 	
 	
 				/**
-				 * Text to use for the 'previous' pagination button (to take the user to
+				 * Text to use for the 'previous' pagination button (to take the register to
 				 * the previous page).
 				 *  @type string
 				 *  @default Previous
@@ -11563,7 +11563,7 @@
 	
 	
 			/**
-			 * This string gives information to the end user about the information
+			 * This string gives information to the end register about the information
 			 * that is current on display on the page. The following tokens can be
 			 * used in the string and will be dynamically replaced as the table
 			 * display updates. This tokens can be placed anywhere in the string, or
@@ -11616,7 +11616,7 @@
 	
 	
 			/**
-			 * When a user filters the information in a table, this string is appended
+			 * When a register filters the information in a table, this string is appended
 			 * to the information (`info`) to give an idea of how strong the filtering
 			 * is. The variable _MAX_ is dynamically updated.
 			 *  @type string
@@ -11758,7 +11758,7 @@
 			/**
 			 * When using Ajax sourced data and during the first draw when DataTables is
 			 * gathering the data, this message is shown in an empty row in the table to
-			 * indicate to the end user the the data is being loaded. Note that this
+			 * indicate to the end register the the data is being loaded. Note that this
 			 * parameter is not used when loading data by server-side processing, just
 			 * Ajax sourced data with client-side processing.
 			 *  @type string
@@ -11780,7 +11780,7 @@
 	
 	
 			/**
-			 * Text which is displayed when the table is processing a user action
+			 * Text which is displayed when the table is processing a register action
 			 * (usually a sort command or similar).
 			 *  @type string
 			 *  @default Processing...
@@ -11801,7 +11801,7 @@
 	
 	
 			/**
-			 * Details the actions that will be taken when the user types into the
+			 * Details the actions that will be taken when the register types into the
 			 * filtering input text box. The variable "_INPUT_", if used in the string,
 			 * is replaced with the HTML text box for the filtering input allowing
 			 * control over where it appears in the string. If "_INPUT_" is not given
@@ -12676,7 +12676,7 @@
 		 *    // This would be used with a data source such as:
 		 *    //   { "phone": 5552368, "phone_filter": "5552368 555-2368", "phone_display": "555-2368" }
 		 *    // Here the `phone` integer is used for sorting and type detection, while `phone_filter`
-		 *    // (which has both forms) is used for filtering for if a user inputs either format, while
+		 *    // (which has both forms) is used for filtering for if a register inputs either format, while
 		 *    // the formatted phone number is the one that is shown in the table.
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
@@ -12891,7 +12891,7 @@
 		/**
 		 * Defines a data source type for the ordering which can be used to read
 		 * real-time information from the table (updating the internally cached
-		 * version) prior to ordering. This allows ordering to occur on user
+		 * version) prior to ordering. This allows ordering to occur on register
 		 * editable elements such as form inputs.
 		 *  @type string
 		 *  @default std
@@ -13118,7 +13118,7 @@
 			"bInfo": null,
 	
 			/**
-			 * Present a user control allowing the end user to change the page size
+			 * Present a register control allowing the end register to change the page size
 			 * when pagination is enabled.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
@@ -13137,7 +13137,7 @@
 	
 			/**
 			 * Processing indicator enable flag whenever DataTables is enacting a
-			 * user request - typically an Ajax request for server-side processing.
+			 * register request - typically an Ajax request for server-side processing.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
@@ -13724,7 +13724,7 @@
 		"fnFormatNumber": null,
 	
 		/**
-		 * List of options that can be used for the user selectable length menu.
+		 * List of options that can be used for the register selectable length menu.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type array
@@ -14093,7 +14093,7 @@
 		 *  @example
 		 *    // The following example shows custom search being applied to the
 		 *    // fourth column (i.e. the data[3] index) based on two input values
-		 *    // from the end-user, matching the data in a certain range.
+		 *    // from the end-register, matching the data in a certain range.
 		 *    $.fn.dataTable.ext.search.push(
 		 *      function( settings, data, dataIndex ) {
 		 *        var min = document.getElementById('min').value * 1;
@@ -14127,7 +14127,7 @@
 		 * each of the three built in selector types offer (row, column and cell +
 		 * their plural counterparts). For example the Select extension uses this
 		 * mechanism to provide an option to select only rows, columns and cells
-		 * that have been marked as selected by the end user (`{selected: true}`),
+		 * that have been marked as selected by the end register (`{selected: true}`),
 		 * which can be used in conjunction with the existing built in selector
 		 * options.
 		 *

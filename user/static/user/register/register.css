@@ -1,0 +1,202 @@
+@charset "UTF-8";
+/*Обнуление */
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+a:visited, a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+  font-weight: 400;
+}
+
+/*-------------------- */
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ADADAD;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.content {
+  background: #ADADAD;
+  padding: 50px;
+}
+.content__title {
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+.form {
+  text-align: center;
+}
+.form__row {
+  display: grid;
+  margin-bottom: 30px;
+  grid-template-columns: 250px;
+  grid-auto-columns: 130px;
+  grid-auto-flow: column;
+  justify-content: start;
+  grid-template-areas: "label ";
+  align-items: center;
+  grid-gap: 10px;
+}
+.form__row * {
+  display: flex;
+  flex-direction: row;
+}
+.form__row label {
+  grid-area: label;
+  font-size: 20px;
+  font-weight: 700;
+}
+.form__elem {
+  width: 300px;
+  background: #C2C2C2;
+  padding: 20px;
+  font-family: "Arvo", sans-serif;
+  font-size: 18px;
+}
+.form__elem_date {
+  grid-area: auto;
+  grid-auto-columns: 130px;
+  width: 130px;
+  display: flex;
+  flex-direction: row;
+}
+.form__elem_radio {
+  background: inherit;
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+}
+.form__title {
+  text-align: center;
+  font-family: "Arvo", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.form__bottom {
+  margin-top: 50px;
+  text-align: center;
+}
+.form__btn {
+  padding: 30px 50px;
+  margin: 0 auto;
+  font-size: 18px;
+  border-radius: 0px;
+  background: #00B894;
+}
+.form__btn:hover {
+  transition: background 0.3s ease;
+  background: #55EFC4;
+  -webkit-box-shadow: 0px 0px 14px 5px rgb(85, 239, 196);
+  -moz-box-shadow: 0px 0px 14px 5px rgb(85, 239, 196);
+  box-shadow: 0px 0px 14px 5px rgb(85, 239, 196);
+}
+
+/*# sourceMappingURL=register.css.map */

@@ -438,7 +438,7 @@ This plugin is used by flot for drawing lines, plots, bars or area.
                 drawSymbolFn = drawSymbol;
             }
 
-            // If the user sets the line width to 0, we change it to a very
+            // If the register sets the line width to 0, we change it to a very
             // small value. A line width of 0 seems to force the default of 1.
 
             if (lw === 0) {

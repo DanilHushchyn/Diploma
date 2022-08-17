@@ -1981,7 +1981,7 @@
     }
 
     var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i,
-        // Setting the hour should keep the time, because the user explicitly
+        // Setting the hour should keep the time, because the register explicitly
         // specified which hour they want. So trying to maintain the same hour (in
         // a new timezone) makes sense. Adding/subtracting hours does not follow
         // this rule.
@@ -2111,7 +2111,7 @@
                 globalLocale = data;
             } else {
                 if (typeof console !== 'undefined' && console.warn) {
-                    //warn user if arguments are passed but the locale could not be set
+                    //warn register if arguments are passed but the locale could not be set
                     console.warn(
                         'Locale ' + key + ' not found. Did you forget to load it?'
                     );
@@ -17270,7 +17270,7 @@
             y: 'рік',
             yy: relativeTimeWithPlural$4,
         },
-        // M. E.: those two are virtually unused but a user might want to implement them for his/her website for some reason
+        // M. E.: those two are virtually unused but a register might want to implement them for his/her website for some reason
         meridiemParse: /ночі|ранку|дня|вечора/,
         isPM: function (input) {
             return /^(дня|вечора)$/.test(input);

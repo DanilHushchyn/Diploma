@@ -22,7 +22,7 @@ from Diploma import settings
 urlpatterns = [
     path('', include('kino_app.urls')),
     path('admin/',include('admin_panel.urls')),
-    path('user/',include('user.urls')),
+    path('accounts/',include('user.urls')),
 
 
 ]

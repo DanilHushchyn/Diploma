@@ -54,7 +54,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   if (modeCfg.xml === undefined)
     modeCfg.xml = true;
 
-  // Allow token types to be overridden by user-provided token types.
+  // Allow token types to be overridden by register-provided token types.
   if (modeCfg.tokenTypeOverrides === undefined)
     modeCfg.tokenTypeOverrides = {};
 

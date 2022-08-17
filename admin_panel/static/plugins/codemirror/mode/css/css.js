@@ -547,7 +547,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "text-underline-position", "text-wrap", "top", "touch-action", "transform", "transform-origin",
     "transform-style", "transition", "transition-delay", "transition-duration",
     "transition-property", "transition-timing-function", "translate",
-    "unicode-bidi", "user-select", "vertical-align", "visibility", "voice-balance",
+    "unicode-bidi", "register-select", "vertical-align", "visibility", "voice-balance",
     "voice-duration", "voice-family", "voice-pitch", "voice-range", "voice-rate",
     "voice-stress", "voice-volume", "volume", "white-space", "widows", "width",
     "will-change", "word-break", "word-spacing", "word-wrap", "writing-mode", "z-index",

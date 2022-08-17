@@ -55,12 +55,23 @@
                         </li>
                     </ul>
                     <ul class="header__sign-in-up">
-                        <li class="header__link header__link_green">
-                            <a  href="#">Регистрация</a>
-                        </li>
-                        <li class="header__link header__link_green">
-                            <a href="#">Войти</a>
-                        </li>
+                            {% if request.user.is_authenticated %}
+                                <li class="header__link header__link_green">
+                                    <a  href="{% url 'register' %}">{{ request.user.first_name }}</a>
+                                </li>
+                                <li class="header__link header__link_green">
+                                    <a href="{% url 'logout' %}">Выйти</a>
+                                </li>
+                            {% else %}
+                                <li class="header__link header__link_green">
+                                    <a  href="{% url 'register' %}">Регистрация</a>
+                                </li>
+                                <li class="header__link header__link_green">
+                                    <a href="{% url 'signin' %}">Войти</a>
+                                </li>
+                            {% endif %}
+
+
                     </ul>
                 </div>
             </div>

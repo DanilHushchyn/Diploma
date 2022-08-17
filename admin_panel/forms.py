@@ -70,6 +70,7 @@ class FilmForm(forms.ModelForm):
             'technology_types': forms.SelectMultiple(attrs={'type': 'checkbox', 'class': 'form__elem'}),
             'countries': forms.SelectMultiple(attrs={'type': 'checkbox', 'class': 'form__elem'}),
         }
+        help_texts = {'name' : 'C большой буквы'}
 
 
 class SeoBlockForm(forms.ModelForm):

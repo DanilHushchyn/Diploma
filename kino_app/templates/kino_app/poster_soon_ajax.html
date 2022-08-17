@@ -1,0 +1,26 @@
+{% if type == "poster" %}
+    {% for film in films %}
+         <div class="film__item">
+            <a href="{% url 'film_card' film.name %}">
+                <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
+            </a>
+            <div class="film__text">{{ film.name}}</div>
+            <button class="film__btn btn-primary">
+                    Купить билет
+            </button>
+        </div>
+
+    {% endfor %}
+{% elif type == "soon" %}
+    {% for film in films %}
+             <div class="film__item">
+                <a href="{% url 'film_card' film.name %}">
+                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
+                </a>
+                <div class="film__text">{{ film.name}}</div>
+                <div class="film__text film__text_yellow">
+                        C {{ film.released }}
+                </div>
+            </div>
+    {% endfor %}
+{% endif %}

@@ -1,30 +1,102 @@
-from django.shortcuts import render, redirect
-from user.forms import UserForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render, redirect
 
+from django.contrib.auth.mixins import AccessMixin
 
 # Create your views here.
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 
-def signin(request):
-    return render(request, 'user/signin.html')
-
-
-def signup(request):
-    if request.method == 'POST':
-        user_form = UserForm(request.POST)
-        if user_form.is_valid():
-            user_form.save()
-            return redirect('signin')
-    user_form = UserForm()
-    data = {'user_form': user_form}
-    return render(request, 'user/register.html', context=data)
+from admin_panel.models import *
+from kino_app.views import getBanner
+from user.forms import *
 
 
-# class LoginUser(LoginView):
-#     form_class = AuthenticationForm
-#     template_name = 'user/signin.html'
 #
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         c_def = self.get_user_context(title='Авторизация')
+#
+class SignUp(CreateView):
+    model = Account
+    form_class = UserForm
+    context_object_name = 'user_form'
+    template_name = "../templates/user/register.html"
+    success_url = '/main'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['banner'] = getBanner()
+        return context
+
+#
+# class SignIn(LoginView):
+#     template_name = '../templates/user/signin.html'
+#
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return redirect('main')
+#         if request.method == 'POST':
+#             return self.post(request, *args, **kwargs)
+#         return super().dispatch(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         error = False
+#         form = SignInForm(request.POST)
+#         print(form.fields['email'])
+#         print('POST')
+#         print(request.POST['email'])
+#         print('POST',form.error_messages)
+#         print('POST',form)
+#         if form.is_valid():
+#             email = form.cleaned_data['email']
+#             password = form.cleaned_data['password']
+#             print('IS VALID')
+#             user = authenticate(email=email, password=password)
+#             if user:
+#                 print('IS AUTHENTICATED')
+#
+#                 login(request, user)
+#                 return redirect('main')
+#             else:
+#                 error = True
+#         else:
+#             form = SignInForm()
+#         data = {
+#             'form': form,
+#             'error': error,
+#             'banner':getBanner()
+#         }
+#         return render(request, '../templates/user/signin.html', context=data)
+#
+#     def get_success_url(self):
+#         return reverse_lazy('main')
+
+def loginView(request):
+    if request.user.is_authenticated:
+        return redirect('main')
+    if request.method == 'POST':
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            print('IS VALID')
+            user = authenticate(email=email, password=password)
+            if user:
+                print('IS AUTHENTICATED')
+
+                login(request, user)
+                return redirect('main')
+    else:
+        form = SignInForm()
+    data = {
+        'form': form,
+        'banner': getBanner()
+    }
+    return render(request, '../templates/user/signin.html', context=data)
+class SignOut(LogoutView):
+    redirect_field_name = reverse_lazy('main')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['banner'] = getBanner()
+        return context

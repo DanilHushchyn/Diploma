@@ -1,0 +1,80 @@
+@import '../../../../admin_panel/static/zeroing'
+@import '../../../../admin_panel/static/buttons'
+@import '../../../../admin_panel/static/atributes'
+.content
+  background: $gray-light-color
+  padding: 50px
+  &__title
+    font-size: 34px
+    text-align: center
+    margin-bottom: 50px
+
+    font-weight: bold
+.form
+  text-align: center
+
+  &__row
+    display: grid
+    margin-bottom: 30px
+    grid-template-columns: 250px
+    grid-auto-columns: 130px
+    grid-auto-flow: column
+    justify-content: start
+    grid-template-areas: 'label '
+    align-items: center
+
+    grid-gap: 10px
+
+    *
+      display: flex
+      flex-direction: row
+
+    & label
+      grid-area: label
+      font-size: 20px
+      font-weight: 700
+
+  &__elem
+    width: 300px
+    background: $gray-soft-color
+    padding: 20px
+    font-family: $font-family
+    font-size: 18px
+
+    &_date
+      grid-area: auto
+      grid-auto-columns: 130px
+      width: 130px
+      display: flex
+      flex-direction: row
+    &_radio
+      background: inherit
+
+      display: flex
+      flex-direction: row
+      width: 100px
+
+
+  &__title
+    text-align: center
+    font-family: $font-family
+    font-size: 30px
+    font-weight: 700
+    margin-bottom: 30px
+  &__bottom
+    margin-top: 50px
+    text-align: center
+  &__btn
+    padding: 30px 50px
+    margin: 0 auto
+    font-size: 18px
+    border-radius: 0px
+    background: $green-dark-color
+    &:hover
+     transition: background 0.3s ease
+     background: $green-light-color
+     -webkit-box-shadow: 0px 0px 14px 5px rgb(85, 239, 196)
+     -moz-box-shadow: 0px 0px 14px 5px rgb(85, 239, 196)
+     box-shadow: 0px 0px 14px 5px rgb(85, 239, 196)
+
+

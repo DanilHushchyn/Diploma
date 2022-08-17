@@ -1,5 +1,8 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import FormView, DeleteView
+
 from admin_panel import forms as my_forms
 from user import forms as user_forms
 from django.forms import inlineformset_factory, modelformset_factory
@@ -9,18 +12,18 @@ from datetime import date
 
 
 def statistic(request):
-    data = {'users_count': User.objects.count()}
+    data = {'users_count': Account.objects.count()}
     return render(request, 'admin_panel/statistic.html', context=data)
 
 
 def clients(request):
-    data = {'users': User.objects.all()
+    data = {'users': Account.objects.all()
             }
     return render(request, 'admin_panel/clients.html', context=data)
 
 
 def update_client(request, id):
-    client = User.objects.get(id=id)
+    client = Account.objects.get(id=id)
     if request.method == 'POST':
         client_form = user_forms.UserForm(request.POST, instance=client)
         if client_form.is_valid():
@@ -239,21 +242,29 @@ def delete_news(request, id):
 
 
 # def get_film_form(request):
-#     filmImgFormSet = modelformset_factory(FilmImg, form=my_forms.FilmImgForm, extra=1)
-#     filmImg_form = filmImgFormSet(queryset=FilmImg.objects.none())
+#     filmImgForm = my_forms.FilmImgForm()
 #
 #     film_form = my_forms.FilmForm()
 #     seo = my_forms.SeoBlockForm()
-#
-#     data = {'form': film_form, 'filmImg_form': filmImg_form, 'seo_form': seo}
+#     data = {'form': film_form, 'filmImg_form': filmImgForm, 'seo_form': seo}
 #     return render(request, 'admin_panel/film_form.html', context=data)
-def get_film_form(request):
-    filmImgForm = my_forms.FilmImgForm()
 
-    film_form = my_forms.FilmForm()
-    seo = my_forms.SeoBlockForm()
-    data = {'form': film_form, 'filmImg_form': filmImgForm, 'seo_form': seo}
-    return render(request, 'admin_panel/film_form.html', context=data)
+
+class FilmForm(FormView):
+    initial = {'name': 'Film name'}
+    template_name = 'admin_panel/film_form.html'
+    form_class = my_forms.FilmForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        seo = my_forms.SeoBlockForm()
+        context['seo_form'] = seo
+        filmImgForm = my_forms.FilmImgForm()
+        context['filmImg_form'] = filmImgForm
+        return context
+
+    def get_success_url(self):
+        return redirect('films')
 
 
 def cinema_card(request, name):
@@ -465,6 +476,9 @@ def delete_hall(request, number):
     hall.delete()
 
     return redirect('cinemas')
+
+
+
 
 
 def update_main_page(request):

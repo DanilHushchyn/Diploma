@@ -15786,7 +15786,7 @@ var PDFSecurity = /*#__PURE__*/function () {
     _classCallCheck(this, PDFSecurity);
 
     if (!options.ownerPassword && !options.userPassword) {
-      throw new Error('None of owner password and user password is defined.');
+      throw new Error('None of owner password and register password is defined.');
     }
 
     this.document = document;
@@ -18018,7 +18018,7 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
   }, {
     key: "layout",
     value: function layout(text, features, onlyWidth) {
-      // Skip the cache if any user defined features are applied
+      // Skip the cache if any register defined features are applied
       if (features) {
         return this.layoutRun(text, features);
       }
@@ -18398,7 +18398,7 @@ var LineWrapper = /*#__PURE__*/function (_EventEmitter) {
     _this.on('firstLine', function (options) {
       // if this is the first line of the text segment, and
       // we're continuing where we left off, indent that much
-      // otherwise use the user specified indent option
+      // otherwise use the register specified indent option
       var indent = _this.continuedX || _this.indent;
       _this.document.x += indent;
       _this.lineWidth -= indent;
@@ -18581,7 +18581,7 @@ var LineWrapper = /*#__PURE__*/function (_EventEmitter) {
         }
 
         if (bk.required || w > _this2.spaceLeft) {
-          // if the user specified a max height and an ellipsis, and is about to pass the
+          // if the register specified a max height and an ellipsis, and is about to pass the
           // max height and max columns after the next line, append the ellipsis
           var lh = _this2.document.currentLineHeight(true);
 
@@ -18677,7 +18677,7 @@ var LineWrapper = /*#__PURE__*/function (_EventEmitter) {
       this.emit('sectionEnd', options, this);
 
       if (++this.column > this.columns) {
-        // if a max height was specified by the user, we're done.
+        // if a max height was specified by the register, we're done.
         // otherwise, the default is to make a new page at the bottom.
         if (this.height != null) {
           return false;
@@ -30840,7 +30840,7 @@ function DeflateState() {
    */
 
   this.window_size = 0;
-  /* Actual size of window: 2*wSize, except when the user input buffer
+  /* Actual size of window: 2*wSize, except when the register input buffer
    * is directly used as sliding window.
    */
 
@@ -43959,7 +43959,7 @@ EventEmitter.prototype.emit = function emit(type) {
       // up in Node's output if this results in an unhandled exception.
       throw er; // Unhandled 'error' event
     }
-    // At least give some kind of context to the user
+    // At least give some kind of context to the register
     var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
     err.context = er;
     throw err; // Unhandled 'error' event
@@ -45594,7 +45594,7 @@ module.exports = {
         table: function() { return __webpack_require__(2426) },
     },
 
-    // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
+    // GBK (~22000 chars) is an extension of CP936 that added register-mapped chars and some other.
     'gbk': {
         type: '_dbcs',
         table: function() { return __webpack_require__(2426).concat(__webpack_require__(7419)) },
@@ -51696,7 +51696,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
     // has not been initialized yet
     if (this._readableState === undefined || this._writableState === undefined) {
       return;
-    } // backward compatibility, the user is explicitly
+    } // backward compatibility, the register is explicitly
     // managing destroyed
 
 
@@ -51961,7 +51961,7 @@ Object.defineProperty(Readable.prototype, 'destroyed', {
     // has not been initialized yet
     if (!this._readableState) {
       return;
-    } // backward compatibility, the user is explicitly
+    } // backward compatibility, the register is explicitly
     // managing destroyed
 
 
@@ -52216,7 +52216,7 @@ Readable.prototype.read = function (n) {
     this._read(state.highWaterMark);
 
     state.sync = false; // If _read pushed data synchronously, then `reading` will be false,
-    // and we need to re-evaluate how much data we can return to the user.
+    // and we need to re-evaluate how much data we can return to the register.
 
     if (!state.reading) n = howMuchToRead(nOrig, state);
   }
@@ -52307,7 +52307,7 @@ function emitReadable_(stream) {
 
   state.needReadable = !state.flowing && !state.ended && state.length <= state.highWaterMark;
   flow(stream);
-} // at this point, the user has presumably seen the 'readable' event,
+} // at this point, the register has presumably seen the 'readable' event,
 // and called read() to consume some data.  that may have triggered
 // in turn another _read(n) call, in which case reading = true if
 // it's in progress.
@@ -52442,7 +52442,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
     debug('dest.write', ret);
 
     if (ret === false) {
-      // If the user unpiped during `dest.write()`, it is possible
+      // If the register unpiped during `dest.write()`, it is possible
       // to get stuck in a permanently paused state if that write
       // also returned false.
       // => Check whether `dest` is still a piping destination.
@@ -52640,7 +52640,7 @@ function nReadingNextTick(self) {
   debug('readable nexttick read 0');
   self.read(0);
 } // pause() and resume() are remnants of the legacy readable stream API
-// If the user uses them, then switch into old mode.
+// If the register uses them, then switch into old mode.
 
 
 Readable.prototype.resume = function () {
@@ -53258,14 +53258,14 @@ function WritableState(options, stream, isDuplex) {
 
   this.onwrite = function (er) {
     onwrite(stream, er);
-  }; // the callback that the user supplies to write(chunk,encoding,cb)
+  }; // the callback that the register supplies to write(chunk,encoding,cb)
 
 
   this.writecb = null; // the amount that is being written when _write is called.
 
   this.writelen = 0;
   this.bufferedRequest = null;
-  this.lastBufferedRequest = null; // number of pending user-supplied write callbacks
+  this.lastBufferedRequest = null; // number of pending register-supplied write callbacks
   // this must be 0 before 'finish' can be emitted
 
   this.pendingcb = 0; // emit prefinish if the only thing we're waiting for is _write cbs
@@ -53362,7 +53362,7 @@ function writeAfterEnd(stream, cb) {
 
   errorOrDestroy(stream, er);
   process.nextTick(cb, er);
-} // Checks that a user-supplied chunk is valid, especially for the particular
+} // Checks that a register-supplied chunk is valid, especially for the particular
 // mode the stream is in. Currently this means that `null` is never accepted
 // and undefined/non-string values are only allowed in object mode.
 
@@ -53782,7 +53782,7 @@ Object.defineProperty(Writable.prototype, 'destroyed', {
     // has not been initialized yet
     if (!this._writableState) {
       return;
-    } // backward compatibility, the user is explicitly
+    } // backward compatibility, the register is explicitly
     // managing destroyed
 
 
@@ -60324,7 +60324,7 @@ var GlyphRun = /*#__PURE__*/function () {
 
     this.direction = direction$1 || direction(script);
     /**
-     * The features requested during shaping. This is a combination of user
+     * The features requested during shaping. This is a combination of register
      * specified features and features chosen by the shaper.
      * @type {object}
      */
@@ -60581,7 +60581,7 @@ var features = {
     exclusive: true,
     noAlternates: 0
   },
-  // user defined options
+  // register defined options
   designComplexity: {
     code: 18,
     exclusive: true,
@@ -70522,7 +70522,7 @@ function arrayToHash(array) {
 
 
 function formatValue(ctx, value, recurseTimes) {
-  // Provide a hook for user-specified inspect functions.
+  // Provide a hook for register-specified inspect functions.
   // Check that value is an object with an inspect function on it
   if (ctx.customInspect &&
       value &&
@@ -70979,7 +70979,7 @@ function callbackify(original) {
     throw new TypeError('The "original" argument must be of type Function');
   }
 
-  // We DO NOT return the promise as it gives the user a false sense that
+  // We DO NOT return the promise as it gives the register a false sense that
   // the promise is actually somehow related to the callback's execution
   // and that the callback throwing will reject the promise.
   function callbackified() {
@@ -71328,7 +71328,7 @@ XmlCDataNode.prototype.type = "cdata";
 XmlCommentNode.prototype.type = "comment";
 
 /*
-XmlDocument is the class we expose to the user; it uses the sax parser to create a hierarchy
+XmlDocument is the class we expose to the register; it uses the sax parser to create a hierarchy
 of XmlElements.
 */
 

@@ -1,0 +1,53 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+{% block title %}
+    {{type}}
+{% endblock %}
+{% block head %}
+     <link  rel="stylesheet" href="{% static 'kino_app/poster/poster.css' %} " />
+{% endblock %}
+
+{% block content %}
+         <div class="content">
+             <div class="content__ads ">
+                 Контекстная реклама
+             </div>
+             <div class="content__main" id="wizard">
+                <div class="content__menu">
+                     <button class="content__btn content__btn_afisha btn-primary">Афиша</button>
+                     <button class="content__btn content__btn_soon btn-primary">Скоро</button>
+                </div>
+                <div class="content__grid film">
+                    {% if type == "Афиша" %}
+                        {% for film in films %}
+                             <div class="film__item">
+                                <a href="{% url 'film_card' film.name %}">
+                                    <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
+                                </a>
+                                <div class="film__text">{{ film.name}}</div>
+                                <button class="film__btn btn-primary">
+                                        Купить билет
+                                </button>
+                            </div>
+
+                        {% endfor %}
+                    {% elif type == "Скоро" %}
+                        {% for film in films %}
+                                 <div class="film__item">
+                                    <a href="{% url 'film_card' film.name %}">
+                                        <img class="film__img" src="../../../media/{{ film.card_img }}" alt="">
+                                    </a>
+                                    <div class="film__text">{{ film.name}}</div>
+                                    <div class="film__text film__text_yellow">
+                                            C {{ film.released }}
+                                    </div>
+                                </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+             </div>
+         </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'kino_app/poster/poster.js' %}"></script>
+{% endblock %}

@@ -69,7 +69,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0px, 200px) minmax(0px, 250px) minmax(210px, 1fr) 250px minmax(10px, 50px) 300px minmax(10px, 50px) 290px;
   grid-template-rows: 100px 25px 100px;
-  grid-template-areas: "logo logo . search . socials . contacts" "logo logo . . . . . ." ". . navbar navbar navbar navbar . sign-in-up";
+  grid-template-areas: "logo logo . search . socials . contacts" "logo logo . . . . . ." ". navbar navbar navbar navbar navbar . sign-in-up";
 }
 .header__grid * {
   background: #ffffff;
@@ -132,6 +132,8 @@ body {
 }
 .header__link {
   width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
   height: 100%;
   font-size: 18px;
   font-weight: bold;

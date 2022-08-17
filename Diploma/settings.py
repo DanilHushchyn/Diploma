@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+  # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'admin_panel.apps.AdminPanelConfig',
     'user.apps.UserConfig',
 ]
+AUTH_USER_MODEL = 'admin_panel.Account'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,15 +77,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Diploma.wsgi.application'
 
-
+LOGIN_REDIRECT_URL = 'main'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+# URL redirecting after a successful authentication
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'kino_site',
-        'USER': 'postgres',
+        'NAME': 'kino_cms',
+        'USER': 'danil',
         'PASSWORD': 'buzaho4114',
         'HOST': '127.0.0.1',
         'PORT': 5432

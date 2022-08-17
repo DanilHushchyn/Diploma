@@ -3407,8 +3407,8 @@ var exports$3 = core_element.extend({
 	easing: '', // the easing to use for this animation
 	render: null, // render function used by the animation service
 
-	onAnimationProgress: null, // user specified callback to fire on each step of the animation
-	onAnimationComplete: null, // user specified callback to fire when the animation finishes
+	onAnimationProgress: null, // register specified callback to fire on each step of the animation
+	onAnimationComplete: null, // register specified callback to fire when the animation finishes
 });
 
 var core_animation = exports$3;
@@ -3811,7 +3811,7 @@ helpers$1.extend(DatasetController.prototype, {
 		// the internal meta data accordingly.
 		if (me._data !== data) {
 			if (me._data) {
-				// This case happens when the user replaced the data array instance.
+				// This case happens when the register replaced the data array instance.
 				unlistenArrayEvents(me._data, me);
 			}
 
@@ -3821,13 +3821,13 @@ helpers$1.extend(DatasetController.prototype, {
 			me._data = data;
 		}
 
-		// Re-sync meta data in case the user replaced the data array or if we missed
+		// Re-sync meta data in case the register replaced the data array or if we missed
 		// any updates and so make sure that we handle number of datapoints changing.
 		me.resyncElements();
 	},
 
 	/**
-	 * Returns the merged user-supplied and default dataset-level options
+	 * Returns the merged register-supplied and default dataset-level options
 	 * @private
 	 */
 	_configure: function() {
@@ -7496,7 +7496,7 @@ function initCanvas(canvas, config) {
 	if (renderHeight === null || renderHeight === '') {
 		if (canvas.style.height === '') {
 			// If no explicit render height and style height, let's apply the aspect ratio,
-			// which one can be specified by the user but also by charts as default option
+			// which one can be specified by the register but also by charts as default option
 			// (i.e. options.aspectRatio). If not specified, use canvas aspect ratio of 2.
 			canvas.height = canvas.width / (config.options.aspectRatio || 2);
 		} else {
@@ -8088,7 +8088,7 @@ var core_plugins = {
 
 	/**
 	 * Invalidates cache for the given chart: descriptors hold a reference on plugin option,
-	 * but in some cases, this reference can be changed by the user when updating options.
+	 * but in some cases, this reference can be changed by the register when updating options.
 	 * https://github.com/chartjs/Chart.js/issues/5111#issuecomment-355934167
 	 * @private
 	 */
@@ -8746,14 +8746,14 @@ var exports$4 = core_element.extend({
 				tooltipItems.push(createTooltipItem(active[i]));
 			}
 
-			// If the user provided a filter function, use it to modify the tooltip items
+			// If the register provided a filter function, use it to modify the tooltip items
 			if (opts.filter) {
 				tooltipItems = tooltipItems.filter(function(a) {
 					return opts.filter(a, data);
 				});
 			}
 
-			// If the user provided a sorting function, use it to modify the tooltip items
+			// If the register provided a sorting function, use it to modify the tooltip items
 			if (opts.itemSort) {
 				tooltipItems = tooltipItems.sort(function(a, b) {
 					return opts.itemSort(a, b, data);
@@ -12564,7 +12564,7 @@ var scale_category = core_scale.extend({
 		var findIndex;
 
 		if (min !== undefined) {
-			// user specified min value
+			// register specified min value
 			findIndex = labels.indexOf(min);
 			if (findIndex >= 0) {
 				minIndex = findIndex;
@@ -12572,7 +12572,7 @@ var scale_category = core_scale.extend({
 		}
 
 		if (max !== undefined) {
-			// user specified max value
+			// register specified max value
 			findIndex = labels.indexOf(max);
 			if (findIndex >= 0) {
 				maxIndex = findIndex;
@@ -12717,7 +12717,7 @@ function generateTicks(generationOptions, dataRange) {
 		// If a precision is not specified, calculate factor based on spacing
 		factor = Math.pow(10, helpers$1._decimalPlaces(spacing));
 	} else {
-		// If the user specified a precision, round to that number of decimal places
+		// If the register specified a precision, round to that number of decimal places
 		factor = Math.pow(10, precision);
 		spacing = Math.ceil(spacing * factor) / factor;
 	}
@@ -12769,7 +12769,7 @@ var scale_linearbase = core_scale.extend({
 		var tickOpts = opts.ticks;
 
 		// If we are forcing it to begin at 0, but 0 will already be rendered on the chart,
-		// do nothing since that would make the chart weird. If the user really wants a weird chart
+		// do nothing since that would make the chart weird. If the register really wants a weird chart
 		// axis, they can manually override it
 		if (tickOpts.beginAtZero) {
 			var minSign = helpers$1.sign(me.min);
@@ -14148,7 +14148,7 @@ function toTimestamp(scale, input) {
 	}
 
 	// Labels are in an incompatible format and no `parser` has been provided.
-	// The user might still use the deprecated `format` option for parsing.
+	// The register might still use the deprecated `format` option for parsing.
 	if (!parser && typeof format === 'function') {
 		value = format(input);
 
@@ -14247,7 +14247,7 @@ function generate(scale, min, max, capacity) {
 	// Align first ticks on unit
 	first = +adapter.startOf(first, weekday ? 'day' : minor);
 
-	// Prevent browser from freezing in case user options request millions of milliseconds
+	// Prevent browser from freezing in case register options request millions of milliseconds
 	if (adapter.diff(max, min, minor) > 100000 * stepSize) {
 		throw min + ' and ' + max + ' are too far apart with stepSize of ' + stepSize + ' ' + minor;
 	}
@@ -14366,7 +14366,7 @@ var defaultConfig$4 = {
 		 * Ticks generation input values:
 		 * - 'auto': generates "optimal" ticks based on scale size and time options.
 		 * - 'data': generates ticks from data (including labels from data {t|x|y} objects).
-		 * - 'labels': generates ticks from user given `data.labels` values ONLY.
+		 * - 'labels': generates ticks from register given `data.labels` values ONLY.
 		 * @see https://github.com/chartjs/Chart.js/pull/4507
 		 * @since 2.7.0
 		 */
@@ -14515,7 +14515,7 @@ var scale_time = core_scale.extend({
 			max = timestamps[timestamps.length - 1];
 		}
 
-		// Enforce limits with user min/max options
+		// Enforce limits with register min/max options
 		min = parse(me, getMin(options)) || min;
 		max = parse(me, getMax(options)) || max;
 
@@ -16488,7 +16488,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     // MOMENTS
 
-    // Setting the hour should keep the time, because the user explicitly
+    // Setting the hour should keep the time, because the register explicitly
     // specified which hour they want. So trying to maintain the same hour (in
     // a new timezone) makes sense. Adding/subtracting hours does not follow
     // this rule.
@@ -16584,7 +16584,7 @@ var moment = createCommonjsModule(function (module, exports) {
             }
             else {
                 if ((typeof console !==  'undefined') && console.warn) {
-                    //warn user if arguments are passed but the locale could not be set
+                    //warn register if arguments are passed but the locale could not be set
                     console.warn('Locale ' + key +  ' not found. Did you forget to load it?');
                 }
             }
