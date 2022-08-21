@@ -4,6 +4,7 @@ import django.utils.timezone
 from django.db import models
 
 from admin_panel.models.film import Film, TechnologyType, SeoBlock
+from admin_panel.models.user import Account
 
 
 class Contact(models.Model):
@@ -110,6 +111,7 @@ class Ticket(models.Model):
     price = models.PositiveSmallIntegerField()
     row = models.PositiveSmallIntegerField()
     seat = models.PositiveSmallIntegerField()
+    user = models.ForeignKey(Account,on_delete=models.CASCADE,blank=True,null=True)
 
     class Meta:
         db_table = 'tickets'

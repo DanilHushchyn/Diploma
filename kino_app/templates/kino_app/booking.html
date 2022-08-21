@@ -1,0 +1,77 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+{% block title %}
+    {{ film.name }}
+{% endblock %}
+{% block head %}
+    <link  rel="stylesheet" href="{% static 'kino_app/node_modules/lightslider/src/css/lightslider.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/carousel.css' %} " />
+    <link  rel="stylesheet" href="{% static 'kino_app/booking/booking.css' %} " />
+{% endblock %}
+
+{% block content %}
+     <div class="content">
+         <div class="content__banner" data-background="../../../media/{{ seance.hall.banner }}">
+
+         </div>
+
+
+         <div class="content__grid">
+             <div class="content__main main-card">
+                  <div class="main-card__info info">
+                     <div class="info__title"> {{ seance.film.name }}</div>
+                     <div class="info__subtitle">Зал №{{ seance.hall.number }}&nbsp;&nbsp;&nbsp;&nbsp;{{ seance.date }}&nbsp;&nbsp;&nbsp;&nbsp;{{ seance.time }}</div>
+                     <div class="info__row">
+                         <div class="info__item">
+                             <span>Цена в грн:</span>&nbsp;&nbsp; <div class="price">55</div>
+                         </div>
+                         <div class="info__item">
+                             <span>Ваш заказ:&nbsp;&nbsp;</span>
+                             <div class="info__row info__row_border">
+                                 <div class="tickets-count">Билетов:&nbsp;&nbsp; 0</div>
+                                 <div class="total-price">Сумма:&nbsp;&nbsp; 0 грн</div>
+                             </div>
+                         </div>
+
+                     </div>
+
+                 </div>
+                 <div class="main-card__booking">
+                     <table class="main-card__table">
+                         <tr>
+                             <td>1 </td>
+                             <td>2</td>
+                             <td>3</td>
+                         </tr>
+                         <tr>
+                             <td>1</td>
+                             <td>2</td>
+                             <td>3</td>
+                         </tr>
+                         <tr>
+                             <td>1</td>
+                             <td>2</td>
+                             <td>3</td>
+                         </tr>
+                         <tr>
+                             <td>1</td>
+                             <td>2</td>
+                             <td>3</td>
+                         </tr>
+                     </table>
+                 </div>
+             </div>
+             <div class="content__sidebar">
+                 <div class="content__card"  data-background="../../../media/{{ seance.film.card_img }}"></div>
+                 <div class="content__ads">Контекстная реклама</div>
+
+             </div>
+         </div>
+
+     </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'kino_app/node_modules/lightslider/src/js/lightslider.js' %}"></script>
+    <script src="{% static 'kino_app/booking/booking.js' %}"></script>
+{% endblock %}

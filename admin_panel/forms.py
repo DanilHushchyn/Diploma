@@ -332,3 +332,12 @@ class BackImgForm(forms.ModelForm):
         widgets = {
             'img': forms.FileInput(attrs={'class': 'form__vertical-img'}),
         }
+
+
+class BookingForm(forms.Form):
+    seat = models.BooleanField(blank=False,default=False)
+    class Meta:
+        fields = ['seat']
+        widgets = {
+            'seat': forms.CheckboxInput()
+        }

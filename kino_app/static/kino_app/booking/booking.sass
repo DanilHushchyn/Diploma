@@ -7,10 +7,7 @@
 
   &__banner
     height: 800px
-    background-repeat: no-repeat
-    background-image: linear-gradient(to right, RGBA(96, 96, 96,0.7),RGBA(96, 96, 96,0.7)), url("../imgs/cinemas.jpg")
-    background-position: 0% 100%, top
-    background-size: 100% 150px, cover
+
     position: relative
     text-align: center
   &__title
@@ -27,15 +24,18 @@
     color: $black-color
     margin-bottom: 50px
   &__grid
-    padding-top: 30px
+    padding: 30px
+    padding-top: 20px
+
 
     display: grid
-    grid-template-columns: minmax(300px,1500px) 300px
-    grid-template-areas: "main sidebar"
+    grid-template-columns: 300px minmax(300px,1500px)
+    grid-template-areas: "sidebar main"
   &__main
 
     grid-area: main
     padding: 50px
+
   &__item
     width: 600px
     display: flex
@@ -62,34 +62,55 @@
     background: $red-dark-color
     &:hover
       background: $red-light-color
+  &__card
+    height: 400px
+    margin-bottom: 30px
 
-
-.schedule
-  display: grid
-  grid-template-columns: 300px 1fr
-  grid-template-areas: 'sidebar film'
-
-.card
-  &__descr
-    font-size: 18px
+.main-card
+  &__booking
+    & td
+      width: 50px
+      height: 50px
+      text-align: center
+      background: $yellow-dark-color
+      color: $white-color
+      text-align: center
+.info
+  &__title
+    padding: 10px 50px
+    display: inline
+    font-size: 28px
     line-height: normal
-
+    color: $white-color
+    font-family: $font-family
+    text-align: left
+    background: $yellow-dark-color
+  &__subtitle
+    font-size: 22px
+    line-height: normal
+    margin-top: 30px
     font-family: $font-family
     text-align: left
     margin-bottom: 50px
+  &__row
+    display: grid
+    grid-template-columns: minmax(200px,300px) 600px
+    align-items: center
 
+    &_border
+      border: 3px $yellow-dark-color solid
+      padding: 20px 50px
+      display: inline-flex
+  &__item
+    display: flex
+    flex-direction: row
+    align-items: center
 
+.tickets-count
+  margin-right: 70px
 
-
-
-dl
-  border: 1px solid $gray-soft-color
-  margin: 0 0 5px 0
-  padding-left: 30px
-  padding-top: 30px
-dt
-  font-weight: bold
-  margin: 0 0 5px 0
-dd
-  margin: 0 0 15px 0
-
+.price
+  padding: 10px
+  background: $yellow-dark-color
+  color: white
+  display: inline

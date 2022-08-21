@@ -6,7 +6,7 @@ from django.http import FileResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, DetailView
 
 from admin_panel.models.film import *
 from admin_panel.models.cinema import *
@@ -48,6 +48,17 @@ def page(request, page_id):
 #     data = {'mainPage': mainPage, 'seances': seances, 'banners_sliders': banners_sliders, 'pages': pages,
 #             "date": date}
 #     return render(request, '../templates/kino_app/main.html', context=data)
+
+class SeanceDetail(DetailView):
+    model = Seance
+    template_name = '../templates/kino_app/booking.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['banner'] = getBanner()
+        context['scheme'] = forms.Boo
+        return context
+
+
 def main(request):
     top_carousel = TopCarousel.objects.all()
     bottom_carousel = BottomCarousel.objects.all()
@@ -324,6 +335,8 @@ def schedule_for_film(request):
         "tech_list": tech_list,
     }
     return render(request, '../templates/kino_app/schedule_for_film.html', context=data)
+
+
 def card_cinema(request, name):
     cinema = Cinema.objects.get(name=name)
     cinema_imgs = CinemaImg.objects.filter(cinema_id=cinema.id)

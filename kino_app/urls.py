@@ -10,6 +10,7 @@ urlpatterns = [
     path("schedule_for_film", kino_app.views.schedule_for_film, name='schedule_for_film'),
     path("card_cinema/<str:name>", kino_app.views.card_cinema, name='card_cinema'),
     path("film_card/<str:name>", kino_app.views.film_card, name='film_card'),
+    path("seance/<int:pk>", kino_app.views.SeanceDetail.as_view(), name='seance'),
     path("hall/<int:id>", kino_app.views.hall, name='hall'),
     path("mobile_apps", kino_app.views.mobile_apps, name='mobile_apps'),
     path("contacts", kino_app.views.contacts, name='contacts'),

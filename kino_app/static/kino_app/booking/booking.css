@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import '../zeroing.css';
+@import '../schedule/schedule.css';
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #989797;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.content {
+  background: #ffffff;
+}
+.content__banner {
+  height: 800px;
+  position: relative;
+  text-align: center;
+}
+.content__title {
+  margin: 0 auto;
+  padding-top: 700px;
+  font-size: 70px;
+  font-family: "Arvo", sans-serif;
+  color: #ffffff;
+}
+.content__subtitle {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 40px;
+  font-family: "Arvo", sans-serif;
+  color: #2D3436;
+  margin-bottom: 50px;
+}
+.content__grid {
+  padding: 30px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 300px minmax(300px, 1500px);
+  grid-template-areas: "sidebar main";
+}
+.content__main {
+  grid-area: main;
+  padding: 50px;
+}
+.content__item {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content__item img {
+  width: 600px;
+  height: 300px;
+  margin-bottom: 30px;
+}
+.content__text {
+  font-family: "Arvo", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+.content__sidebar {
+  background: #ffffff;
+  grid-area: sidebar;
+}
+.content__ads {
+  color: #ffffff;
+  font-size: 30px;
+  height: 200px;
+  text-align: center;
+  border-radius: 0px;
+  background: #d53031;
+}
+.content__ads:hover {
+  background: #FF7675;
+}
+.content__card {
+  height: 400px;
+  margin-bottom: 30px;
+}
+
+.main-card__booking td {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  background: #FDCB6E;
+  color: #ffffff;
+  text-align: center;
+}
+
+.info__title {
+  padding: 10px 50px;
+  display: inline;
+  font-size: 28px;
+  line-height: normal;
+  color: #ffffff;
+  font-family: "Arvo", sans-serif;
+  text-align: left;
+  background: #FDCB6E;
+}
+.info__subtitle {
+  font-size: 22px;
+  line-height: normal;
+  margin-top: 30px;
+  font-family: "Arvo", sans-serif;
+  text-align: left;
+  margin-bottom: 50px;
+}
+.info__row {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 600px;
+  align-items: center;
+}
+.info__row_border {
+  border: 3px #FDCB6E solid;
+  padding: 20px 50px;
+  display: inline-flex;
+}
+.info__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tickets-count {
+  margin-right: 70px;
+}
+
+.price {
+  padding: 10px;
+  background: #FDCB6E;
+  color: white;
+  display: inline;
+}
+
+/*# sourceMappingURL=booking.css.map */
