@@ -1,0 +1,199 @@
+@import '../zeroing.css';
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ADADAD;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.main {
+  padding: 50px;
+}
+
+.errorlist {
+  color: #d53031;
+  grid-area: errorlist;
+  text-align: start;
+  padding-left: 20px;
+  font-family: "Arvo", sans-serif;
+  font-size: 16px;
+}
+.errorlist > li {
+  margin-bottom: 10px;
+  list-style-type: decimal;
+}
+
+.form {
+  text-align: center;
+}
+.form__row {
+  display: grid;
+  margin-bottom: 30px;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: "label input" ". errorlist";
+  align-items: baseline;
+  grid-auto-columns: 200px;
+  grid-gap: 10px;
+}
+.form__row input {
+  grid-area: input;
+}
+.form__row label {
+  grid-area: label;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+}
+.form__elem {
+  background: #C2C2C2;
+  border-radius: 16px;
+  padding: 10px;
+  font-family: "Arvo", sans-serif;
+  font-size: 18px;
+}
+.form__elem_date {
+  border-radius: 16px;
+  grid-area: auto;
+  width: 170px;
+  display: inline;
+}
+.form__elem_radio {
+  background: transparent;
+  display: flex;
+  flex-wrap: wrap;
+}
+.form__elem_radio div {
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 16px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  background: #6C5CE7;
+}
+.form__elem_radio div label {
+  margin: 5px 20px;
+}
+.form__elem_radio div:hover, .form__elem_radio div:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+.form__elem_radio div * {
+  cursor: pointer;
+}
+.form__elem_radio div input {
+  display: none;
+}
+.form__elem_radio div input:active {
+  background: #00B894;
+}
+.form__title {
+  text-align: center;
+  font-family: "Arvo", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.form__bottom {
+  margin-top: 50px;
+  text-align: center;
+}
+.form__btn {
+  padding: 10px 30px;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+.form__btn:hover {
+  transition: background 0.3s ease;
+  background: #6C5CE7;
+  -webkit-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52);
+  -moz-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52);
+  box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52);
+}
+
+table {
+  max-width: 1100px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  margin-bottom: 50px;
+}
+table img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+table th, table td {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+table th {
+  text-align: center;
+}
+table thead {
+  border-radius: 16px 16px 0px 0px;
+}
+table thead th {
+  background-color: #6C5CE7;
+}
+table tbody td {
+  position: relative;
+  color: #2D3436;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  background: #C2C2C2;
+}
+table tbody td > input {
+  padding: 10px;
+  border-radius: 16px;
+}
+
+/*# sourceMappingURL=form.css.map */

@@ -1,0 +1,75 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Фильмы' %}</h1>
+          </div>
+          <div class="col-sm-6 text-right">
+              <a class="text-decoration-none" href="{% url 'film_form' %}"><button type="button" class="btn btn-success">{% trans 'Добавить фильм' %}</button></a>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{% trans 'Список текущих фильмов' %}</h3>
+
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+        <div class="card-body mb-5 d-flex flex-row justify-content-sm-center flex-wrap">
+            {% for film in films.released_films %}
+              <div class="card mr-3" style="width: 14rem;">
+                  <a class="text-decoration-none" href="{% url 'update_film' film.id %}">
+                  <img src="{{ film.card_img.url }}" class="card-img-top img-fluid " style="height: 300px"alt="...">
+                  <div class="card-body">
+                    <p class="card-text text-uppercase text-info">{{ film.name }}</p>
+                  </div>
+                  </a>
+              </div>
+            {% endfor %}
+        </div>
+        <div class="card-header">
+          <h3 class="card-title">{% trans 'Список фильмов которые покажут скоро' %}</h3>
+        </div>
+        <div class="card-body mb-5 d-flex flex-row justify-content-sm-center flex-wrap">
+            {% for film in films.unreleased_films %}
+              <div class="card mr-3" style="width: 14rem;">
+                  <a class="text-decoration-none" href="{% url 'update_film' film.id %}">
+                  <img src="{{ film.card_img.url }}" class="card-img-top img-fluid " style="height: 300px"alt="...">
+                  <div class="card-body">
+                    <p class="card-text text-uppercase text-info">{{ film.name }}</p>
+                  </div>
+                  </a>
+              </div>
+            {% endfor %}
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+    </section>
+  </div>
+
+{% endblock %}
+

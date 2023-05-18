@@ -1,0 +1,163 @@
+div.lang-switch
+  margin: 0
+  padding-top: 15px
+  & select
+    border: 0px
+
+body
+  min-height: 100%
+
+.wrapper
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+.container
+  max-width: 1800px
+  margin: 0 auto
+
+.header
+  padding: 20px
+  margin-bottom: 25px
+  &__grid
+    display: grid
+    grid-template-columns: minmax(0px,150px)  minmax(0px,300px) minmax(160px,1fr) 250px minmax(10px,50px) 300px minmax(10px,150px) 190px
+    grid-template-rows: 100px 25px 80px
+    grid-template-areas: 'logo logo . search . socials . contacts' 'logo logo . . . . . .' '. navbar navbar navbar navbar navbar . sign-in-up'
+    & *
+      background: white
+  &__logo
+    grid-area: logo
+    height: 80px
+    width: 150px
+  &__search
+    grid-area: search
+    width: 100%
+    height: 50px
+    font-size: 18px
+    padding-left: 10px
+    padding-right: 10px
+
+  &__socials
+    grid-area: socials
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    height: 50px
+    & img
+      width: 35px
+      height: 35px
+      cursor: pointer
+
+  &__contacts
+
+    grid-area: contacts
+    display: flex
+    justify-self: end
+    flex-direction: column
+    justify-content: center
+    align-self: start
+    padding: 10px 20px
+
+
+
+
+  &__navbar
+    grid-area: navbar
+    display: inline-flex
+
+  &__sign-in-up
+
+    grid-area: sign-in-up
+    width: 100%
+    display:  flex
+    flex-direction: row
+    justify-content: center
+    justify-self: end
+    align-items: center
+
+  &__link
+    width: 100%
+    padding-right: 5px
+    padding-left:  5px
+    height: 100%
+    text-align: center
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    & a
+      color: inherit
+      background: inherit
+
+    &_green
+      &:hover
+        transition: background-color ease 0.3s
+        background: green
+        color: white
+
+@media (max-width: 991px)
+  .header
+    &__grid
+      display: none
+.socials
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 15px
+    width: 100%
+    height: 50px
+    & img
+      width: 35px
+      height: 35px
+      cursor: pointer
+.main
+  flex-grow: 1
+  padding-right: 10px
+  padding-left: 10px
+  margin-bottom: 0
+
+
+
+.footer
+  margin-left: 22px
+  margin-right: 22px
+
+  &__grid
+    margin: 0 auto
+    color: white
+    padding: 50px
+    background: black
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(auto-fill, 300px minmax(50px,1fr) 120px minmax(50px,100px) 170px minmax(50px,200px) 200px)
+    grid-template-areas: 'mobile . afisha . cinema . socials'
+    justify-content: center
+    flex-shrink: 1
+  &__mobile
+    grid-area: mobile
+    & img
+      width: 200px
+      height: 100px
+  &__afisha
+    grid-area: afisha
+  &__cinema
+    grid-area: cinema
+  &__socials
+    grid-area: socials
+  &__title
+    margin-bottom: 20px
+
+  &__text
+  &__link
+    cursor: pointer
+    margin-bottom: 10px
+    & a
+      color: inherit
+    &:hover
+      color: gray
+
+  &__row
+    margin-bottom: 60px

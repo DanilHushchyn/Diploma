@@ -1,0 +1,59 @@
+{% load static %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Регистрация</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="{% static 'admin_panel/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'admin_panel/adminlte/plugins/fontawesome-free/css/all.min.css' %}">
+      <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'admin_panel/adminlte/dist/css/adminlte.min.css' %}">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="#" class="h1"><b>Kino</b>CMS</a>
+    </div>
+    <div class="card-body">
+
+        <form   method="post" runat="server" novalidate enctype="multipart/form-data">
+            {% csrf_token %}
+          {% bootstrap_form form  layout='vertical' show_help=True size='sm'%}
+
+            <div class="row">
+                <!-- /.col -->
+              <div class="col-4">
+                  {% translate 'Зарегистрироваться' as register %}
+                     {% bootstrap_button button_type="submit" content=register %}
+              </div>
+              <!-- /.col -->
+            </div>
+        </form>
+
+
+
+      <a href="{% url 'signin' %}" class="text-center">{% trans 'У меня есть аккаунт' %}</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/cce590ac92.js" crossorigin="anonymous"></script>
+   <script src="{% static 'admin_panel/adminlte/dist/js/adminlte.min.js' %}"></script>
+</body>
+</html>

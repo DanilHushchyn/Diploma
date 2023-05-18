@@ -1,0 +1,48 @@
+{% load static %}
+ {% load i18n %}
+
+    {% for film ,date_film  in result %}
+         <div class="film__item mb-3 bg-gray-light p-3" style="background: #C2C2C2;">
+             <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start gap-2">
+                 <div class="film__title d-sm-none fs-4 mb-3"><a href="{% url 'film_card' film.id %}">{{ film.name }} ({{ film.legal_age}}+)</a></div>
+                 <img src="{{ film.card_img.url }}" style="width: 12rem" class=" flex-shrink-1 img-fluid film__img "/>
+                 <div class="d-flex flex-column justify-content-center flex-shrink-0">
+                    <div class="film__title fs-4 mb-3 d-none d-sm-block "><a href="{% url 'film_card' film.id %}">{{ film.name }} ({{ film.legal_age}}+)</a></div>
+                    <div class="film__info info">
+                         {% for date,hall_film in date_film %}
+                             <div class="info__date">
+                                 <div class="info__text fs-4  mb-2" style="padding-left: 1.5rem;">{{ date }}</div>
+                                 {% for hall,tech_film in hall_film %}
+                                     <div class="info__hall" >
+{#                                     <div class="info__hall_scheme" hidden>#}
+{#                                         <div class="hall" >#}
+{#                                            {{ hall.scheme_html | safe }}#}
+{#                                         </div>#}
+{#                                     </div>#}
+                                         <div class="info__text fs-5 mb-2" style="padding-left: 3.0rem;">{% trans 'Зал' %} №{{ hall.number }}</div>
+                                         {% for tech,seances in tech_film %}
+                                             <div class="info__tech">
+                                                 <div class="info__text fs-6 mb-2" style="padding-left: 4.5rem;">{{ tech }}</div>
+                                                 <div class="d-inline-flex flex-row flex-wrap justify-content-start gap-1"  style="width:15rem; padding-left: 6rem;">
+                                                     {% for seance in seances %}
+                                                                 <div class="info__time position-relative fs-5 mb-2 " data-seance_id={{ seance.id  }} >
+                                                                     <a href="{% url 'seance' seance.id %}">
+                                                                         <button type="button" class="btn btn-primary ">
+                                                                             <div class="info__descr bg-dark text-white position-absolute p-1" style="right: 0;top:-35px;font-size: 0.8rem;width: 100px;" >{% trans 'Купить билет' %}</div>
+                                                                             {{ seance.time }}
+                                                                         </button>
+                                                                     </a>
+                                                                 </div>
+                                                     {% endfor %}
+                                                 </div>
+                                             </div>
+                                         {% endfor %}
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                         {% endfor %}
+                     </div>
+                </div>
+             </div>
+         </div>
+    {% endfor %}

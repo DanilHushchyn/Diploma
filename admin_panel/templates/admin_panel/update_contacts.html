@@ -1,0 +1,84 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}{# Load the tag library #}
+{% load i18n %}
+
+{% load django_bootstrap5 %}
+{% load file_filters %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
+
+{% endblock %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+       <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Форма для обновления контактов' %}</h1>
+          </div>
+          <div class="col-sm-6 text-right">
+              <button type="button" class="btn btn-add-contact btn-success">{% trans 'Добавить кинотеатр' %}</button>
+          </div>
+        </div>
+
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+    <form  action="{% url 'update_contacts' %}" method="post" runat="server" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-collection">
+          {{ contacts_formset.management_form }}
+          {% for form in contacts_formset %}
+              <div class="card">
+                <div class="card-header">
+                      <div class="card-tools p-2">
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                            </svg>
+                        </button>
+                      </div>
+                </div>
+                <div class="card-body">
+                    {% bootstrap_form form  layout='horizontal'   size='sm'%}
+                    <div class="logo-data" data-path = '{{ form.logo.value.url }}'></div>
+    {#                <div class="card-header mb-5">#}
+    {#                    <h3 class="card-title text-center">Seo блок</h3>#}
+    {#                </div>#}
+    {#                {% bootstrap_form seo_form  layout='horizontal' show_help=True size='sm'%}#}
+                </div>
+                <div class="card-footer">
+                </div>
+              </div>
+          {% endfor %}
+          </div>
+
+         <div class="card-footer">
+                 {% bootstrap_button button_type="submit" content=save %}
+                 {% bootstrap_button button_type="reset" content=reset %}
+         </div>
+
+    </form>
+      <!-- /.card -->
+    </section>
+  </div>
+{% endblock %}
+{% block script %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script>
+        let title = '{% trans 'Название'%}'
+        let address = '{% trans 'Адрес'%}'
+        let coordinateLabel = '{% trans 'Координаты'%}'
+        let logoLabel = '{% trans 'Логотип'%}'
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="{% static 'admin_panel/contacts/contacts_update.js' %}"></script>
+{% endblock %}

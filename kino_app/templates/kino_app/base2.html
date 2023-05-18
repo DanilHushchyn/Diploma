@@ -1,0 +1,246 @@
+{% load static %}
+{% load i18n %}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'kino_app/base.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body style="background: url('{% get_media_prefix %}{{ banner.img }}') no-repeat fixed center;">
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__grid">
+                    <a style="background: transparent" href="{% url 'main' %}"><img class="header__logo" src="{% static 'admin_panel/imgs/home_alone.jpg' %}"></a>
+                    <div class="header__socials socials">
+                        <img src="{% static 'kino_app/imgs/premium-icon-discord-4494732.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-twitter-4494477.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-facebook-4494475.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-instagram-4494488.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-youtube-4494485.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-git-4494740.png' %}" alt="">
+                        <img src="{% static 'kino_app/imgs/premium-icon-skype-4494482.png' %}" alt="">
+                    </div>
+                    <input class="header__search" type="text">
+
+                    <div class="header__contacts">
+                        <span>{{ number1 }}</span>
+                        <span>{{ number2 }}</span>
+                    </div>
+                    <nav class="navbar header__navbar navbar-expand">
+                      <div class="container d-inline">
+                          <ul class="navbar-nav d-flex justify-content-around align-items-center">
+                            <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'poster' %}">{% trans "Афиша" %}</a>
+                            </li>
+                             <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'schedule' %}">{% trans "Расписание" %}</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'kino_app_cinemas' %}">{% trans "Кинотеатры" %}</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'soon' %}">{% trans "Скоро" %}</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <a class="nav-link active dropdown-toggle" href="{% url 'about_cinema' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "О кинотеатре" %}
+                              </a>
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{% url 'news' %}">{% trans "Новости" %}</a></li>
+                                  {% for page in pages %}
+                                      {% if page.turn_on %}
+                                          <li><a class="dropdown-item" href="{% url 'page' page.id %}">{{ page.name }}</a></li>
+                                      {% endif %}
+                                  {% endfor %}
+                                  <li><a class="dropdown-item" href="{% url 'contacts' %}">{% trans "Контакты" %}</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'mobile_apps' %}">{% trans "Мобильное приложение" %}</a></li>
+                              </ul>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'stocks' %}">{% trans "Акции" %}</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                              <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Язык" %}
+                              </a>
+                              <ul class="dropdown-menu">
+
+                                  {% for language in languages %}
+                                          <li>
+                                              <a class="dropdown-item" href="/{{ language.code }}/">
+                                                {{ language.name_local }} ({{ language.code }})
+                                              </a>
+                                          </li>
+                                  {% endfor %}
+                              </ul>
+                            </li>
+
+                          </ul>
+                      </div>
+                    </nav>
+                    <div class="header__sign-in-up">
+                            {% if request.user.is_authenticated %}
+                                <div class="header__link header__link_green">
+                                    <a  href="{% url 'cabinet' %}">{% trans "Кабинет" %}</a>
+                                </div>
+                                <div class="header__link header__link_green">
+                                    <a href="{% url 'logout' %}">{% trans "Выйти" %}</a>
+                                </div>
+                            {% else %}
+                                <div class="header__link header__link_green">
+                                    <a  href="{% url 'register' %}">{% trans "Регистрация" %}</a>
+                                </div>
+                                <div class="header__link header__link_green">
+                                    <a href="{% url 'signin' %}">{% trans "Войти" %}</a>
+                                </div>
+                            {% endif %}
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg bg-white d-lg-none">
+                  <div class="container-fluid">
+                    <a style="background: transparent" href="{% url 'main' %}"><img class="img-fluid" style="width: 50px; height: 30px" src="{% static 'admin_panel/imgs/home_alone.jpg' %}"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <div class="header__sign-in-up p-3 justify-content-start">
+                            <div class="btn-group">
+                                {% if request.user.is_authenticated %}
+                                  <a href="{% url 'cabinet' %}" class="btn btn-primary">{{ request.user.first_name }}</a>
+                                  <a href="{% url 'logout' %}" class="btn btn-primary">{% trans 'Выйти' %}</a>
+                                {% else %}
+                                    <a href="{% url 'register' %}" class="btn btn-primary">{% trans 'Регистрация' %}</a>
+                                    <a href="{% url 'signin' %}" class="btn btn-primary">{% trans 'Вход' %}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="header__contacts">
+                            <span>{{ number1 }}</span>
+                            <span>{{ number2 }}</span>
+                        </div>
+                        <div class="header__socials socials d-none d-sm-flex mb-5">
+                            <img src="{% static 'kino_app/imgs/premium-icon-discord-4494732.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/premium-icon-twitter-4494477.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/premium-icon-facebook-4494475.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/premium-icon-instagram-4494488.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/premium-icon-youtube-4494485.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/premium-icon-git-4494740.png' %}" alt="">
+                            <img src="{% static 'kino_app/imgs/premium-icon-skype-4494482.png' %}" alt="">
+                        </div>
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="{% url 'poster' %}">{% trans 'Афиша' %}</a>
+                        </li>
+                         <li class="nav-item">
+                          <a class="nav-link active" href="{% url 'schedule' %}">{% trans 'Расписание' %}</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="{% url 'kino_app_cinemas' %}">{% trans 'Кинотеатры' %}</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="{% url 'soon' %}">{% trans 'Скоро' %}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link active dropdown-toggle" href="{% url 'about_cinema' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% trans 'О кинотеатре' %}
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'news' %}">{% trans 'Новости' %}</a></li>
+                            {% for page in pages %}
+                              {% if page.turn_on %}
+                                  <li><a class="dropdown-item" href="{% url 'page' page.id %}">{{ page.name }}</a></li>
+                              {% endif %}
+                            {% endfor %}
+                            <li><a class="dropdown-item" href="{% url 'contacts' %}">{% trans 'Контакты' %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mobile_apps' %}">{% trans 'Мобильное приложение' %}</a></li>
+
+                          </ul>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="{% url 'stocks' %}">{% trans 'Акции' %}</a>
+                        </li>
+                      </ul>
+                      <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">{% trans "Поиск" %}</button>
+                      </form>
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+             {% block content %}
+             {% endblock %}
+            </div>
+        </main>
+        <footer class="footer bg-white">
+            <div class="container ">
+                <div class="row p-3">
+                    <div class="col-md-5 mb-3">
+                        <form>
+                          <h5>{% trans 'Мобильные приложения' %}</h5>
+                          <div class="d-flex flex-row flex-wrap w-100 gap-2">
+                                <img class="img-fluid" style="width: 10rem;height: 100%" src="{% static 'kino_app/imgs/GooglePlay.png' %}" alt="">
+                                <img class="img-fluid" style="width: 10rem;height: 100%" src="{% static 'kino_app/imgs/app_store_badge_en_0609.png' %}" alt="">
+                          </div>
+                        </form>
+                      </div>
+                   <div class="col-6 col-md-2 offset-md-1 mr-3 mb-3">
+                    <h6>{% trans 'О кинотеатре' %}</h6>
+                    <ul class="nav flex-column">
+                      <li class="nav-item mb-2"><a href="{% url 'news' %}" class="nav-link p-0 text-body-secondary">{% trans 'Новости' %}</a></li>
+                      <li class="nav-item mb-2"><a href="{% url 'news' %}" class="nav-link p-0 text-body-secondary">{% trans 'Реклама' %}</a></li>
+                      <li class="nav-item mb-2"><a href="{% url 'news' %}" class="nav-link p-0 text-body-secondary">{% trans 'Кафе-Бар' %}</a></li>
+                      <li class="nav-item mb-2"><a href="{% url 'contacts' %}" class="nav-link p-0 text-body-secondary">{% trans 'Контакты' %}</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md-2 mb-3">
+                    <h6>{% trans 'Афиша' %}</h6>
+                    <ul class="nav flex-column">
+                      <li class="nav-item mb-2"><a href="{% url 'schedule' %}" class="nav-link p-0 text-body-secondary">{% trans 'Расписание' %}</a></li>
+                      <li class="nav-item mb-2"><a href="{% url 'soon' %}" class="nav-link p-0 text-body-secondary">{% trans 'Скоро в прокате' %}</a></li>
+                      <li class="nav-item mb-2"><a href="{% url 'kino_app_cinemas' %}" class="nav-link p-0 text-body-secondary">{% trans 'Кинотеатры' %}</a></li>
+                      <li class="nav-item mb-2"><a href="{% url 'stocks' %}" class="nav-link p-0 text-body-secondary">{% trans 'Акции' %}</a></li>
+                    </ul>
+                  </div>
+
+
+
+
+
+                    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                      <p>&copy; 2023 AVADA-MEDIA, Inc. All rights reserved.</p>
+                      <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><img style="width: 30px; height: 30px" src="{% static 'kino_app/imgs/premium-icon-instagram-4494488.png' %}" alt=""></li>
+                        <li class="ms-3"><img style="width: 30px; height: 30px" src="{% static 'kino_app/imgs/premium-icon-youtube-4494485.png' %}" alt=""></li>
+                        <li class="ms-3"><img style="width: 30px; height: 30px" src="{% static 'kino_app/imgs/premium-icon-git-4494740.png' %}" alt=""></li>
+                        <li class="ms-3"><img style="width: 30px; height: 30px" src="{% static 'kino_app/imgs/premium-icon-skype-4494482.png' %}" alt=""></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

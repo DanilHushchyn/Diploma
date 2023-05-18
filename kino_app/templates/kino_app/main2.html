@@ -1,0 +1,106 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {% trans 'Главная' %}
+{% endblock %}
+{% block head %}
+        <link  rel="stylesheet" href="{% static 'kino_app/main/main.css' %} " />
+{% endblock %}
+{% block content %}
+     <div class="main__content">
+
+
+         <div id="carouselExampleCaptions" class="carousel slide">
+              <div class="carousel-inner">
+                  {% for item in banners_sliders.top_carousel %}
+                      {% if forloop.first %}
+                          <div class="carousel-item active">
+                      {% else %}
+                          <div class="carousel-item">
+                      {% endif %}
+                              <img src="{% get_media_prefix %}{{ item.img }}" class="d-block w-100" alt="...">
+                              <div class="carousel-caption d-none d-md-block">
+                                <h3 class="p-4 w-100" style="background:  RGBA(96, 96, 96,0.7)">{{ item.title }}</h3>
+                              </div>
+                          </div>
+                  {% endfor %}
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+         </div>
+
+
+
+         <h2 class="main__title">{% trans 'Смотрите сегодня:' %}  {{ today_date }}</h2>
+         <div class="main__grid film">
+               {% for seance in seances_today %}
+                     <div class="card mr-3" style=" width: 14rem; border: 0px">
+                      <a class="text-decoration-none" href="{% url 'film_card'  seance.film.id %}">
+                          <img src="{{ seance.film.card_img.url }}" class="card-img-top img-fluid " style="height: 300px"alt="...">
+                          <div class="card-body">
+                            <p class="card-text text-uppercase text-success">{{  seance.film.name}}</p>
+                               <button class="btn  btn-success">
+                                    {% trans 'Купить билет' %}
+                               </button>
+                          </div>
+                      </a>
+                    </div>
+                {% endfor %}
+         </div>
+         <h2 class="main__title">{% trans 'Cмотрите скоро' %}</h2>
+            <div class="p-5 mb-5 d-flex flex-row justify-content-center flex-wrap gap-5">
+                {% for film in unreleased_films %}
+
+                    <div class="card mr-3" style=" width: 14rem; border: 0px">
+                      <a class="text-decoration-none" href="{% url 'film_card' film.id %}">
+                          <img src="{{ film.card_img.url }}" class="card-img-top img-fluid " style="height: 300px"alt="...">
+                          <div class="card-body">
+                            <button   class="btn btn-primary btn-sm-sm card-text text-uppercase text-white text-wrap mb-3  ">{{ film.name }}</button>
+                            <p class="card-text text-uppercase">{{ film.released }}</p>
+                          </div>
+                      </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+         <h2 class="main__title">{% trans 'Новости и Акции' %}</h2>
+          <div id="carouselExampleCaptions2" class="carousel slide">
+              <div class="carousel-inner">
+                  {% for item in banners_sliders.bottom_carousel %}
+                      {% if forloop.first %}
+                          <div class="carousel-item active">
+                      {% else %}
+                          <div class="carousel-item">
+                      {% endif %}
+                              <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                          </div>
+                  {% endfor %}
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+         </div>
+        <h6 class="text-center mt-3">
+            {{ seo_text }}
+        </h6>
+        <h3 class="main__ads ">
+            {% trans 'Контекстная реклама' %}
+        </h3>
+     </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock %}

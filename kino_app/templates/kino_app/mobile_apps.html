@@ -1,0 +1,50 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {% trans 'Мобильные приложения' %}
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+        <picture class="d-block position-relative">
+              <img src="{% get_static_prefix %}kino_app/imgs/placeholderimg.png" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+     <div class="content bg-white">
+        <div class="row">
+             <div class="col-md-9 col-lg-10 col-xl-10 pt-4 col-12 pr-1" >
+                 <div class="text-center">
+                     <h3 class="mb-3">{% trans 'Мобильные приложения' %}</h3>
+                 </div>
+                 <p class="content__descr p-3" style="text-align: justify;  text-indent: 50px;letter-spacing: 1px">
+                     But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects,
+                     But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects,
+                 </p>
+                 <div class="d-flex flex-row flex-wrap justify-content-center gap-2 align-items-center p-1 mb-3">
+                    <img class="h-auto" style="width: 15rem" src="{% get_static_prefix %}/kino_app/imgs/vertical_holder.jpg" alt="pic1">
+                    <img class="h-auto" style="width: 15rem" src="{% get_static_prefix %}/kino_app/imgs/vertical_holder.jpg" alt="pic2">
+                    <img class="h-auto" style="width: 15rem" src="{% get_static_prefix %}/kino_app/imgs/vertical_holder.jpg" alt="pic3">
+                    <img class="h-auto" style="width: 15rem" src="{% get_static_prefix %}/kino_app/imgs/vertical_holder.jpg" alt="pic4">
+                </div>
+                 <div class="d-flex flex-row flex-wrap justify-content-center justify-content-md-start gap-2 align-items-center p-1 ps-md-5 mb-5">
+                    <img class="h-auto" style="width: 15rem" src="{% get_static_prefix %}/kino_app/imgs/appstore-1024x357.png" alt="pic1">
+                    <img class="h-auto" style="width: 15rem" src="{% get_static_prefix %}/kino_app/imgs/GooglePlay.png" alt="pic2">
+                 </div>
+             </div>
+             <div class="column col-md-3 col-lg-2 col-xl-2 col-12 mb-md-0">
+                  <div style="height: 100%" class="fs-6 d-none d-md-block bg-danger mb-3">
+                     <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+                </div>
+             </div>
+        </div>
+        <div style="height: 100px" class="fs-6 d-md-none bg-danger">
+            <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock %}

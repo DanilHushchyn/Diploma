@@ -1,0 +1,56 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+{% load i18n %}
+
+{% load django_bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
+
+{% endblock %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Форма для создания сеанса' %}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+         <form id="seance_form"  runat="server" action="{% url 'seance_form' %}" method="post">
+            <div class="card-body mb-5 ">
+                {% csrf_token %}
+                {% bootstrap_form seance_form  layout='horizontal' show_help=True size='sm'%}
+            </div>
+            <div class="card-footer">
+                 {% bootstrap_button button_type="submit" content=save %}
+                 {% bootstrap_button button_type="reset" content=reset %}
+            </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </section>
+  </div>
+{% endblock %}
+{% block script %}
+     <script src="{% static 'admin_panel/seances/seances_form.js' %}"></script>
+{% endblock %}

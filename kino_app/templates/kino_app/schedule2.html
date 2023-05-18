@@ -1,0 +1,149 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+   Расписание
+{% endblock %}
+{% block head %}
+
+{#    <link  rel="stylesheet" href="{% static 'kino_app/schedule/schedule.css' %} " />#}
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+         <div class="content__grid d-flex flex-md-row flex-column">
+             <div class="sidebar flex-shrink-1">
+                 <div class="card-body  bg-white px-4 pt-2 pb-2">
+                     <div class="card-header mb-5">
+                        <h3 class="card-title text-center">{% trans 'Фильтр' %}</h3>
+                     </div>
+                    <form class="column g-3" id="form-filter" action="#" >
+                      <div class="col mr-3 mb-3">
+                          <label class="form-label">{% trans 'Дата' %}</label>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="today" value="today">
+                              <label class="form-check-label" for="today">
+                                {% trans 'Сегодня' %}
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="tomorrow" value="tomorrow" >
+                              <label class="form-check-label" for="tomorrow">
+                                {% trans 'Завтра' %}
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="week" value="week">
+                              <label class="form-check-label" for="week">
+                                {% trans 'На неделе' %}
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="month" value="month">
+                              <label class="form-check-label" for="month">
+                                {% trans 'В этом месяце' %}
+                              </label>
+                          </div>
+                      </div>
+                      <div class="col mb-3">
+                        <label class="form-label">{% trans 'Фильмы' %}</label>
+                        <div class="form-check row">
+                            {% for checked,film in film_list %}
+                                <div class="col">
+                                    <input name="films_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ film.id }}">
+                                    <label class="form-check-label"  for="films_filter">
+                                        {{ film.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                      </div>
+                      <div class="col mb-3">
+                        <label class="form-label">{% trans 'Залы' %}</label>
+                         <div class="form-check row">
+                             {% for checked, hall in hall_list %}
+                                 <div class="col">
+                                    <input name="halls_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ hall.number }}">
+                                    <label class="form-check-label"  for="halls_filter">
+                                        {% trans 'Зал' %} {{ hall.number }}
+                                    </label>
+                                 </div>
+                            {% endfor %}
+                        </div>
+                      </div>
+                      <div class="col">
+                        <label class="form-label">{% trans 'Технологии' %}</label>
+                         <div class="form-check row">
+                             {% for checked,tech in tech_list %}
+                                 <div class="col">
+                                    <input name="techs_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ tech.id }}">
+                                    <label class="form-check-label"  for="{{ tech.name }}">
+                                        {{ tech.name }}
+                                    </label>
+                                 </div>
+                            {% endfor %}
+                         </div>
+                      </div>
+                    </form>
+
+                </div>
+             </div>
+             <div class="film flex-grow-1 flex-shrink-0" >
+                 {% for film ,date_film  in result %}
+                 <div class="film__item mb-3 bg-gray-light p-3" style="background: #C2C2C2;">
+                     <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start gap-2">
+                         <div class="film__title d-sm-none fs-4 mb-3"><a href="{% url 'film_card' film.id %}">{{ film.name }} ({{ film.legal_age}}+)</a></div>
+                         <img src="{{ film.card_img.url }}" style="width: 12rem" class=" flex-shrink-1 img-fluid film__img "/>
+                         <div class="d-flex flex-column justify-content-center flex-shrink-0">
+                            <div class="film__title fs-4 mb-3 d-none d-sm-block "><a href="{% url 'film_card' film.id %}">{{ film.name }} ({{ film.legal_age}}+)</a></div>
+                            <div class="film__info info">
+                                 {% for date,hall_film in date_film %}
+                                     <div class="info__date">
+                                         <div class="info__text fs-4  mb-2" style="padding-left: 1.5rem;">{{ date }}</div>
+                                         {% for hall,tech_film in hall_film %}
+                                             <div class="info__hall" >
+        {#                                     <div class="info__hall_scheme" hidden>#}
+        {#                                         <div class="hall" >#}
+        {#                                            {{ hall.scheme_html | safe }}#}
+        {#                                         </div>#}
+        {#                                     </div>#}
+                                                 <div class="info__text fs-5 mb-2" style="padding-left: 3.0rem;">{% trans 'Зал' %} №{{ hall.number }}</div>
+                                                 {% for tech,seances in tech_film %}
+                                                     <div class="info__tech">
+                                                         <div class="info__text fs-6 mb-2" style="padding-left: 4.5rem;">{{ tech }}</div>
+                                                         <div class="d-inline-flex flex-row flex-wrap justify-content-start gap-1"  style="width:15rem; padding-left: 6rem;">
+                                                             {% for seance in seances %}
+                                                                 <div class="info__time position-relative fs-5 mb-2 " data-seance_id={{ seance.id  }} >
+                                                                     <a href="{% url 'seance' seance.id %}">
+                                                                         <button type="button" class="btn btn-primary ">
+                                                                             <div class="info__descr bg-dark text-white position-absolute p-1" style="right: 0;top:-35px;font-size: 0.8rem;width: 100px;" >{% trans 'Купить билет' %}</div>
+                                                                             {{ seance.time }}
+                                                                         </button>
+                                                                     </a>
+                                                                 </div>
+                                                             {% endfor %}
+
+                                                         </div>
+                                                     </div>
+                                                 {% endfor %}
+                                             </div>
+                                         {% endfor %}
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                        </div>
+                     </div>
+
+                 </div>
+             {% endfor %}
+             </div>
+            <div style="width: 100px" class="fs-6 d-none d-lg-block  pr-3 bg-danger">
+                 <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+             </div>         </div>
+     </div>
+{% endblock %}
+{% block script %}
+
+    <script src="{% static 'kino_app/schedule/schedule.js' %}"></script>
+{% endblock %}

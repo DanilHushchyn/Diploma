@@ -1,0 +1,49 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {% trans 'Новости' %}
+{% endblock %}
+{% load django_bootstrap5 %}
+{% load file_filters %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block head %}
+{#     <link  rel="stylesheet" href="{% static 'kino_app/cinemas/cinemas.css' %} " />#}
+{% endblock %}
+
+{% block content %}
+     <div class="content bg-white">
+         <picture class="d-block position-relative mb-3">
+              <img src="{% static 'kino_app/imgs/placeholderimg.png' %}" style=" width: 100%" class="img-fluid h-auto" alt="...">
+          </picture>
+         <h3 class="text-center mb-3">{% trans 'Новости' %}</h3>
+
+         <div class="px-2 mb-5 d-flex flex-row justify-content-center flex-wrap gap-5">
+            {% for row in news %}
+                     <div class="card mr-3 bg-transparent" style=" height: auto;width: 15rem;; border: 0px">
+                          <a class="text-decoration-none" href="{% url 'page_news' row.id %}">
+                              <img src="{{ row.card_img.url }}" class="card-img-top img-fluid " alt="...">
+                              <div class="card-body  d-flex flex-column p-0 pt-1">
+                                  <p class="card-text text-black text-start"><a href="{% url 'page_news' row.id %}">{{ row.name }}</a></p>
+                                  <p class="card-text text-primary">{{ row.creation_date }}</p>
+                                  <p class="card-text text-start text-black">{{ row.short_description }}</p>
+                              </div>
+                          </a>
+                     </div>
+            {% endfor %}
+        </div>
+     <div class="d-flex justify-content-center">{% bootstrap_pagination page %}</div>
+
+       <div style="height: 100px" class="fs-6 d-block  pr-3 bg-danger">
+             <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+     </div>
+{% endblock %}
+{% block script %}
+{% endblock %}

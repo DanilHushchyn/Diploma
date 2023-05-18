@@ -1,0 +1,304 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}
+{% load i18n %}
+{% block head %}
+            <link rel="stylesheet" href="{% static 'admin_panel/statistic/statistic.css' %}">
+
+{% endblock %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Статистика' %}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{% trans 'Текущая статистика' %}</h3>
+
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+        <div class="card-body mb-5">
+            <div class="statistic d-flex flex-row flex-wrap justify-content-center">
+                    <div class="pie-chart-sex mb-3 mr-3" style="width: 25rem;height: 20rem"  ></div>
+                    <div class="pie-chart-films mb-3 mr-3" style="width: 25rem;height: 20rem"    ></div>
+                    <div class="area-seances mb-3 mr-3"  style="width: 100%;height: 20rem"  ></div>
+                    <div class="line-stack-films mb-3 mr-3"  style="width: 100%;height: 20rem" ></div>
+                    <div class="small-box bg-warning" style="width: 15rem">
+                      <div class="inner">
+                        <h3>{{ users_count }}</h3>
+
+                        <p>{% trans 'Кол-во пользователей' %}</p>
+                      </div>
+                      <div class="icon">
+                            <i class="fa-solid fa-person"></i>
+                      </div>
+                    </div>
+            </div>
+        </div>
+        <div class="card-footer">
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% endblock %}
+{% block script %}
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/cce590ac92.js" crossorigin="anonymous"></script>
+{#    <script src="{% static 'adminlte/dist/js/adminlte.min.js' %}"></script>#}
+     <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+      <script type="text/javascript">
+        var pieChartSex = $('.pie-chart-sex')
+        var pieChartFilms = $('.pie-chart-films')
+        var myChartSex = echarts.init(pieChartSex.get(0), null, {
+          renderer: 'canvas',
+          useDirtyRect: false
+        });
+        var myChartFilms = echarts.init(pieChartFilms.get(0), null, {
+          renderer: 'canvas',
+          useDirtyRect: false
+        });
+
+
+        var optionForPieChartSex = {
+          title: {
+            text: '{% trans 'Пол 100% от общего числа билетов' %}',
+            left: 'center',
+            textStyle: {
+                  fontSize : 14,
+              },
+          },
+          tooltip: {
+            trigger: 'item'
+          },
+
+          series: [
+            {
+              name: 'Access From',
+              type: 'pie',
+              radius: '50%',
+              data: [
+                { value: {{mans_woman.0}}, name: '{% trans 'Мужской' %}' },
+                { value: {{mans_woman.1}}, name: '{% trans 'Женский' %}' },
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        };
+        var optionForPieChartFilms = {
+          title: {
+            text: '{% trans 'Фильмы по популярности' %}',
+            left: 'center',
+            textStyle: {
+                  fontSize : 14,
+              },
+          },
+
+          tooltip: {
+            trigger: 'item'
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'right',
+            top: 'bottom'
+          },
+          series: [
+            {
+              name: 'Access From',
+              type: 'pie',
+              radius: '50%',
+              data: [
+                  {% for count,film in top_films %}
+                      { value: {{count}}, name: '{{film}}', },
+                  {% endfor %}
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        };
+
+        if (optionForPieChartSex && typeof optionForPieChartSex === 'object') {
+          myChartSex.setOption(optionForPieChartSex);
+        }
+        if (optionForPieChartFilms && typeof optionForPieChartFilms === 'object') {
+          myChartFilms.setOption(optionForPieChartFilms);
+        }
+
+        window.addEventListener('resize', myChartSex.resize);
+        window.addEventListener('resize', myChartFilms.resize);
+
+
+
+
+
+
+        var areaSeances = $('.area-seances');
+        var myChartAreaSeances = echarts.init(areaSeances.get(0), null, {
+          renderer: 'canvas',
+          useDirtyRect: false
+        });
+
+
+
+        var optionForAreaSeances = {
+          title: {
+            text: '{% trans 'Сеансы' %}',
+            left: 'center',
+            textStyle: {
+                  fontSize : 14,
+              },
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                {% for day in week %}
+                    '{{ day }}',
+                {% endfor %}
+                {#'Tue',#}
+                {#'Wed', #}
+                {#'Thu', #}
+                {#'Fri',#}
+                {#'Sat', #}
+                {#'Sun'#}
+            ]
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: [
+                  {% for count in seances_for_week %}
+                    {{ count }},
+                  {% endfor %}
+              ],
+              type: 'line',
+              areaStyle: {}
+            }
+          ]
+        };
+
+        if (optionForAreaSeances && typeof optionForAreaSeances === 'object') {
+          myChartAreaSeances.setOption(optionForAreaSeances);
+        }
+
+        window.addEventListener('resize', myChartAreaSeances.resize);
+
+
+
+
+
+
+
+         var lineStackFilms  = $('.line-stack-films');
+         var myChartLineStackFilms = echarts.init(lineStackFilms.get(0), null, {
+           renderer: 'canvas',
+           useDirtyRect: false
+         });
+
+
+        var optionForLineStackFilms = {
+          title: {
+            text: '{% trans 'Сеансы' %}',
+            textStyle: {
+                  fontSize : 14,
+              },
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          legend: {
+            data: [
+                {% for film, seances in film_seances %}
+                '{{film.name}}',
+                {% endfor %}
+            ]
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {}
+            }
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                {% for day in week %}
+                    '{{ day }}',
+                {% endfor %}
+                {#'Tue',#}
+                {#'Wed', #}
+                {#'Thu', #}
+                {#'Fri',#}
+                {#'Sat', #}
+                {#'Sun'#}
+            ]
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {% for film,seances in film_seances %}
+                {
+                  name: '{{film.name}}',
+                  type: 'line',
+                  stack: 'Total',
+                  data: [
+                      {% for seance in seances %}
+                        {{seance}},
+                      {% endfor %}
+                  ]
+                },
+            {% endfor %}
+          ]
+        };
+
+        if (optionForLineStackFilms && typeof optionForLineStackFilms === 'object') {
+          myChartLineStackFilms.setOption(optionForLineStackFilms);
+        }
+
+        window.addEventListener('resize', myChartLineStackFilms.resize);
+          </script>
+
+{% endblock %}
+
+

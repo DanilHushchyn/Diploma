@@ -1,0 +1,118 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {{ cinema.name }}
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+        <picture class="d-block position-relative">
+              <img src="{{ cinema.banner.url }}" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+     <div class="content bg-white">
+        <div class="row pb-3">
+            <div class="column col-md-3 col-lg-2 col-xl-2 col-12 mb-3 mb-md-0">
+                  <div style="height: 300px" class="fs-6 d-none d-md-block bg-danger mb-3">
+                     <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+                </div>
+                <div class="mb-5 text-center text-md-start">
+                    <h5 class="sidebar__title px-4 px-md-2 mb-5 mt-3 mt-md-0">{% trans 'Кол-во залов:' %} {{ halls_num }}</h5>
+                    <div class="d-flex flex-column gap-2 px-4 px-md-2 sidebar__halls">
+                        {%  for hall in halls %}
+                            <p><a href="{% url 'hall' hall.id %}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{% trans 'Зал' %} {{ hall.number }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="mb-5 text-center text-md-start">
+                    <h5 class="sidebar__title px-4 px-md-2 mb-5">{% trans 'Смотрите сегодня: ' %}</h5>
+                    <div class="d-flex flex-column gap-2 px-4 px-md-2 sidebar__halls">
+                        {% if  seances.count  == 0 %}
+                            ...
+                        {% else %}
+                            {%  for seance in seances %}
+                                <p><a href="{% url 'schedule' %}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ seance.time }} {{ seance.film.name }}</a></p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="d-block text-left text-decoration-none px-2 mb-5" href="{% url 'schedule' %}"><button class=" btn btn-success text-black border border-width-3 border-dark mb-3">{% trans 'Расписание сеансов' %}</button></a>
+                </div>
+            </div>
+             <div class="col-md-9 col-lg-10 col-xl-10 pt-4 col-12 pr-1" >
+                 <div class="content__elements d-flex flex-row justify-content-lg-start justify-content-center align-items-center flex-wrap gap-5 mb-5 ">
+                     <div class="text-center">
+                         <h3 class="mb-3">{{ cinema.name }}</h3>
+                         <picture class="d-block position-relative">
+                          <img src="{{ cinema.logo.url }}" class="img-fluid h-auto" style="width: 11.5rem" alt="...">
+                         </picture>
+                     </div>
+                     <div class="">
+                         <div class="d-inline-flex flex-column mt-3">
+                             <a class="d-block text-center text-decoration-none" href="{% url 'schedule' %}"><button class=" btn btn-success d-none d-lg-block  btn-lg text-black border border-width-3 border-dark mb-3">{% trans 'Расписание сеансов' %}</button></a>
+                             <a class="d-block text-center text-decoration-none" href="{% url 'schedule' %}"><button class=" btn btn-success  d-lg-none text-black border border-width-3 border-dark mb-3">{% trans 'Расписание сеансов' %}</button></a>
+                             <div class="d-inline-flex rounded flex-row justify-content-around bg-black p-2">
+                                 <span class="badge rounded-pill text-bg-info">HD</span>
+                                 <span class="badge rounded-pill text-bg-secondary">2D</span>
+                                 <span class="badge rounded-pill text-bg-success">3D</span>
+                                 <span class="badge rounded-pill text-bg-danger">4D</span>
+                                 <span class="badge rounded-pill text-bg-warning">IMAX</span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <p class="content__descr p-3" style="text-align: justify;  text-indent: 50px;letter-spacing: 1px">
+                   {{ cinema.description }}
+                 </p>
+                <h3 class="content__subtitle text-center">{% trans 'Условия' %}</h3>
+                 <div class="bg-dark d-flex flex-wrap flex-row justify-content-center justify-content-lg-start p-3 mb-3">
+                     {% for page in pages %}
+                         <div class="card bg-dark text-white border-0" style="width: 18rem;">
+                          <div class="card-body" >
+                            <h5 class="card-title"><a href="{% url 'page' page.id %}" class="card-link">{{ page.name }}</a></h5>
+                            <p class="card-text overflow-hidden" style="height: 10rem">{{ page.description }}</p>
+                          </div>
+                        </div>
+                     {% endfor %}
+
+
+
+                </div>
+                 <h3 class="content__subtitle text-center">{% trans 'ФОТОГАЛЕРЕЯ' %}</h3>
+                 <div id="carouselExample" class="carousel slide">
+                      <div class="carousel-inner">
+                          {% for item in cinema_imgs %}
+                              {% if forloop.first %}
+                                  <div class="carousel-item active">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% else %}
+                                  <div class="carousel-item">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% endif %}
+                          {% endfor %}
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                </div>
+             </div>
+        </div>
+       <div style="height: 100px" class="fs-6 d-md-none bg-danger">
+            <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock %}

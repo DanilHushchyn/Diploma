@@ -1,0 +1,69 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {{ seance.film.name }}
+{% endblock %}
+{% block head %}
+
+    <link  rel="stylesheet" href="{% static 'kino_app/booking/scheme.css' %} " />
+{% endblock %}
+
+{% block content %}
+
+         <picture class="d-block position-relative">
+              <img src="{{ seance.hall.banner.url }}" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+     <div class="content bg-white">
+        <div class="row pb-3">
+            <div class="column col-md-5 col-lg-4 col-xl-3 col-12 mb-3 mb-md-0 ps-4 pt-3 text-md-start text-center">
+                <h3 class="text-center mb-3 d-md-none">{{ seance.film.name }}</h3>
+                 <img class="img-fluid h-auto mb-3 card-img" src="{{ seance.film.card_img.url }}">
+                  <div  style="width: 15rem;height: 300px" class="fs-6 d-none d-md-block bg-danger mb-3">
+                     <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+                 </div>
+            </div>
+             <div class="col-md-7 col-lg-8 col-xl-9 pt-4 col-12" >
+                 <h3 class="text-start d-none d-md-block">{{ seance.film.name }}</h3>
+                 <p class="text-md-start text-center">{{ seance.date|date:'D d M' }},&nbsp;&nbsp;&nbsp;&nbsp;{{ seance.time }},&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'Зал' %} №{{ seance.hall.number }}</p>
+                 <div class="info__row d-flex flex-row flex-wrap align-items-center justify-content-center justify-content-md-start gap-5 mb-5 ">
+                         <div class="info__item  d-flex flex-row ">
+                             <span>{% trans 'Цена в грн:' %}</span>&nbsp;&nbsp;
+                             <div class="price">{{ seance.price }}</div>
+                         </div>
+                         <div class="info__item d-flex flex-row flex-wrap justify-content-center align-items-center">
+                             <span>{% trans 'Ваш заказ:' %}&nbsp;&nbsp;&nbsp;</span>
+                             <div class="info__row info__row_border border p-md-3 p-1  border-width-3 border-dark d-flex flex-row justify-content-center ">
+                                 <div class="tickets-count">{% trans 'Билетов:' %}&nbsp; <span class="tcount">0</span></div>&nbsp;
+                                 <div class="total-price">{% trans 'Сумма:' %}&nbsp;&nbsp;<span class="tprice">0</span> {% trans 'грн' %}</div>
+                             </div>
+                         </div>
+                 </div>
+                 <h3 class="text-center mb-3">---------{% trans 'ЭКРАН' %}---------</h3>
+                 <div class="main-card__booking hall">
+                    {{ seance.hall.scheme_html|safe|escape }}
+                 </div>
+                 <div class="text-center">
+                    <button class="main-card__btn btn btn-success btn-md-lg mb-5">{% trans 'Купить' %}</button>
+                 </div>
+             </div>
+        </div>
+        <div style="height: 100px" class="fs-6 d-md-none bg-danger">
+            <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script>
+        {% get_current_language as LANGUAGE_CODE %}
+
+        let seance_id = {{ seance.id }};
+        let user_id = {{request.user.id}};
+        let urlBooking = '/{{ LANGUAGE_CODE }}/booking';
+
+    </script>
+    <script src="{% static 'kino_app/booking/booking.js' %}"></script>
+{% endblock %}

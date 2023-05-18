@@ -1,0 +1,36 @@
+{% load static %}
+ {% load i18n %}
+
+  {% for date,hall_film in result %}
+     <div class="info__date">
+         <div class="info__text fs-4  mb-2" style="padding-left: 1.5rem;">{{ date }}</div>
+         {% for hall,tech_film in hall_film %}
+             <div class="info__hall" >
+{#                 <div class="info__hall_scheme" hidden>#}
+{#                     <div class="hall" >#}
+{#                        {{ hall.scheme_html | safe }}#}
+{#                     </div>#}
+{#                 </div>#}
+                 <div class="info__text fs-5 mb-2" style="padding-left: 3.0rem;">{% trans 'Зал' %} №{{ hall.number }}</div>
+                 {% for tech,seances in tech_film %}
+                     <div class="info__tech">
+                         <div class="info__text fs-6 mb-2" style="padding-left: 4.5rem;">{{ tech }}</div>
+                         <div class="d-inline-flex flex-row flex-wrap justify-content-start gap-1"  style="width:15rem; padding-left: 6rem;">
+                             {% for seance in seances %}
+                                 <div class="info__time position-relative fs-5 mb-2 " data-seance_id={{ seance.id  }} >
+                                     <a href="{% url 'seance' seance.id %}">
+                                         <button type="button" class="btn btn-primary ">
+                                             <div class="info__descr bg-dark text-white position-absolute p-1" style="right: 0;top:-35px;font-size: 0.8rem;width: 100px;" >Купить билет</div>
+                                             {{ seance.time }}
+                                         </button>
+                                     </a>
+                                 </div>
+                             {% endfor %}
+
+                         </div>
+                     </div>
+                 {% endfor %}
+             </div>
+         {% endfor %}
+     </div>
+ {% endfor %}

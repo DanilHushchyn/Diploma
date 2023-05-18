@@ -1,0 +1,25 @@
+.main__blocks {
+  display: flex;
+  flex-direction: column;
+}
+.main__block {
+  background: white;
+  position: relative;
+}
+.card__title {
+  grid-area: ctitle;
+}
+.card__list {
+  display: flex;
+  flex-direction: column;
+}
+.card__radio {
+  grid-area: cradio;
+}
+.card__btn {
+  grid-area: cbtn;
+  cursor: pointer;
+  display: none;
+}
+
+/*# sourceMappingURL=mailing.css.map */

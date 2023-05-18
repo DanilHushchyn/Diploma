@@ -1,0 +1,47 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {% trans 'Кинотеатры' %}
+{% endblock %}
+{% block head %}
+{#     <link  rel="stylesheet" href="{% static 'kino_app/cinemas/cinemas.css' %} " />#}
+{% endblock %}
+
+{% block content %}
+     <div class="content bg-white">
+{#         <picture class="d-block position-relative">#}
+{#                #}
+{#              <img src="{% static 'kino_app/imgs/cinemas.jpg' %}" style=" width: 100%" class="img-fluid h-auto" alt="...">#}
+{#              <h3 class="position-absolute bottom-0 start-0 text-center text-white text-uppercase py-4 mb-0" style="width: 100%;background: RGBA(96, 96, 96,0.7)">Наши Кинотеатры</h3>#}
+{#          </picture>#}
+         <div id="carouselExampleCaptions" class="carousel slide">
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img src="{% static 'kino_app/imgs/cinemas.jpg' %}" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h3 class="p-4 w-100" style="background:  RGBA(96, 96, 96,0.7)">{% trans 'Наши Кинотеатры' %}</h3>
+                      </div>
+                  </div>
+              </div>
+         </div>
+         <h3 class="text-center d-md-none mt-3">{% trans 'Наши Кинотеатры' %}</h3>
+         <div class="card-body p-5 pt-2 pt-md-5 d-flex flex-row justify-content-sm-center flex-wrap">
+
+            {% for cinema in cinemas %}
+              <div class="card border-0" style="width: 24rem;">
+                  <a class="text-decoration-none" href="{% url  'card_cinema' cinema.name %}">
+                  <img class="card-img-top img-fluid mb-3 h-auto " src="{{ cinema.banner.url }}" alt="...">
+                      <p class="card-text text-uppercase text-center text-black">{{ cinema.name }}</p>
+                  </a>
+              </div>
+            {% endfor %}
+        </div>
+       <div style="height: 100px" class="fs-6 d-block  pr-3 bg-danger">
+             <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+     </div>
+{% endblock %}
+{% block script %}
+{% endblock %}

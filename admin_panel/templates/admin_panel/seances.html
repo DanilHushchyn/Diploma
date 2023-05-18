@@ -1,0 +1,151 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}{# Load the tag library #}
+{% load i18n %}
+
+{% load django_bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block head %}
+{#    <link rel="stylesheet" href="{% static 'admin_panel/seances/seances.css' %}">#}
+    <link  rel="stylesheet" href="{% static 'admin_panel/seances/preview_scheme.css' %} " />
+
+{% endblock %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Сеансы' %}</h1>
+          </div>
+            <div class="col-sm-6 text-right">
+             <a href="{% url 'seance_form' %}"><button class="btn btn-success">{% trans 'Создать сеанс' %}</button></a>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+        <div class="card-body mb-5 ">
+             <div class="card-header mb-5">
+                <h3 class="card-title text-center">{% trans 'Фильтр' %}</h3>
+             </div>
+            <form class="row g-3" id="form-filter" action="#" >
+              <div class="col mr-3">
+                  <label class="form-label">{% trans 'Дата' %}</label>
+                  <input type="date" name="period" id="date" class="form-control sidebar-second__input sidebar-second__input_date">
+              </div>
+              <div class="col">
+                <label class="form-label">{% trans 'Фильмы' %}</label>
+                <div class="form-check row">
+                    {% for checked,film in film_list %}
+                        <div class="col">
+                            <input name="films_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ film.id }}">
+                            <label class="form-check-label"  for="films_filter">
+                                {{ film.name }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+              </div>
+              <div class="col">
+                <label class="form-label">{% trans 'Залы' %}</label>
+                 <div class="form-check row">
+                     {% for checked, hall in hall_list %}
+                         <div class="col">
+                            <input name="halls_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ hall.number }}">
+                            <label class="form-check-label"  for="halls_filter">
+                                Зал {{ hall.number }}
+                            </label>
+                         </div>
+                    {% endfor %}
+                </div>
+              </div>
+              <div class="col">
+                <label class="form-label">{% trans 'Технологии' %}</label>
+                 <div class="form-check row">
+                     {% for checked,tech in tech_list %}
+                         <div class="col">
+                            <input name="techs_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ tech.id }}">
+                            <label class="form-check-label"  for="{{ tech.name }}">
+                                {{ tech.name }}
+                            </label>
+                         </div>
+                    {% endfor %}
+                 </div>
+              </div>
+            </form>
+        </div>
+
+        <div class="card-header">
+            <h3 class="card-title">{% trans 'Расписание' %}</h3>
+         </div>
+        <div class="film">
+             {% for film ,date_film  in result %}
+                 <div class="film__item mb-3 bg-gray-light p-3">
+                     <div class="film__title fs-1 mb-3">{{ film.name }} ({{ film.legal_age}}+)</div>
+                     <div class="film__info info">
+                         {% for date,hall_film in date_film %}
+                             <div class="info__date">
+                                 <div class="info__text fs-2  mb-2" style="padding-left: 1.5rem;">{{ date }}</div>
+                                 {% for hall,tech_film in hall_film %}
+                                     <div class="info__hall" >
+{#                                     <div class="info__hall_scheme" hidden>#}
+{#                                         <div class="hall" >#}
+{#                                            {{ hall.scheme_html | safe }}#}
+{#                                         </div>#}
+{#                                     </div>#}
+                                         <div class="info__text fs-3 mb-2" style="padding-left: 3.0rem;">{% trans 'Зал' %} №{{ hall.number }}</div>
+                                         {% for tech,seances in tech_film %}
+                                             <div class="info__tech">
+                                                 <div class="info__text fs-4 mb-2" style="padding-left: 4.5rem;">{{ tech }}</div>
+                                                 <div class="d-flex flex-row flex-wrap justify-content-start">
+                                                     {% for seance in seances %}
+                                                         <div class="info__time fs-5 mb-2 " style="padding-left: 6rem;" data-seance_id={{ seance.id  }} >
+                                                             <button type="button" class="btn btn-primary ">
+                                                                 {{ seance.time }}
+                                                             </button>
+                                                             <a class="info__remove"   href='{% url 'delete_seance' seance.id  %}' ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-square-fill text-danger" viewBox="0 0 16 16">
+                                                              <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                                            </svg></a>
+
+                                                         </div>
+
+
+
+                                                     {% endfor %}
+
+                                                 </div>
+                                             </div>
+                                         {% endfor %}
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                         {% endfor %}
+                     </div>
+                 </div>
+             {% endfor %}
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+{% block script %}
+    <script type="module" src="{% static 'admin_panel/seances/seances.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'admin_panel/page_update2.html' %}
+{% load static %}
+{% load i18n %}
+{% load file_filters %}
+{% load django_bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block head %}
+        <link rel="stylesheet" href="{% static 'upload.css' %}">
+{% endblock %}
+{% block content3 %}
+
+    <h4 class="text-center">{% trans 'Меню Кафе-Бара' %}</h4>
+    <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+                <th scope="col">{% trans 'Название' %}[ru]</th>
+                <th scope="col">{% trans 'Название' %}[en]</th>
+                <th scope="col">{% trans 'Вес' %}</th>
+                <th scope="col">{% trans 'Цена' %}</th>
+                <th scope="col">{% trans 'Удалить' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+           {{ menu_formset.management_form }}
+          {% for menu_form in menu_formset %}
+          <tr class="menu-form" data-widget="expandable-table" aria-expanded="true">
+          {% for row in menu_form %}
+              {% if row == menu_form.id %}
+                {{ row }}
+              {% elif  row == menu_form.DELETE %}
+                  <td>
+                      {{ row }}
+                      <a class="btn-remove">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                      </a>
+                  </td>
+              {% else %}
+                  <td>{{ row }}</td>
+              {% endif %}
+
+
+          {% endfor %}
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <button type="button" class="btn-add btn btn-primary">{% trans 'Добавить запись' %}</button>
+
+    </div>
+{% endblock %}
+{% block script %}
+        <script type="module" src="{% static 'admin_panel/gallery/gallery.js' %}"></script>
+
+        <script type="module" src="{% static 'admin_panel/page/page_form_update.js' %}"></script>
+
+        <script type="module" src="{% static 'admin_panel/cafe-bar/cafe.js' %}"></script>
+{% endblock %}

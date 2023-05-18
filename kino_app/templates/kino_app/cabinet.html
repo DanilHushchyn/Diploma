@@ -1,0 +1,43 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% load django_bootstrap5 %}
+{% load file_filters %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block title %}
+    Личный кабинет
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+     <div class="content bg-white">
+        <div class="row">
+             <div class="col-md-9 col-lg-10 col-xl-10 pt-4 col-12 p-5" >
+                 <h3 class="text-center mb-5">{% trans 'Страница клиента' %}</h3>
+                 <form action="{% url 'cabinet' %}" method="post" enctype="multipart/form-data">
+                    <div class="card-body mb-5">
+                        {% csrf_token %}
+                        {% bootstrap_form form  layout='horizontal' show_help=True size='sm'%}
+                    </div>
+                    <div class="card-footer">
+                         {% translate 'Сохранить' as save %}
+                         {% translate 'Сбросить' as reset %}
+                         {% bootstrap_button button_type="submit" content=save %}
+                         {% bootstrap_button button_type="reset" content=reset %}
+                    </div>
+                </form>
+             </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {% trans 'Зал номер' %} {{ hall.number }}
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+        <picture class="d-block position-relative">
+              <img src="{{ hall.banner.url }}" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+     <div class="content bg-white">
+        <div class="row pb-3">
+            <div class="column col-md-3 col-lg-2 col-xl-2 col-12 mb-3 mb-md-0">
+                  <div style="height: 300px" class="fs-6 d-none d-md-block bg-danger mb-3">
+                     <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+                </div>
+                <div class="mb-5 text-md-start text-center">
+                    <h5 class="sidebar__title px-4 px-md-2 pt-2 pt-md-0 mb-5">{% trans 'Смотрите сегодня:' %} </h5>
+                    <div class="d-flex flex-column gap-2 px-4 px-md-2 sidebar__halls">
+                        {% if  seances.count  == 0 %}
+                            ...
+                        {% else %}
+                            {%  for seance in seances %}
+                                <p><a href="{% url 'schedule' %}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ seance.time }} {{ seance.film.name }}</a></p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <a class="d-block text-md-start text-center text-decoration-none px-2 mb-5" href="{% url 'schedule' %}"><button class=" btn btn-success text-black border border-width-3 border-dark mb-3">{% trans 'Расписание сеансов' %}</button></a>
+             </div>
+             <div class="col-md-9 col-lg-10 col-xl-10 pt-4 col-12 pr-1" >
+                 <div class="text-center">
+                     <h3 class="mb-3">{% trans 'Зал номер' %} {{ hall.number }}</h3>
+                 </div>
+                 <p class="content__descr p-3" style="text-align: justify;  text-indent: 50px;letter-spacing: 1px">
+                   {{ hall.description }}
+                 </p>
+                 <h3 class="content__subtitle text-center">{% trans 'Карта Зала' %}</h3>
+                 <picture class="d-block position-relative mb-5">
+                    <img src="{{ hall.banner.url }}" class="img-fluid h-auto w-100" alt="...">
+                 </picture>
+                 <h3 class="content__subtitle text-center">{% trans 'ФОТОГАЛЕРЕЯ' %}</h3>
+                 <div id="carouselExample" class="carousel slide">
+                      <div class="carousel-inner">
+                          {% for item in hall_imgs %}
+                              {% if forloop.first %}
+                                  <div class="carousel-item active">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% else %}
+                                  <div class="carousel-item">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% endif %}
+                          {% endfor %}
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                </div>
+             </div>
+        </div>
+        <div style="height: 100px" class="fs-6 d-md-none bg-danger">
+            <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+.hall {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 100px;
+  grid-gap: 3px;
+}
+.hall__row {
+  display: grid;
+  grid-template-columns: repeat(15, 30px);
+  grid-template-rows: 30px;
+  grid-gap: 3px;
+}
+.hall__item {
+  padding: 10px;
+  background: gray;
+}
+.hall__item:hover {
+  background: green;
+}
+.hall__seat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: green;
+}
+
+.btn-row {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+/*# sourceMappingURL=scheme.css.map */

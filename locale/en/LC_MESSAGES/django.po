@@ -1,0 +1,1118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-08 09:11+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Diploma/settings.py:178 admin_panel/models/user.py:98
+msgid "Английский"
+msgstr "English"
+
+#: Diploma/settings.py:179 admin_panel/models/user.py:99
+msgid "Русский"
+msgstr "Russian"
+
+#: admin_panel/forms.py:369
+msgid "1 сек"
+msgstr "1 sec"
+
+#: admin_panel/forms.py:370
+msgid "2 сек"
+msgstr "2 sec"
+
+#: admin_panel/forms.py:371
+msgid "3 сек"
+msgstr "3 sec"
+
+#: admin_panel/forms.py:372
+msgid "4 сек"
+msgstr "4 sec"
+
+#: admin_panel/forms.py:373
+msgid "5 сек"
+msgstr "5 sec"
+
+#: admin_panel/forms.py:374
+msgid "6 сек"
+msgstr "6 sec"
+
+#: admin_panel/forms.py:375
+msgid "7 сек"
+msgstr "7 sec"
+
+#: admin_panel/forms.py:376
+msgid "8 сек"
+msgstr "8 sec"
+
+#: admin_panel/forms.py:377
+msgid "9 сек"
+msgstr "9 sec"
+
+#: admin_panel/forms.py:378
+msgid "10 сек"
+msgstr "10 sec"
+
+#: admin_panel/forms.py:381
+msgid "Скорость вращения"
+msgstr "Rotational speed"
+
+#: admin_panel/models/cinema.py:17 admin_panel/models/cinema.py:39
+#: admin_panel/models/cinema.py:76 admin_panel/models/cinema.py:197
+#: admin_panel/models/cinema.py:254 admin_panel/models/cinema.py:311
+#: admin_panel/models/film.py:69 admin_panel/models/film.py:142
+#: admin_panel/templates/admin_panel/cinema_update.html:84
+#: admin_panel/templates/admin_panel/news2.html:41
+#: admin_panel/templates/admin_panel/pages2.html:42
+#: admin_panel/templates/admin_panel/stocks.html:28
+#: admin_panel/templates/admin_panel/stocks2.html:42
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:20
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:21
+#: admin_panel/templates/admin_panel/update_contacts.html:77
+#: kino_app/templates/kino_app/cafe_bar_page.html:10
+msgid "Название"
+msgstr "Title"
+
+#: admin_panel/models/cinema.py:25
+#: admin_panel/templates/admin_panel/update_contacts.html:78
+msgid "Адрес"
+msgstr "Address"
+
+#: admin_panel/models/cinema.py:27 admin_panel/models/cinema.py:58
+#: admin_panel/templates/admin_panel/update_contacts.html:80
+msgid "Логотип"
+msgstr "Logo"
+
+#: admin_panel/models/cinema.py:47 admin_panel/models/cinema.py:85
+#: admin_panel/models/cinema.py:137 admin_panel/models/cinema.py:215
+#: admin_panel/models/cinema.py:272 admin_panel/models/film.py:74
+#: admin_panel/models/film.py:159
+msgid "Описание"
+msgstr "Description"
+
+#: admin_panel/models/cinema.py:56 admin_panel/models/cinema.py:94
+#: admin_panel/models/cinema.py:135 admin_panel/models/cinema.py:235
+#: admin_panel/models/cinema.py:291 admin_panel/models/film.py:91
+msgid "Баннер"
+msgstr "Banner"
+
+#: admin_panel/models/cinema.py:96
+msgid "Первая картинка"
+msgstr "First picture"
+
+#: admin_panel/models/cinema.py:98
+msgid "Вторая картинка"
+msgstr "Second picture"
+
+#: admin_panel/models/cinema.py:100
+msgid "Третья картинка"
+msgstr "Third picture"
+
+#: admin_panel/models/cinema.py:102
+msgid "Второе описание"
+msgstr "Second description"
+
+#: admin_panel/models/cinema.py:111 admin_panel/models/cinema.py:226
+#: admin_panel/models/cinema.py:282
+msgid "ВКЛ/ВЫКЛ"
+msgstr "ON/OFF"
+
+#: admin_panel/models/cinema.py:112 admin_panel/models/cinema.py:149
+#: admin_panel/models/cinema.py:225 admin_panel/models/cinema.py:281
+#: admin_panel/models/mailing.py:10
+msgid "Дата создания"
+msgstr "Date created"
+
+#: admin_panel/models/cinema.py:130
+msgid "Номер зала"
+msgstr "Hall number"
+
+#: admin_panel/models/cinema.py:146
+msgid "Кол-во биллетов"
+msgstr "Number of tickets"
+
+#: admin_panel/models/cinema.py:147
+msgid "Схема зала"
+msgstr "Hall scheme"
+
+#: admin_panel/models/cinema.py:171
+#: admin_panel/templates/admin_panel/cinema_update.html:93
+#: admin_panel/templates/admin_panel/seances.html:114
+#: admin_panel/templates/admin_panel/seances_items.html:18
+#: kino_app/templates/kino_app/booking.html:29
+#: kino_app/templates/kino_app/cinema_card2.html:26
+#: kino_app/templates/kino_app/film_card2.html:62
+#: kino_app/templates/kino_app/film_card2.html:103
+#: kino_app/templates/kino_app/schedule2.html:69
+#: kino_app/templates/kino_app/schedule2.html:111
+#: kino_app/templates/kino_app/schedule_for_film.html:14
+#: kino_app/templates/kino_app/schedule_items.html:22
+msgid "Зал"
+msgstr "Hall"
+
+#: admin_panel/models/cinema.py:172
+#: admin_panel/templates/admin_panel/seances.html:51
+#: kino_app/templates/kino_app/film_card2.html:29
+#: kino_app/templates/kino_app/schedule2.html:23
+msgid "Дата"
+msgstr "Date"
+
+#: admin_panel/models/cinema.py:173 admin_panel/models/cinema.py:325
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:23
+#: kino_app/templates/kino_app/cafe_bar_page.html:12
+msgid "Цена"
+msgstr "Price"
+
+#: admin_panel/models/cinema.py:175
+#: kino_app/templates/kino_app/film_card2.html:209
+msgid "Время"
+msgstr "Time"
+
+#: admin_panel/models/cinema.py:176
+msgid "Фильм"
+msgstr "Film"
+
+#: admin_panel/models/cinema.py:177
+msgid "Технология"
+msgstr "Technologies"
+
+#: admin_panel/models/cinema.py:206 admin_panel/models/cinema.py:263
+msgid "Краткое описание"
+msgstr "Short description"
+
+#: admin_panel/models/cinema.py:227 admin_panel/models/cinema.py:283
+msgid "Ссылка на видео"
+msgstr "Video link"
+
+#: admin_panel/models/cinema.py:237 admin_panel/models/cinema.py:294
+#: admin_panel/models/film.py:83
+msgid "Картинка карточки"
+msgstr "Card picture"
+
+#: admin_panel/models/cinema.py:320
+msgid "Вес(грамм)"
+msgstr "Weight(grams)"
+
+#: admin_panel/models/film.py:84
+msgid "Дата выхода"
+msgstr "Date release"
+
+#: admin_panel/models/film.py:85
+msgid "Ссылка на трейлер"
+msgstr "Trailer link"
+
+#: admin_panel/models/film.py:92
+#: kino_app/templates/kino_app/film_card2.html:151
+msgid "Год"
+msgstr "Year"
+
+#: admin_panel/models/film.py:97
+#: kino_app/templates/kino_app/film_card2.html:155
+msgid "Страны"
+msgstr "Countries"
+
+#: admin_panel/models/film.py:98
+#: kino_app/templates/kino_app/film_card2.html:163
+msgid "Жанры"
+msgstr "Genres"
+
+#: admin_panel/models/film.py:99
+#: kino_app/templates/kino_app/film_card2.html:179
+msgid "Продюсеры"
+msgstr "Producers"
+
+#: admin_panel/models/film.py:100
+msgid "Режисёры"
+msgstr "Editors"
+
+#: admin_panel/models/film.py:101
+#: kino_app/templates/kino_app/film_card2.html:195
+msgid "Сценаристы"
+msgstr "Scriptwriters"
+
+#: admin_panel/models/film.py:102
+#: kino_app/templates/kino_app/film_card2.html:171
+msgid "Операторы"
+msgstr "Operators"
+
+#: admin_panel/models/film.py:103
+#: kino_app/templates/kino_app/film_card2.html:203
+msgid "Бюджет"
+msgstr "Budget"
+
+#: admin_panel/models/film.py:104
+msgid "Мин Возраст"
+msgstr "Minimal age"
+
+#: admin_panel/models/film.py:109
+msgid "Длительность"
+msgstr "Duration"
+
+#: admin_panel/models/film.py:113
+msgid "Форматы"
+msgstr "Formats"
+
+#: admin_panel/models/film.py:150
+#: admin_panel/templates/admin_panel/banners_sliders2.html:164
+msgid "Ссылка"
+msgstr "Link"
+
+#: admin_panel/models/film.py:166
+msgid "Ключевые слова"
+msgstr "Keys"
+
+#: admin_panel/models/mailing.py:9
+msgid "Html шаблон"
+msgstr "Html template"
+
+#: admin_panel/models/main_page.py:59
+msgid "Телефон 1"
+msgstr "Phone 1"
+
+#: admin_panel/models/main_page.py:68
+msgid "Телефон 2"
+msgstr "Phone 2"
+
+#: admin_panel/models/main_page.py:77
+msgid "SEO текст"
+msgstr "SEO text"
+
+#: admin_panel/models/user.py:55 user/forms.py:60
+msgid "Электронная почта"
+msgstr "Email"
+
+#: admin_panel/models/user.py:60
+msgid "Имя"
+msgstr "Name"
+
+#: admin_panel/models/user.py:68
+msgid "Фамилия"
+msgstr "Surname"
+
+#: admin_panel/models/user.py:76
+msgid "Номер телефона"
+msgstr "Phone number"
+
+#: admin_panel/models/user.py:85
+#: admin_panel/templates/admin_panel/choose_client.html:58
+#: admin_panel/templates/admin_panel/clients.html:51
+msgid "Город"
+msgstr "City"
+
+#: admin_panel/models/user.py:94
+#: admin_panel/templates/admin_panel/statistic.html:101
+msgid "Мужской"
+msgstr "Man"
+
+#: admin_panel/models/user.py:95
+#: admin_panel/templates/admin_panel/statistic.html:102
+msgid "Женский"
+msgstr "Woman"
+
+#: admin_panel/models/user.py:101
+msgid "Пол"
+msgstr "Gender"
+
+#: admin_panel/models/user.py:102 kino_app/templates/kino_app/base2.html:81
+msgid "Язык"
+msgstr "Language"
+
+#: admin_panel/models/user.py:104
+#: admin_panel/templates/admin_panel/choose_client.html:54
+#: admin_panel/templates/admin_panel/clients.html:47
+msgid "День рождения"
+msgstr "Birthday"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:22
+msgid "Баннеры и слайдеры"
+msgstr "Banners and sliders"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:34
+msgid "Верхний слайдер"
+msgstr "Top slider"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:53
+#: admin_panel/templates/admin_panel/banners_sliders2.html:100
+#: admin_panel/templates/admin_panel/banners_sliders2.html:141
+#: admin_panel/templates/admin_panel/cinema_update.html:56
+#: admin_panel/templates/admin_panel/film_form.html:52
+#: admin_panel/templates/admin_panel/film_update.html:55
+#: admin_panel/templates/admin_panel/hall_form.html:66
+#: admin_panel/templates/admin_panel/hall_update2.html:56
+#: admin_panel/templates/admin_panel/news_form.html:59
+#: admin_panel/templates/admin_panel/news_update2.html:62
+#: admin_panel/templates/admin_panel/page_form.html:59
+#: admin_panel/templates/admin_panel/page_update2.html:69
+#: admin_panel/templates/admin_panel/stock_form.html:59
+#: admin_panel/templates/admin_panel/stock_update2.html:63
+msgid "Изменить картинку"
+msgstr "Change picture"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:55
+#: admin_panel/templates/admin_panel/banners_sliders2.html:143
+#: admin_panel/templates/admin_panel/cinema_update.html:59
+#: admin_panel/templates/admin_panel/cinema_update.html:87
+#: admin_panel/templates/admin_panel/clients.html:53
+#: admin_panel/templates/admin_panel/film_form.html:55
+#: admin_panel/templates/admin_panel/film_update.html:58
+#: admin_panel/templates/admin_panel/hall_form.html:69
+#: admin_panel/templates/admin_panel/hall_update2.html:59
+#: admin_panel/templates/admin_panel/mailing.html:80
+#: admin_panel/templates/admin_panel/news2.html:45
+#: admin_panel/templates/admin_panel/news_form.html:62
+#: admin_panel/templates/admin_panel/news_update2.html:65
+#: admin_panel/templates/admin_panel/page_form.html:62
+#: admin_panel/templates/admin_panel/page_update2.html:72
+#: admin_panel/templates/admin_panel/pages2.html:46
+#: admin_panel/templates/admin_panel/stock_form.html:62
+#: admin_panel/templates/admin_panel/stock_update2.html:66
+#: admin_panel/templates/admin_panel/stocks2.html:46
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:24
+msgid "Удалить"
+msgstr "Delete"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:84
+msgid "Сквозной баннер"
+msgstr "Background banner"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:123
+msgid "Нижний слайдер"
+msgstr "Bottom slider"
+
+#: admin_panel/templates/admin_panel/banners_sliders2.html:165
+msgid "Заголовок"
+msgstr "Title"
+
+#: admin_panel/templates/admin_panel/base3.html:20
+#: admin_panel/templates/admin_panel/base3.html:85
+msgid "Админка"
+msgstr "Adminka"
+
+#: admin_panel/templates/admin_panel/base3.html:110
+#: kino_app/templates/kino_app/base2.html:104
+#: kino_app/templates/kino_app/base2.html:127
+msgid "Выйти"
+msgstr "Logout"
+
+#: admin_panel/templates/admin_panel/base3.html:126
+#: admin_panel/templates/admin_panel/statistic.html:15
+msgid "Статистика"
+msgstr "Statistic"
+
+#: admin_panel/templates/admin_panel/base3.html:135
+msgid "Баннеры/Слайдеры"
+msgstr "Banners/Sliders"
+
+#: admin_panel/templates/admin_panel/base3.html:143
+#: admin_panel/templates/admin_panel/films2.html:12
+#: admin_panel/templates/admin_panel/seances.html:55
+#: kino_app/templates/kino_app/schedule2.html:50
+msgid "Фильмы"
+msgstr "Films"
+
+#: admin_panel/templates/admin_panel/base3.html:153
+#: admin_panel/templates/admin_panel/cinemas.html:13
+#: kino_app/templates/kino_app/base2.html:53
+#: kino_app/templates/kino_app/base2.html:155
+#: kino_app/templates/kino_app/base2.html:221
+#: kino_app/templates/kino_app/cinemas2.html:6
+msgid "Кинотеатры"
+msgstr "Cinemas"
+
+#: admin_panel/templates/admin_panel/base3.html:161
+#: admin_panel/templates/admin_panel/seances.html:24
+#: admin_panel/templates/admin_panel/statistic.html:177
+#: admin_panel/templates/admin_panel/statistic.html:235
+msgid "Сеансы"
+msgstr "Seances"
+
+#: admin_panel/templates/admin_panel/base3.html:170
+#: admin_panel/templates/admin_panel/news2.html:11
+#: kino_app/templates/kino_app/base2.html:63
+#: kino_app/templates/kino_app/base2.html:165
+#: kino_app/templates/kino_app/base2.html:210
+#: kino_app/templates/kino_app/news.html:6
+#: kino_app/templates/kino_app/news.html:25
+msgid "Новости"
+msgstr "News"
+
+#: admin_panel/templates/admin_panel/base3.html:178
+#: admin_panel/templates/admin_panel/stocks2.html:12
+#: kino_app/templates/kino_app/base2.html:74
+#: kino_app/templates/kino_app/base2.html:177
+#: kino_app/templates/kino_app/base2.html:222
+#: kino_app/templates/kino_app/stocks.html:6
+msgid "Акции"
+msgstr "Bonuses"
+
+#: admin_panel/templates/admin_panel/base3.html:186
+#: admin_panel/templates/admin_panel/pages2.html:12
+msgid "Страницы"
+msgstr "Pages"
+
+#: admin_panel/templates/admin_panel/base3.html:194
+#: admin_panel/templates/admin_panel/clients.html:17
+msgid "Клиенты"
+msgstr "Clients"
+
+#: admin_panel/templates/admin_panel/base3.html:203
+#: admin_panel/templates/admin_panel/mailing.html:16
+msgid "Рассылка"
+msgstr "Mailing"
+
+#: admin_panel/templates/admin_panel/base3.html:210
+#: kino_app/templates/kino_app/cabinet.html:31
+msgid "Сохранить"
+msgstr "Save"
+
+#: admin_panel/templates/admin_panel/base3.html:211
+#: kino_app/templates/kino_app/cabinet.html:32
+msgid "Сбросить"
+msgstr "Reset"
+
+#: admin_panel/templates/admin_panel/choose_client.html:22
+msgid "Адресаты"
+msgstr "Addressees"
+
+#: admin_panel/templates/admin_panel/choose_client.html:35
+msgid "Выбрать адресатов"
+msgstr "Choose Addressees"
+
+#: admin_panel/templates/admin_panel/choose_client.html:53
+#: admin_panel/templates/admin_panel/clients.html:46
+msgid "Дата регистрации"
+msgstr "Date registered"
+
+#: admin_panel/templates/admin_panel/choose_client.html:55
+#: admin_panel/templates/admin_panel/clients.html:48
+msgid "Почта"
+msgstr "Email"
+
+#: admin_panel/templates/admin_panel/choose_client.html:56
+#: admin_panel/templates/admin_panel/clients.html:49
+msgid "Телефон"
+msgstr "Phone"
+
+#: admin_panel/templates/admin_panel/choose_client.html:57
+#: admin_panel/templates/admin_panel/clients.html:50
+msgid "ФИО"
+msgstr "Fullname"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:22
+msgid "Форма для обновления кинотеатра"
+msgstr "Form to updating cinema"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:49
+#: admin_panel/templates/admin_panel/film_update.html:48
+#: admin_panel/templates/admin_panel/hall_update2.html:49
+#: admin_panel/templates/admin_panel/news_update2.html:55
+#: admin_panel/templates/admin_panel/page_update2.html:62
+#: admin_panel/templates/admin_panel/stock_update2.html:56
+msgid "Галерея"
+msgstr "Gallery"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:67
+#: admin_panel/templates/admin_panel/film_form.html:63
+#: admin_panel/templates/admin_panel/film_update.html:69
+#: admin_panel/templates/admin_panel/hall_form.html:77
+#: admin_panel/templates/admin_panel/hall_update2.html:69
+#: admin_panel/templates/admin_panel/main_page.html:44
+#: admin_panel/templates/admin_panel/news_form.html:70
+#: admin_panel/templates/admin_panel/news_update2.html:74
+#: admin_panel/templates/admin_panel/page_form.html:71
+#: admin_panel/templates/admin_panel/page_update2.html:81
+#: admin_panel/templates/admin_panel/stock_form.html:70
+#: admin_panel/templates/admin_panel/stock_update2.html:76
+msgid "Seo блок"
+msgstr "Seo block"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:78
+msgid "Список залов кинотеатра"
+msgstr "Cinema's hall list"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:85
+#: admin_panel/templates/admin_panel/news2.html:42
+#: admin_panel/templates/admin_panel/pages2.html:43
+#: admin_panel/templates/admin_panel/stocks.html:29
+#: admin_panel/templates/admin_panel/stocks2.html:43
+msgid "Дата Создания"
+msgstr "Date created"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:86
+#: admin_panel/templates/admin_panel/clients.html:52
+#: admin_panel/templates/admin_panel/news2.html:44
+#: admin_panel/templates/admin_panel/pages2.html:45
+#: admin_panel/templates/admin_panel/stocks2.html:45
+msgid "Изменить"
+msgstr "Change"
+
+#: admin_panel/templates/admin_panel/cinema_update.html:115
+msgid "Добавить зал"
+msgstr "Add hall"
+
+#: admin_panel/templates/admin_panel/cinemas.html:25
+msgid "Список текущих кинотеатров"
+msgstr "Cinema's current list"
+
+#: admin_panel/templates/admin_panel/clients.html:30
+msgid "Таблица клиентов"
+msgstr "Client's table"
+
+#: admin_panel/templates/admin_panel/film_form.html:22
+msgid "Форма для создания фильма"
+msgstr "Form to creating film"
+
+#: admin_panel/templates/admin_panel/film_form.html:45
+#: admin_panel/templates/admin_panel/hall_form.html:59
+#: admin_panel/templates/admin_panel/news_form.html:52
+#: admin_panel/templates/admin_panel/page_form.html:52
+#: admin_panel/templates/admin_panel/stock_form.html:52
+msgid "Галерея картинок"
+msgstr "Gallery"
+
+#: admin_panel/templates/admin_panel/film_update.html:23
+msgid "Форма для изменения фильма"
+msgstr "Form to updating film"
+
+#: admin_panel/templates/admin_panel/films2.html:15
+msgid "Добавить фильм"
+msgstr "Add film"
+
+#: admin_panel/templates/admin_panel/films2.html:27
+msgid "Список текущих фильмов"
+msgstr "List of current films"
+
+#: admin_panel/templates/admin_panel/films2.html:50
+msgid "Список фильмов которые покажут скоро"
+msgstr "List of future films"
+
+#: admin_panel/templates/admin_panel/hall_form.html:23
+msgid "Форма для создания зала"
+msgstr "Form to creating hall"
+
+#: admin_panel/templates/admin_panel/hall_form.html:46
+msgid "Конструктор Зала"
+msgstr "Hall's constructor"
+
+#: admin_panel/templates/admin_panel/hall_form.html:54
+msgid "Добавить ряд"
+msgstr "Add row"
+
+#: admin_panel/templates/admin_panel/hall_form.html:55
+msgid "Сформировать"
+msgstr "Finish"
+
+#: admin_panel/templates/admin_panel/hall_form.html:56
+msgid "Удалить ряд"
+msgstr "Remove row"
+
+#: admin_panel/templates/admin_panel/hall_update2.html:22
+msgid "Форма для обновления зала"
+msgstr "Form to updating hall"
+
+#: admin_panel/templates/admin_panel/mailing.html:28
+msgid "Рассылка на почту"
+msgstr "Mailing"
+
+#: admin_panel/templates/admin_panel/mailing.html:42
+msgid "Выбрать адресатов:"
+msgstr "Choose addressees"
+
+#: admin_panel/templates/admin_panel/mailing.html:45
+msgid "Всех"
+msgstr "All"
+
+#: admin_panel/templates/admin_panel/mailing.html:48
+msgid "Выборочно"
+msgstr "Selected"
+
+#: admin_panel/templates/admin_panel/mailing.html:51
+msgid "Выбрать клиентов"
+msgstr "Choose addressees"
+
+#: admin_panel/templates/admin_panel/mailing.html:54
+msgid "Выбрать шаблон HTML"
+msgstr "Choose HTML template"
+
+#: admin_panel/templates/admin_panel/mailing.html:58
+msgid "Новый"
+msgstr "New"
+
+#: admin_panel/templates/admin_panel/mailing.html:61
+msgid "Старый"
+msgstr "Old"
+
+#: admin_panel/templates/admin_panel/mailing.html:71
+msgid "Список последних загруженных шаблонов"
+msgstr "List of recently uploaded templates"
+
+#: admin_panel/templates/admin_panel/mailing.html:88
+msgid "Начать рассылку"
+msgstr "Start mailing"
+
+#: admin_panel/templates/admin_panel/mailing.html:111
+msgid "Загрузить шаблон"
+msgstr "Upload HTML template"
+
+#: admin_panel/templates/admin_panel/mailing.html:112
+msgid "Загружен файл"
+msgstr "File uploaded"
+
+#: admin_panel/templates/admin_panel/main_page.html:21
+msgid "Форма для обновления главной страницы"
+msgstr "Form to update the main page"
+
+#: admin_panel/templates/admin_panel/news2.html:14
+msgid "Добавить новость"
+msgstr "Add news"
+
+#: admin_panel/templates/admin_panel/news2.html:26
+msgid "Таблица новостей"
+msgstr "News table"
+
+#: admin_panel/templates/admin_panel/news2.html:43
+#: admin_panel/templates/admin_panel/pages2.html:44
+#: admin_panel/templates/admin_panel/stocks.html:30
+#: admin_panel/templates/admin_panel/stocks2.html:44
+msgid "Статус"
+msgstr "Status"
+
+#: admin_panel/templates/admin_panel/news2.html:55
+#: admin_panel/templates/admin_panel/pages2.html:54
+#: admin_panel/templates/admin_panel/pages2.html:68
+#: admin_panel/templates/admin_panel/pages2.html:85
+#: admin_panel/templates/admin_panel/stocks.html:44
+#: admin_panel/templates/admin_panel/stocks2.html:56
+msgid "ВКЛ"
+msgstr "ON"
+
+#: admin_panel/templates/admin_panel/news2.html:57
+#: admin_panel/templates/admin_panel/pages2.html:87
+#: admin_panel/templates/admin_panel/stocks.html:46
+#: admin_panel/templates/admin_panel/stocks2.html:58
+msgid "ВЫКЛ"
+msgstr "OFF"
+
+#: admin_panel/templates/admin_panel/news_form.html:23
+#: admin_panel/templates/admin_panel/news_update2.html:23
+msgid "Форма для создания новости"
+msgstr "Form to creating news"
+
+#: admin_panel/templates/admin_panel/news_form.html:36
+#: admin_panel/templates/admin_panel/page_form.html:36
+#: admin_panel/templates/admin_panel/page_update2.html:35
+#: admin_panel/templates/admin_panel/stock_form.html:36
+msgid "Включить/Выключить страницу"
+msgstr "ON/OFF page"
+
+#: admin_panel/templates/admin_panel/page_form.html:23
+msgid "Форма для создания страницы"
+msgstr "Form to creating page"
+
+#: admin_panel/templates/admin_panel/page_update2.html:22
+msgid "Форма для обновления страницы"
+msgstr "Form to updating page"
+
+#: admin_panel/templates/admin_panel/pages2.html:15
+msgid "Добавить страницу"
+msgstr "Add page"
+
+#: admin_panel/templates/admin_panel/pages2.html:27
+msgid "Таблица страниц"
+msgstr "Page table"
+
+#: admin_panel/templates/admin_panel/pages2.html:52
+msgid "Главная страница"
+msgstr "Main page"
+
+#: admin_panel/templates/admin_panel/pages2.html:66
+#: kino_app/templates/kino_app/base2.html:69
+#: kino_app/templates/kino_app/base2.html:171
+#: kino_app/templates/kino_app/base2.html:213
+#: kino_app/templates/kino_app/contacts.html:6
+#: kino_app/templates/kino_app/contacts.html:20
+msgid "Контакты"
+msgstr "Contacts"
+
+#: admin_panel/templates/admin_panel/seance_form.html:21
+msgid "Форма для создания сеанса"
+msgstr "Form to creating seance "
+
+#: admin_panel/templates/admin_panel/seances.html:27
+msgid "Создать сеанс"
+msgstr "Add seance"
+
+#: admin_panel/templates/admin_panel/seances.html:47
+#: kino_app/templates/kino_app/film_card2.html:25
+#: kino_app/templates/kino_app/schedule2.html:19
+msgid "Фильтр"
+msgstr "Filter"
+
+#: admin_panel/templates/admin_panel/seances.html:68
+#: kino_app/templates/kino_app/film_card2.html:56
+#: kino_app/templates/kino_app/schedule2.html:63
+msgid "Залы"
+msgstr "Halls"
+
+#: admin_panel/templates/admin_panel/seances.html:81
+#: kino_app/templates/kino_app/film_card2.html:69
+#: kino_app/templates/kino_app/schedule2.html:76
+msgid "Технологии"
+msgstr "Technologies"
+
+#: admin_panel/templates/admin_panel/seances.html:97
+#: kino_app/templates/kino_app/base2.html:50
+#: kino_app/templates/kino_app/base2.html:152
+#: kino_app/templates/kino_app/base2.html:219
+msgid "Расписание"
+msgstr "Schedule"
+
+#: admin_panel/templates/admin_panel/statistic.html:27
+msgid "Текущая статистика"
+msgstr "Current statistic"
+
+#: admin_panel/templates/admin_panel/statistic.html:47
+msgid "Кол-во пользователей"
+msgstr "Number of users"
+
+#: admin_panel/templates/admin_panel/statistic.html:85
+#| msgid "Пол 100%% от общего числа билетов"
+msgid "Пол 100%% от общего числа билетов"
+msgstr "Gender 100% of total tickets"
+
+#: admin_panel/templates/admin_panel/statistic.html:116
+msgid "Фильмы по популярности"
+msgstr "Most popular films"
+
+#: admin_panel/templates/admin_panel/stock_form.html:23
+msgid "Форма для создания акции"
+msgstr "Form to creating bonus"
+
+#: admin_panel/templates/admin_panel/stock_update2.html:23
+msgid "Форма для обновления акции"
+msgstr "Form to updating bonus"
+
+#: admin_panel/templates/admin_panel/stocks.html:15
+msgid "Список Акций"
+msgstr "Bonuses List"
+
+#: admin_panel/templates/admin_panel/stocks.html:20
+msgid "Создать акцию"
+msgstr "Add bonus"
+
+#: admin_panel/templates/admin_panel/stocks2.html:15
+msgid "Добавить акцию"
+msgstr "Add bonus"
+
+#: admin_panel/templates/admin_panel/stocks2.html:27
+msgid "Таблица акций"
+msgstr "Bonuses table"
+
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:15
+#: kino_app/templates/kino_app/cafe_bar_page.html:5
+msgid "Меню Кафе-Бара"
+msgstr "Cafe-Bar Menu"
+
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:22
+#: kino_app/templates/kino_app/cafe_bar_page.html:11
+msgid "Вес"
+msgstr "Weight"
+
+#: admin_panel/templates/admin_panel/update_cafe-bar.html:53
+msgid "Добавить запись"
+msgstr "Add row"
+
+#: admin_panel/templates/admin_panel/update_client.html:17
+msgid "Форма для обновления пользователя"
+msgstr "Form to creating users"
+
+#: admin_panel/templates/admin_panel/update_contacts.html:23
+msgid "Форма для обновления контактов"
+msgstr "Form to updating users"
+
+#: admin_panel/templates/admin_panel/update_contacts.html:26
+msgid "Добавить кинотеатр"
+msgstr "Add Cinema"
+
+#: admin_panel/templates/admin_panel/update_contacts.html:79
+msgid "Координаты"
+msgstr "Coordinates"
+
+#: kino_app/templates/kino_app/about_cinema.html:6
+#: kino_app/templates/kino_app/about_cinema.html:20
+#: kino_app/templates/kino_app/base2.html:60
+#: kino_app/templates/kino_app/base2.html:162
+#: kino_app/templates/kino_app/base2.html:208
+msgid "О кинотеатре"
+msgstr "About cinema"
+
+#: kino_app/templates/kino_app/about_cinema.html:57
+msgid "Оборудование"
+msgstr "Equipment"
+
+#: kino_app/templates/kino_app/about_cinema.html:75
+#: kino_app/templates/kino_app/about_cinema.html:81
+#: kino_app/templates/kino_app/booking.html:24
+#: kino_app/templates/kino_app/booking.html:53
+#: kino_app/templates/kino_app/cinema_card2.html:20
+#: kino_app/templates/kino_app/cinema_card2.html:112
+#: kino_app/templates/kino_app/cinemas2.html:42
+#: kino_app/templates/kino_app/contacts.html:47
+#: kino_app/templates/kino_app/contacts.html:52
+#: kino_app/templates/kino_app/film_card2.html:250
+#: kino_app/templates/kino_app/hall2.html:20
+#: kino_app/templates/kino_app/hall2.html:74
+#: kino_app/templates/kino_app/main2.html:97
+#: kino_app/templates/kino_app/mobile_apps.html:39
+#: kino_app/templates/kino_app/mobile_apps.html:44
+#: kino_app/templates/kino_app/news.html:44
+#: kino_app/templates/kino_app/page.html:62
+#: kino_app/templates/kino_app/page.html:67
+#: kino_app/templates/kino_app/page_news.html:57
+#: kino_app/templates/kino_app/page_news.html:62
+#: kino_app/templates/kino_app/page_stock.html:56
+#: kino_app/templates/kino_app/page_stock.html:61
+#: kino_app/templates/kino_app/poster_soon.html:15
+#: kino_app/templates/kino_app/schedule2.html:142
+#: kino_app/templates/kino_app/stocks.html:44
+msgid "Контекстная реклама"
+msgstr "Context ads"
+
+#: kino_app/templates/kino_app/base2.html:47
+#: kino_app/templates/kino_app/base2.html:149
+#: kino_app/templates/kino_app/base2.html:217
+#: kino_app/templates/kino_app/poster_soon.html:19
+msgid "Афиша"
+msgstr "Poster"
+
+#: kino_app/templates/kino_app/base2.html:56
+#: kino_app/templates/kino_app/base2.html:158
+#: kino_app/templates/kino_app/poster_soon.html:20
+msgid "Скоро"
+msgstr "Soon"
+
+#: kino_app/templates/kino_app/base2.html:70
+#: kino_app/templates/kino_app/base2.html:172
+msgid "Мобильное приложение"
+msgstr "Mobile apps"
+
+#: kino_app/templates/kino_app/base2.html:101
+msgid "Кабинет"
+msgstr "Cabinet"
+
+#: kino_app/templates/kino_app/base2.html:108
+#: kino_app/templates/kino_app/base2.html:129
+msgid "Регистрация"
+msgstr "Signup"
+
+#: kino_app/templates/kino_app/base2.html:111
+#: user/templates/user/signin.html:41
+msgid "Войти"
+msgstr "Signin"
+
+#: kino_app/templates/kino_app/base2.html:130
+msgid "Вход"
+msgstr "Signin"
+
+#: kino_app/templates/kino_app/base2.html:182
+msgid "Поиск"
+msgstr "Search"
+
+#: kino_app/templates/kino_app/base2.html:200
+#: kino_app/templates/kino_app/mobile_apps.html:6
+#: kino_app/templates/kino_app/mobile_apps.html:20
+msgid "Мобильные приложения"
+msgstr "Mobile apps"
+
+#: kino_app/templates/kino_app/base2.html:211
+msgid "Реклама"
+msgstr "Advertising"
+
+#: kino_app/templates/kino_app/base2.html:212
+msgid "Кафе-Бар"
+msgstr "Cafe-Bar"
+
+#: kino_app/templates/kino_app/base2.html:220
+msgid "Скоро в прокате"
+msgstr "Coming soon"
+
+#: kino_app/templates/kino_app/booking.html:32
+msgid "Цена в грн:"
+msgstr "Price in UAH:"
+
+#: kino_app/templates/kino_app/booking.html:36
+msgid "Ваш заказ:"
+msgstr "Your order:"
+
+#: kino_app/templates/kino_app/booking.html:38
+msgid "Билетов:"
+msgstr "Tickets:"
+
+#: kino_app/templates/kino_app/booking.html:39
+msgid "Сумма:"
+msgstr "Price:"
+
+#: kino_app/templates/kino_app/booking.html:39
+msgid "грн"
+msgstr "UAH"
+
+#: kino_app/templates/kino_app/booking.html:43
+msgid "ЭКРАН"
+msgstr "MONITOR"
+
+#: kino_app/templates/kino_app/booking.html:48
+#: kino_app/templates/kino_app/poster_soon.html:30
+#: kino_app/templates/kino_app/poster_soon_ajax.html:11
+msgid "Купить"
+msgstr "Buy"
+
+#: kino_app/templates/kino_app/cabinet.html:24
+msgid "Страница клиента"
+msgstr "Client Page"
+
+#: kino_app/templates/kino_app/cinema_card2.html:23
+msgid "Кол-во залов:"
+msgstr "Number of halls"
+
+#: kino_app/templates/kino_app/cinema_card2.html:31
+msgid "Смотрите сегодня: "
+msgstr "Watch today:"
+
+#: kino_app/templates/kino_app/cinema_card2.html:43
+#: kino_app/templates/kino_app/cinema_card2.html:56
+#: kino_app/templates/kino_app/cinema_card2.html:57
+#: kino_app/templates/kino_app/hall2.html:34
+msgid "Расписание сеансов"
+msgstr "Sessions schedule"
+
+#: kino_app/templates/kino_app/cinema_card2.html:71
+msgid "Условия"
+msgstr "Features"
+
+#: kino_app/templates/kino_app/cinema_card2.html:85
+#: kino_app/templates/kino_app/hall2.html:47
+#: kino_app/templates/kino_app/page.html:35
+#: kino_app/templates/kino_app/page_news.html:29
+#: kino_app/templates/kino_app/page_stock.html:28
+msgid "ФОТОГАЛЕРЕЯ"
+msgstr "GALLERY"
+
+#: kino_app/templates/kino_app/cinemas2.html:24
+#: kino_app/templates/kino_app/cinemas2.html:29
+msgid "Наши Кинотеатры"
+msgstr "Our Cinemas"
+
+#: kino_app/templates/kino_app/film_card2.html:33
+#: kino_app/templates/kino_app/schedule2.html:27
+msgid "Сегодня"
+msgstr "Today"
+
+#: kino_app/templates/kino_app/film_card2.html:39
+#: kino_app/templates/kino_app/schedule2.html:33
+msgid "Завтра"
+msgstr "Tomorrow"
+
+#: kino_app/templates/kino_app/film_card2.html:45
+#: kino_app/templates/kino_app/schedule2.html:39
+msgid "На неделе"
+msgstr "On week"
+
+#: kino_app/templates/kino_app/film_card2.html:51
+#: kino_app/templates/kino_app/schedule2.html:45
+msgid "В этом месяце"
+msgstr "In this month"
+
+#: kino_app/templates/kino_app/film_card2.html:112
+#: kino_app/templates/kino_app/main2.html:48
+#: kino_app/templates/kino_app/schedule2.html:120
+#: kino_app/templates/kino_app/schedule_items.html:31
+msgid "Купить билет"
+msgstr "Buy ticket"
+
+#: kino_app/templates/kino_app/film_card2.html:187
+msgid "Режиссёры"
+msgstr "Editors"
+
+#: kino_app/templates/kino_app/film_card2.html:211
+msgid "минут"
+msgstr "minutes"
+
+#: kino_app/templates/kino_app/film_card2.html:215
+msgid "Возраст"
+msgstr "Age"
+
+#: kino_app/templates/kino_app/film_card2.html:223
+msgid "Кадры и постеры"
+msgstr "Photos and posters"
+
+#: kino_app/templates/kino_app/hall2.html:6
+#: kino_app/templates/kino_app/hall2.html:38
+msgid "Зал номер"
+msgstr "Hall number"
+
+#: kino_app/templates/kino_app/hall2.html:23
+#: kino_app/templates/kino_app/main2.html:39
+msgid "Смотрите сегодня:"
+msgstr "Watch today:"
+
+#: kino_app/templates/kino_app/hall2.html:43
+msgid "Карта Зала"
+msgstr "Hall map"
+
+#: kino_app/templates/kino_app/main2.html:6
+msgid "Главная"
+msgstr "Main"
+
+#: kino_app/templates/kino_app/main2.html:55
+msgid "Cмотрите скоро"
+msgstr "Watch soon"
+
+#: kino_app/templates/kino_app/main2.html:72
+msgid "Новости и Акции"
+msgstr "News and Bonuses"
+
+#: kino_app/templates/kino_app/stocks.html:25
+msgid "Акции и скидки"
+msgstr "Bonuses and sales"
+
+#: user/forms.py:28 user/forms.py:52 user/forms.py:62
+msgid "Пароль"
+msgstr "Password"
+
+#: user/forms.py:30 user/forms.py:54
+msgid "Повторите пароль"
+msgstr "Enter password again"
+
+#: user/forms.py:32 user/forms.py:56
+msgid "Введите пароль повторно"
+msgstr "Enter password again"
+
+#: user/templates/user/register.html:40 user/templates/user/signin.html:53
+#| msgid "Сформировать"
+msgid "Зарегистрироваться"
+msgstr "Signup"
+
+#: user/templates/user/register.html:49
+msgid "У меня есть аккаунт"
+msgstr "I have an account"
+
+#~| msgid "Название"
+#~ msgid "Название[ru]"
+#~ msgstr "Title"
+
+#~| msgid "Название"
+#~ msgid "Название[en]"
+#~ msgstr "Title"

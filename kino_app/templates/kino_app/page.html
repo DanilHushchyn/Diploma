@@ -1,0 +1,73 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    Зал номер {{ hall.number }}
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+        <picture class="d-block position-relative">
+              <img src="{{ page.banner.url }}" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+     <div class="content bg-white">
+        <div class="row">
+             <div class="col-md-9 col-lg-10 col-xl-10 pt-4 col-12 pr-1" >
+                 <div class="text-center">
+                     <h3 class="mb-3">{{ page.name }}</h3>
+                 </div>
+                 <p class="content__descr p-3" style="text-align: justify;  text-indent: 50px;letter-spacing: 1px">
+                   {{ page.description }}
+                 </p>
+                <div class="d-flex flex-row flex-wrap justify-content-center gap-5 align-items-center p-3">
+                    <img class="h-auto" style="width: 15rem" src="{{ page.first_pic.url }}" alt="pic1">
+                    <img class="h-auto" style="width: 15rem" src="{{ page.second_pic.url }}" alt="pic2">
+                    <img class="h-auto" style="width: 15rem" src="{{ page.third_pic.url }}" alt="pic3">
+                </div>
+                <p class="content__descr p-3" style="text-align: justify;  text-indent: 50px;letter-spacing: 1px">
+                   {{ page.description2 }}
+                 </p>
+                {% block content3 %}
+                {% endblock %}
+                 <h3 class="content__subtitle text-center">{% trans 'ФОТОГАЛЕРЕЯ' %}</h3>
+                 <div id="carouselExample" class="carousel slide">
+                      <div class="carousel-inner">
+                          {% for item in page_imgs %}
+                              {% if forloop.first %}
+                                  <div class="carousel-item active">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% else %}
+                                  <div class="carousel-item">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% endif %}
+                          {% endfor %}
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                </div>
+             </div>
+             <div class="column col-md-3 col-lg-2 col-xl-2 col-12 mb-md-0">
+                  <div style="height: 100%" class="fs-6 d-none d-md-block bg-danger mb-3">
+                     <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+                </div>
+             </div>
+        </div>
+        <div style="height: 100px" class="fs-6 d-md-none bg-danger">
+            <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock %}

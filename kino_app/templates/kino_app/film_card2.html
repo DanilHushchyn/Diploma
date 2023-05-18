@@ -1,0 +1,263 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {{ film.name }}
+{% endblock %}
+{% block head %}
+        <link  rel="stylesheet" href="{% static 'kino_app/responsive_imgs.css' %} " />
+
+{% endblock %}
+
+{% block content %}
+     <div class="content bg-white">
+{#          <div class="ratio ratio-21x9">#}
+{#                <iframe width="560" height="315" src="https://www.youtube.com/embed/Pa87ZZy8igQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>#}
+{#          </div>#}
+       <picture class="d-block position-relative">
+              <img src="{{ film.banner.url }}" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+          <div class="content__grid d-flex flex-md-row flex-column mb-5" id="schedule" >
+             <div class="sidebar flex-shrink-1" >
+                 <div class="card-body px-4 pt-2 pb-2" >
+                     <div class="card-header mb-5">
+                        <h3 class="card-title text-center">{% trans 'Фильтр' %}</h3>
+                     </div>
+                    <form class="column g-3" id="form-filter" action="#" >
+                      <div class="col mr-3 mb-3">
+                          <label class="form-label">{% trans 'Дата' %}</label>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="today" value="today">
+                              <label class="form-check-label" for="today">
+                                {% trans 'Сегодня' %}
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="tomorrow" value="tomorrow" >
+                              <label class="form-check-label" for="tomorrow">
+                                {% trans 'Завтра' %}
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="week" value="week">
+                              <label class="form-check-label" for="week">
+                                {% trans 'На неделе' %}
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="period" id="month" value="month">
+                              <label class="form-check-label" for="month">
+                                {% trans 'В этом месяце' %}
+                              </label>
+                          </div>
+                      </div>
+                      <div class="col mb-3">
+                        <label class="form-label">{% trans 'Залы' %}</label>
+                         <div class="form-check row">
+                             {% for  hall in hall_list %}
+                                 <div class="col">
+                                    <input name="halls_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ hall.number }}">
+                                    <label class="form-check-label"  for="halls_filter">
+                                        {% trans 'Зал' %} {{ hall.number }}
+                                    </label>
+                                 </div>
+                            {% endfor %}
+                        </div>
+                      </div>
+                      <div class="col">
+                        <label class="form-label">{% trans 'Технологии' %}</label>
+                         <div class="form-check row">
+                             {% for tech in tech_list %}
+                                 <div class="col">
+                                    <input name="techs_filter"  class="form-check-input" type="checkbox" {% if checked == 'checked' %}  checked {% endif %} value="{{ tech.id }}">
+                                    <label class="form-check-label"  for="{{ tech.name }}">
+                                        {{ tech.name }}
+                                    </label>
+                                 </div>
+                            {% endfor %}
+                         </div>
+                      </div>
+                    </form>
+                </div>
+             </div>
+            <div class="film flex-grow-1 flex-shrink-0" >
+                 {% for film ,date_film  in result %}
+                 <div class="film__item mb-3 bg-gray-light p-3" style="background: #C2C2C2;">
+                     <div class="d-flex flex-sm-row flex-column align-items-center align-items-sm-start gap-2">
+                         <div class="film__title d-sm-none fs-4 mb-3"><a href="{% url 'film_card' film.id %}">{{ film.name }} ({{ film.legal_age}}+)</a></div>
+                         <img src="{{ film.card_img.url }}" style="width: 12rem" class=" flex-shrink-1 img-fluid film__img "/>
+                         <div class="d-flex flex-column justify-content-center flex-shrink-0">
+                            <div class="film__title fs-4 mb-3 d-none d-sm-block "><a href="{% url 'film_card' film.id %}">{{ film.name }} ({{ film.legal_age}}+)</a></div>
+                            <div class="film__info info">
+                                 {% for date,hall_film in date_film %}
+                                     <div class="info__date">
+                                         <div class="info__text fs-4  mb-2" style="padding-left: 1.5rem;">{{ date }}</div>
+                                         {% for hall,tech_film in hall_film %}
+                                             <div class="info__hall" >
+        {#                                     <div class="info__hall_scheme" hidden>#}
+        {#                                         <div class="hall" >#}
+        {#                                            {{ hall.scheme_html | safe }}#}
+        {#                                         </div>#}
+        {#                                     </div>#}
+                                                 <div class="info__text fs-5 mb-2" style="padding-left: 3.0rem;">{% trans 'Зал' %} №{{ hall.number }}</div>
+                                                 {% for tech,seances in tech_film %}
+                                                     <div class="info__tech">
+                                                         <div class="info__text fs-6 mb-2" style="padding-left: 4.5rem;">{{ tech }}</div>
+                                                         <div class="d-inline-flex flex-row flex-wrap justify-content-start gap-1"  style="width:15rem; padding-left: 6rem;">
+                                                             {% for seance in seances %}
+                                                                 <div class="info__time position-relative fs-5 mb-2 " data-seance_id={{ seance.id  }} >
+                                                                     <a href="{% url 'seance' seance.id %}">
+                                                                         <button type="button" class="btn btn-primary ">
+                                                                             <div class="info__descr bg-dark text-white position-absolute p-1" style="right: 0;top:-35px;font-size: 0.8rem;width: 100px;" >{% trans 'Купить билет' %}</div>
+                                                                             {{ seance.time }}
+                                                                         </button>
+                                                                     </a>
+                                                                 </div>
+                                                             {% endfor %}
+
+                                                         </div>
+                                                     </div>
+                                                 {% endfor %}
+                                             </div>
+                                         {% endfor %}
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                        </div>
+                     </div>
+
+                 </div>
+             {% endfor %}
+             </div>
+          </div>
+         <div class="row mb-5">
+               <div class="col-md-6 col-lg-4 col-xl-3 col-12 mb-3 mb-md-0">
+                 <picture class="d-block position-relative text-center">
+                    <img src="{{ film.card_img.url }}"  class="card-img" alt="...">
+                </picture>
+             </div>
+             <div class="col-md-6 col-lg-8 col-xl-9  col-12" >
+                 <a class="d-block text-center" href="#schedule"><button class=" btn btn-success btn-lg text-black border border-width-3 border-dark mb-3">Купить билет</button></a>
+                 <h3 class="mb-5 text-center">{{ film.name }}</h3>
+                 <p class="p-3 text-left">
+                     {{ film.description }}
+                 </p>
+             </div>
+         </div>
+         <div class="row">
+             <div class="content__sidebar col-md-4 col-12">
+                <dl class="column">
+                    <div class="p-1 bg-secondary">
+                        <dt class="text-white " name="year">{% trans 'Год' %}</dt>
+                        <dd class="mb-0"> <span> {{ film.year }}</span></dd>
+                    </div>
+                    <div class="p-1 bg-dark">
+                        <dt class="text-white" name="countries">{% trans 'Страны' %}</dt>
+                        <dd class="mb-0 text-info">
+                            {% for i in countries %}
+                                <span>{{ i.name }}, </span>
+                            {% endfor %}
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-secondary">
+                        <dt class="text-white" name="genres">{% trans 'Жанры' %}</dt>
+                        <dd class="mb-0">
+                            {% for i in genres %}
+                                <span>{{ i.name }}, </span>
+                            {% endfor %}
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-dark">
+                        <dt class="text-white" name="genres">{% trans 'Операторы' %}</dt>
+                        <dd class="text-info mb-0">
+                            {% for i in operators %}
+                                <span>{{ i.name }}, </span>
+                            {% endfor %}
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-secondary">
+                        <dt class="text-white" name="producers">{% trans 'Продюсеры' %}</dt>
+                        <dd class="mb-0">
+                            {% for i in producers %}
+                                <span>{{ i.name }}, </span>
+                            {% endfor %}
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-dark">
+                        <dt class="text-white" name="editors">{% trans 'Режиссёры' %}</dt>
+                        <dd class="text-info mb-0">
+                            {% for i in editors %}
+                                <span>{{ i.name }}, </span>
+                            {% endfor %}
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-secondary">
+                        <dt class="text-white" name="scriptwriters">{% trans 'Сценаристы' %}</dt>
+                        <dd class="mb-0">
+                            {% for i in scriptwriters %}
+                                <span>{{ i.name }}, </span>
+                            {% endfor %}
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-dark">
+                        <dt class="text-white" name="duration">{% trans 'Бюджет' %}</dt>
+                        <dd class="text-info mb-0">
+                            <span> {{ film.budget}} </span>
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-secondary">
+                        <dt class="text-white" name="duration">{% trans 'Время' %}</dt>
+                        <dd class="mb-0">
+                            <span> {{ film.duration }} {% trans 'минут' %}</span>
+                        </dd>
+                    </div>
+                    <div class="p-1 bg-dark">
+                        <dt class="text-white" name="age_limit">{% trans 'Возраст' %}</dt>
+                        <dd class="text-info mb-0">
+                            <span>+{{ film.legal_age}}</span>
+                        </dd>
+                    </div>
+                </dl>
+             </div>
+             <div class="col-md-8 col-12" >
+                 <h3 class="content__subtitle text-center">{% trans 'Кадры и постеры' %}</h3>
+                 <div id="carouselExample" class="carousel slide">
+                      <div class="carousel-inner">
+                          {% for item in film_imgs %}
+                              {% if forloop.first %}
+                                  <div class="carousel-item active">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% else %}
+                                  <div class="carousel-item">
+                                    <img src="{{ item.img.url }}" class="d-block w-100" alt="...">
+                                  </div>
+                              {% endif %}
+                          {% endfor %}
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                </div>
+             </div>
+         </div>
+        <div style="height: 100px" class="fs-6 d-block  pr-3 bg-danger">
+             <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+      {% get_current_language as LANGUAGE_CODE %}
+        let urlSchedule= '/{{ LANGUAGE_CODE }}/schedule_for_film/{{ film.id }}';
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{#    <script src="{% static 'kino_app/node_modules/lightslider/src/js/lightslider.js' %}"></script>#}
+    <script src="{% static 'kino_app/film/film_card.js' %}"></script>
+{% endblock %}

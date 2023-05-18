@@ -1,0 +1,85 @@
+@import '../zeroing.css'
+@import '../buttons'
+@import '../atributes'
+
+body
+  background: $purple-dark-color
+.wrapper
+  max-width: 1900px
+  min-width: 320px
+  margin: 0 auto
+
+  padding: 30px
+  color: $black-color
+  grid-gap: 30px
+  font-family: $font-family
+  background: $purple-dark-color
+  display: grid
+  grid-template-columns: 300px 1fr
+  grid-template-rows:  100px 1fr
+
+  grid-template-areas: 'header header' 'sidebar main'
+
+.header
+   border-radius: 16px
+   grid-area: header
+   background: $white-color
+   padding: 20px
+   display: flex
+   flex-direction: row
+   justify-content: space-between
+   &__logo
+     width: 120px
+     height: 100%
+     border-radius: 16px
+   &__right
+     width: 300px
+.user
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: end
+  gap: 15px
+  &__avatar
+    width: 50px
+    height: 50px
+  &__logout
+    width: 40px
+    height: 40px
+  &__name
+    font-family: $font-family
+    font-size: 18px
+    font-weight: bold
+
+.sidebar
+   border-radius: 16px
+   position: sticky
+   grid-area: sidebar
+   background: $white-color
+   padding: 20px
+   top: 30px /* required */
+
+   &__list
+    font-size: 24px
+   &__li
+     padding: 20px
+     padding-right: 15px
+     text-decoration: none /* no underline */
+     color: $black-color
+
+     &:hover
+       transition: background 0.3s ease
+       border-radius: 16px
+       color: $white-color
+       background: $purple-dark-color
+       -webkit-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+       -moz-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+       box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+
+
+
+.main
+   grid-area: main
+   background: $white-color
+   border-radius: 16px
+

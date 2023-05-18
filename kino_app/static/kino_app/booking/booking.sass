@@ -1,0 +1,142 @@
+@import '../atributes'
+@import '../buttons'
+@import '../zeroing.css'
+@import '../schedule/schedule.css'
+.content
+  background: $white-color
+
+  &__banner
+    height: 800px
+
+    position: relative
+    text-align: center
+  &__title
+    margin: 0 auto
+    padding-top: 700px
+    font-size: 70px
+    font-family: $font-family
+    color: $white-color
+  &__subtitle
+    text-align: center
+    margin: 0 auto
+    font-size: 40px
+    font-family: $font-family
+    color: $black-color
+    margin-bottom: 50px
+  &__grid
+    padding: 30px
+    padding-top: 20px
+
+
+    display: grid
+    grid-template-columns: 300px minmax(300px,1500px)
+    grid-template-areas: "sidebar main"
+  &__main
+
+    grid-area: main
+    padding: 50px
+
+  &__item
+    width: 600px
+    display: flex
+    flex-direction: column
+    align-items: center
+    & img
+      width: 600px
+      height: 300px
+      margin-bottom: 30px
+  &__text
+    font-family: $font-family
+    font-size: 30px
+    font-weight: bold
+  &__sidebar
+    background: $white-color
+
+    grid-area: sidebar
+  &__ads
+    color: $white-color
+    font-size: 30px
+    height: 200px
+    text-align: center
+    border-radius: 0px
+    background: $red-dark-color
+    &:hover
+      background: $red-light-color
+  &__card
+    height: 400px
+    margin-bottom: 30px
+
+.main-card
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  &__title
+    margin-bottom: 20px
+    text-align: center
+    font-size: 28px
+    line-height: normal
+    letter-spacing: 5px
+    color: $yellow-dark-color
+    font-family: $font-family
+  &__booking
+    & td
+      width: 50px
+      height: 50px
+      text-align: center
+      background: $yellow-dark-color
+      color: $white-color
+      text-align: center
+  &__btn
+    width: 150px
+    padding: 10px 30px
+    border-radius: 0px
+    font-weight: bold
+    font-size: 24px
+    line-height: 36px
+    text-align: center
+    letter-spacing: 0.25px
+    background: $yellow-dark-color
+    color: $white-color
+    &:hover
+      background: $yellow-light-color
+.info
+  margin-bottom: 50px
+  &__title
+    padding: 10px 50px
+    display: inline
+    font-size: 28px
+    line-height: normal
+    color: $white-color
+    font-family: $font-family
+    text-align: left
+    background: $yellow-dark-color
+  &__subtitle
+    font-size: 22px
+    line-height: normal
+    margin-top: 30px
+    font-family: $font-family
+    text-align: left
+    margin-bottom: 50px
+  &__row
+    display: grid
+    grid-template-columns: minmax(200px,300px) 600px
+    align-items: center
+
+    &_border
+      border: 3px $yellow-dark-color solid
+      padding: 20px 50px
+      display: inline-flex
+  &__item
+    display: flex
+    flex-direction: row
+    align-items: center
+
+.tickets-count
+  margin-right: 70px
+
+.price
+  padding: 10px
+  background: $yellow-dark-color
+  color: white
+  display: inline

@@ -1,0 +1,155 @@
+$white-color: #ffffff
+$black-color:  #2D3436
+$gray-color:  #858585
+$gray-dark-color:  #5C5C5C
+$gray-light-color: #989797
+$gray-soft-color:  #C2C2C2
+$yellow-dark-color:  #FDCB6E
+$yellow-light-color:  #FFEAA7
+$blue-dark-color:  #0984E3
+$blue-light-color: #3cb4e7
+$red-dark-color: #d53031
+$red-light-color:  #FF7675
+$purple-dark-color:  #6C5CE7
+$purple-light-color:  #A29BFE
+$green-dark-color:  #00B894
+$green-light-color:  #55EFC4
+.hall
+  text-align: center
+  margin: 0 auto
+  display: grid
+  justify-content: center
+  width: 100%
+  align-items: center
+  margin-bottom: 50px
+  grid-gap: 3px
+  color: $white-color
+  &__row
+    display: grid
+    grid-template-columns: repeat(15,50px)
+    grid-template-rows: 50px
+    grid-gap: 3px
+
+  &__item
+    padding: 10px
+    background: $gray-soft-color
+    visibility: hidden
+    &:hover
+      background: $yellow-light-color
+  &__seat
+    visibility: visible
+    padding: 10px
+    cursor: pointer
+    background: $yellow-dark-color
+    &_booked
+      background: $gray-light-color
+    &_choosed
+      background: $green-dark-color
+.card-img
+      width: 15rem
+
+@media screen and (max-width: 1244px)
+    .hall
+      text-align: center
+      margin: 0 auto
+      display: grid
+      justify-content: center
+      width: 100%
+      align-items: center
+      margin-bottom: 50px
+      grid-gap: 3px
+      color: $white-color
+      &__row
+        display: grid
+        grid-template-columns: repeat(15,40px)
+        grid-template-rows: 40px
+        grid-gap: 2px
+
+@media screen and (max-width: 1020px)
+    .hall
+      text-align: center
+      margin: 0 auto
+      display: grid
+      justify-content: center
+      width: 100%
+      align-items: center
+      margin-bottom: 50px
+      grid-gap: 3px
+      color: $white-color
+      &__row
+        display: grid
+        grid-template-columns: repeat(15,30px)
+        grid-template-rows: 30px
+        grid-gap: 2px
+      &__seat
+        visibility: visible
+        padding: 10px
+        font-size: 10px
+        cursor: pointer
+        background: $yellow-dark-color
+        &_booked
+          background: $gray-light-color
+        &_choosed
+          background: $green-dark-color
+
+@media screen and (max-width: 894px)
+    .hall
+      text-align: center
+      margin: 0 auto
+      display: grid
+      justify-content: center
+      width: 100%
+      align-items: center
+      margin-bottom: 50px
+      grid-gap: 5px
+      color: $white-color
+      &__row
+        display: grid
+        grid-template-columns: repeat(15,20px)
+        grid-template-rows: 20px
+        grid-gap: 3px
+      &__seat
+        padding: 9px
+        display: flex
+        justify-content: center
+        align-items: center
+        visibility: visible
+        font-size: 8px
+        cursor: pointer
+        background: $yellow-dark-color
+        &_booked
+          background: $gray-light-color
+        &_choosed
+          background: $green-dark-color
+@media screen and (max-width: 390px)
+    .card-img
+      width: 10rem
+    .hall
+      text-align: center
+      margin: 0 auto
+      display: grid
+      justify-content: center
+      width: 100%
+      align-items: center
+      margin-bottom: 50px
+      grid-gap: 8px
+      color: $white-color
+      &__row
+        display: grid
+        grid-template-columns: repeat(15,7px)
+        grid-template-rows: 7px
+        grid-row-gap: 15px
+        grid-column-gap: 9px
+      &__seat
+        padding: 7px
+        display: flex
+        justify-content: center
+        align-items: center
+        visibility: visible
+        font-size: 5px
+        cursor: pointer
+        background: $yellow-dark-color
+        &_booked
+          background: $gray-light-color
+        &_choosed
+          background: $green-dark-color

@@ -1,0 +1,56 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {{type}}
+{% endblock %}
+{% block head %}
+{#     <link  rel="stylesheet" href="{% static 'kino_app/poster/poster.css' %} " />#}
+{% endblock %}
+
+{% block content %}
+         <div class="content d-flex flex-row">
+             <div style="width: 100px" class="fs-6 d-none d-sm-block  pr-3 bg-danger">
+                 <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+             </div>
+             <div class="content__main flex-grow-1 bg-dark" id="wizard">
+                <div class="content__menu p-2">
+                     <button class="btn btn-warning text-white content__btn content__btn_afisha ">{% trans 'Афиша' %}</button>
+                     <button class="btn btn-warning text-white content__btn content__btn_soon ">{% trans 'Скоро' %}</button>
+                </div>
+                 <div class="film px-2 mb-5 d-flex flex-row justify-content-center flex-wrap gap-3">
+                    {% if type == "Афиша" %}
+                        {% for film in films %}
+                            <div class="card mr-3 bg-transparent" style=" width: 11.5rem;; border: 0px">
+                              <a class="text-decoration-none" href="{% url 'film_card' film.id %}">
+                                  <img src="{{ film.card_img.url }}" class="card-img-top img-fluid " style="height: 300px;"alt="...">
+                                  <div class="card-body  d-flex flex-column align-items-center">
+                                      <p class="card-text text-white">{{ film.name }}</p>
+                                    <button class="btn btn-primary card-text text-uppercase text-white text-info mb-3">{% trans 'Купить' %}</button>
+                                  </div>
+                              </a>
+                            </div>
+                        {% endfor %}
+                    {% elif type == "Скоро" %}
+                        {% for film in films %}
+                            <div class="card mr-3 bg-transparent" style=" width: 11.5rem;; border: 0px">
+                              <a class="text-decoration-none" href="{% url 'film_card' film.id %}">
+                                  <img src="{{ film.card_img.url }}" class="card-img-top img-fluid " style="height: 300px;"alt="...">
+                                  <div class="card-body  d-flex flex-column align-items-center">
+                                      <p class="card-text text-white">{{ film.name }}</p>
+                                      <p class="card-text text-primary">C {{ film.released }}</p>
+                                  </div>
+                              </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+
+             </div>
+         </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'kino_app/poster/poster.js' %}"></script>
+{% endblock %}

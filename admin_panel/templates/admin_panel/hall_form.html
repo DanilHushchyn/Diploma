@@ -1,0 +1,97 @@
+{% extends 'admin_panel/base3.html' %}
+{% load static %}{# Load the tag library #}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
+    <link rel="stylesheet" href="{% static 'admin_panel/hall/scheme.css' %}">
+
+{% endblock %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Форма для создания зала' %}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+        <form  action="{% url 'admin_cinemas' %}"  method="post"  id="film_form"  runat="server" enctype="multipart/form-data">
+            <div class="card-body mb-5 ">
+                {% csrf_token %}
+                {% bootstrap_form hall_form  layout='horizontal' show_help=True size='sm'%}
+                 <div class="card-header mb-5">
+                    <h3 class="card-title text-center">{% trans 'Конструктор Зала' %} </h3>
+                 </div>
+                 <div class="table-responsive mb-3">
+                      <div class="hall mb-5"  >
+
+                      </div>
+                  </div>
+                  <div class="d-inline-flex flex-row flex-wrap justify-content-center  mb-5" role="group" aria-label="Basic example">
+                      <button type="button" id="add-row" class="btn btn-primary mr-2 mb-2">{% trans 'Добавить ряд' %}</button>
+                      <button type="button" id="calc-scheme" class="btn btn-primary mr-2 mb-2">{% trans 'Сформировать' %}</button>
+                      <button type="button" id="del-row" class="btn btn-primary mr-2 mb-2">{% trans 'Удалить ряд' %}</button>
+                  </div>
+                <div class="card-header mb-5">
+                    <h3 class="card-title text-center">{% trans 'Галерея картинок' %}</h3>
+                 </div>
+                <div class="d-flex flex-row flex-wrap justify-content-center  gap-5 align-items-center">
+                    {{ hall_gallery.management_form }}
+                     {% for form in hall_gallery %}
+                         <div class="card__item   mb-2 d-flex flex-column justify-content-center">
+                             <img class="card__preview card__preview_horizontal img-fluid" src="{% static 'kino_app/imgs/placeholderimg.png' %}" style="width: 12rem;height: auto" alt="">
+                             <button type='button' class='btn card__btn card__btn_change btn-primary mb-3'> {% trans 'Изменить картинку' %}  </button>
+                             {% bootstrap_form form %}
+
+                              <button type='button' class="btn card__btn card__btn_remove bg-danger">{% trans 'Удалить' %}</button>
+                         </div>
+                     {% endfor %}
+                    <div class="card__item card__item_add " name="top">
+                        <img class="img-fluid h-auto" style="width: 5rem;cursor: pointer" src="{% static 'admin_panel/imgs/add.png' %}">
+                    </div>
+                </div>
+                <div class="card-header mb-5">
+                    <h3 class="card-title text-center">{% trans 'Seo блок' %}</h3>
+                </div>
+                {% bootstrap_form seo_form  layout='horizontal' show_help=True size='sm'%}
+            </div>
+            <div class="card-footer">
+                 {% bootstrap_button button_type="submit" content=save %}
+                 {% bootstrap_button button_type="reset" content=reset %}
+            </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </section>
+  </div>
+
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     <script type="module" src="{% static 'admin_panel/hall/hall_form.js' %}"></script>
+     <script type="module" src="{% static 'admin_panel/hall/constructor_scheme.js' %}"></script>
+     <script type="module" src="{% static 'admin_panel/gallery/gallery.js' %}"></script>
+{% endblock %}

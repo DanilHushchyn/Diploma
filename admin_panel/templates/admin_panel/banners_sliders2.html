@@ -1,0 +1,173 @@
+{% extends 'admin_panel/base3.html' %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'admin_panel/banner_sliders/banner_sliders.css' %}">
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% trans 'Баннеры и слайдеры' %}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{% trans 'Верхний слайдер' %}</h3>
+
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+          <form action="{% url 'top_carousel'  %}" method="post" enctype="multipart/form-data">
+
+        <div class="card-body d-flex flex-row justify-content-sm-center flex-wrap">
+
+                     {% csrf_token %}
+                     <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
+                         {{ top_carousel_formset.management_form }}
+                         {% for form in top_carousel_formset %}
+                             <div class="card__item mr-5 mb-5">
+                                 <img class="card__preview card__preview_horizontal img-fluid" src="{% get_media_prefix %}{{ form.img.value }}" alt="">
+                                 <button type='button' class='btn card__btn card__btn_change btn-primary mb-3'> {% trans 'Изменить картинку' %}  </button>
+                                 {% bootstrap_form form %}
+                                  <button type='button' class="btn card__btn card__btn_remove bg-danger">{% trans 'Удалить' %}</button>
+                             </div>
+                         {% endfor %}
+                         <div class="card__item card__item_add " name="top">
+                                <img class="img-fluid h-auto" style="width: 5rem;cursor: pointer" src="{% static 'admin_panel/imgs/add.png' %}">
+                         </div>
+                     </div>
+        </div>
+          <div class="card-footer">
+                 {% bootstrap_form interval %}
+
+                 {% bootstrap_button button_type="submit" content=save %}
+                {% bootstrap_button button_type="reset" content=reset %}
+          </div>
+          </form>
+
+        <!-- /.card-body -->
+
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+
+
+
+    <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{% trans 'Сквозной баннер' %}</h3>
+
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+        <form action="{% url 'background'  %}" method="post" enctype="multipart/form-data">
+        <div class="card-body d-flex flex-row justify-content-sm-center flex-wrap">
+                     {% csrf_token %}
+                     <div class="d-flex flex-column   justify-content-center align-items-center">
+                          {% for row in back_img_form %}
+                                <img class="card__preview card__preview_horizontal img-fluid mb-3" style="height: 100%" src="{{ back_img_form.img.value.url }}" alt="">
+                                <button type='button' class='btn card__btn card__btn_change btn-primary'>{% trans 'Изменить картинку' %}</button>
+
+                              {{ row }}
+
+                         {% endfor %}
+
+                     </div>
+
+
+        </div>
+        <div class="card-footer text-center">
+            {% bootstrap_button button_type="submit" content=save %}
+        </div>
+        </form>
+
+        <!-- /.card-body -->
+
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{% trans 'Нижний слайдер' %}</h3>
+
+          <div class="card-tools mt-1">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+          <form action="{% url 'bottom_carousel'  %}" method="post" enctype="multipart/form-data">
+
+        <div class="card-body  d-flex flex-row justify-content-sm-center flex-wrap">
+                 {% csrf_token %}
+                 <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
+                     {{ bottom_carousel_formset.management_form }}
+                     {% for form in bottom_carousel_formset %}
+                         <div class="card__item mr-5 mb-5">
+                             <img class="card__preview card__preview_horizontal img-fluid" src="{{ form.img.value.url }}" alt="">
+                             <button type='button' class='btn card__btn card__btn_change btn-primary mb-3'> {% trans 'Изменить картинку' %}  </button>
+                             {% bootstrap_form form %}
+                              <button type='button' class="btn  card__btn_remove bg-danger">{% trans 'Удалить' %}</button>
+                         </div>
+                     {% endfor %}
+                     <div class="card__item card__item_add " name="bottom">
+                        <img class="img-fluid h-auto" style="width: 5rem;cursor: pointer" src="{% static 'admin_panel/imgs/add.png' %}">
+                     </div>
+                 </div>
+
+        </div>
+        <div class="card-footer mb-0">
+             {% bootstrap_form interval %}
+             {% bootstrap_button button_type="submit" content=save %}
+            {% bootstrap_button button_type="reset" content=reset %}
+         </div>
+          </form>
+
+      </div>
+    </section>
+  </div>
+
+{% endblock %}
+{% block script %}
+    <script>
+        let linkLabel = '{% trans 'Ссылка' %}'
+        let titleLabel = '{% trans 'Заголовок' %}'
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="module" src="{% static 'js/banner.js' %}"></script>
+{% endblock %}

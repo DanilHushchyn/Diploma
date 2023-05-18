@@ -1,0 +1,57 @@
+{% extends 'kino_app/base2.html' %}
+{% load static %}
+ {% load i18n %}
+
+{% block title %}
+    {% trans 'Контакты' %}
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+        <picture class="d-block position-relative">
+              <img src="{% get_static_prefix %}/kino_app/imgs/placeholderimg.png" class="img-fluid h-auto w-100" alt="...">
+        </picture>
+     <div class="content bg-white">
+        <div class="row">
+             <div class="col-md-9 col-lg-10 col-xl-10 pt-4 col-12 pr-1" >
+                 <div class="text-center">
+                     <h3 class="mb-3">{% trans 'Контакты' %}</h3>
+                 </div>
+{#                 <h3>Кинотеатр 1</h3>#}
+{#                 #}
+{#                <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=400&amp;height=250&amp;hl=en&amp;q=2880 Broadway, New York&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://embed-googlemap.com">embed-googlemap.com</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:250px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:250px;}.gmap_iframe {height:250px!important;}</style></div>#}
+                 {% for contact in contacts %}
+                     <div class="row mb-5 p-md-3">
+                          <div class="col-lg-6 col-12">
+                              <div class="d-flex flex-column gap-3">
+                                  <div class="d-flex flex-row justify-content-between flex-wrap">
+                                      <h3 class="mb-3">{{ contact.name }}</h3>
+                                      <img src="{{contact.logo.url}}" class="img-fluid h-auto" style="width: 200px" alt="...">
+                                  </div>
+                                  <img src="{{cinema.banner.url}}" class="img-fluid h-auto"  style="width: 100%" alt="...">
+                              </div>
+                          </div>
+                          <div class="col-lg-6 col-12 d-flex flex-column justify-content-between">
+                              <p style="white-space: pre-wrap;" class="mb-5 fs-6">{{ contact.address }}</p>
+                                <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{ contact.coordinate|safe|escape }}"></iframe><a href="https://embed-googlemap.com">embed-googlemap.com</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:100%;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:100%;}.gmap_iframe {width:100%;!important;height:100%;!important;}</style></div>
+                          </div>
+                     </div>
+
+                 {% endfor %}
+
+             </div>
+             <div class="column col-md-3 col-lg-2 col-xl-2 col-12 mb-md-0">
+                  <div style="height: 100%" class="fs-6 d-none d-md-block bg-danger mb-3">
+                     <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+                </div>
+             </div>
+        </div>
+        <div style="height: 100px" class="fs-6 d-md-none bg-danger">
+            <span class="text-wrap text-white">{% trans 'Контекстная реклама' %}</span>
+        </div>
+     </div>
+{% endblock %}
+{% block script %}
+{% endblock %}
