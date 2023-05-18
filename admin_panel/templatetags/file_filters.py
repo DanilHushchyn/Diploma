@@ -1,7 +1,6 @@
 import json
 import os
 
-import cloudinary
 from django import template
 
 register = template.Library()
@@ -15,7 +14,6 @@ def filename(value:str):
 
 @register.filter
 def filesize(value):
-    # print(cloudinary.CloudinaryImage(value).image().title())
 
     return 'os.path.getsize(value)'
 
