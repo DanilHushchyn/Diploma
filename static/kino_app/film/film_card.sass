@@ -1,0 +1,75 @@
+.content
+
+  &__banner
+    height: 700px
+    background-repeat: no-repeat
+    background-image: linear-gradient(to right, RGBA(96, 96, 96,0.7),RGBA(96, 96, 96,0.7)), url("../imgs/cinemas.jpg")
+    background-position: 0% 100%, top
+    background-size: 100% 150px, cover
+    position: relative
+    text-align: center
+  &__title
+    margin: 0 auto
+    padding-top: 600px
+
+  &__subtitle
+    text-align: center
+    margin: 0 auto
+    margin-bottom: 50px
+  &__grid
+    padding-top: 30px
+
+    display: grid
+    grid-template-columns: minmax(300px,1500px) 300px
+    grid-template-areas: "main sidebar"
+  &__main
+
+    grid-area: main
+    padding: 50px
+  &__item
+    width: 600px
+    display: flex
+    flex-direction: column
+    align-items: center
+    & img
+      width: 600px
+      height: 300px
+      margin-bottom: 30px
+  &__text
+
+  &__sidebar
+
+    grid-area: sidebar
+  &__ads
+    height: 200px
+    text-align: center
+    border-radius: 0px
+    background: red
+
+
+
+.schedule
+  display: grid
+  grid-template-columns: 300px 1fr
+  grid-template-areas: 'sidebar film'
+
+.card
+  &__descr
+    text-align: left
+    margin-bottom: 50px
+
+
+
+
+
+dl
+  border: 1px solid grey
+  margin: 0 0 5px 0
+  padding-left: 30px
+  padding-top: 30px
+dt
+  font-weight: bold
+  margin: 0 0 5px 0
+dd
+  margin: 0 0 15px 0
+

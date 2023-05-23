@@ -1,0 +1,13 @@
+.carousel__item {
+  height: 700px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.carousel__title {
+  color: white;
+  margin-top: 630px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=carousel.css.map */

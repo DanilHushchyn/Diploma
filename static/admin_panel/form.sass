@@ -1,0 +1,146 @@
+@import '../zeroing.css'
+@import '../buttons'
+@import '../atributes'
+.main
+  padding: 50px
+.errorlist
+  color: $red-dark-color
+  grid-area: errorlist
+  text-align: start
+  padding-left: 20px
+  font-family: $font-family
+  font-size: 16px
+  & > li
+    margin-bottom: 10px
+    list-style-type: decimal
+.form
+  text-align: center
+
+  &__row
+    display: grid
+    margin-bottom: 30px
+    grid-template-columns: 200px 1fr
+    grid-template-areas: 'label input' '. errorlist'
+    align-items: baseline
+    grid-auto-columns: 200px
+
+    grid-gap: 10px
+    & input
+      grid-area: input
+    & label
+      grid-area: label
+      text-align: left
+      font-size: 20px
+      font-weight: 700
+
+  &__elem
+
+    background: $gray-soft-color
+    border-radius: 16px
+    padding: 10px
+    font-family: $font-family
+    font-size: 18px
+    &_date
+      border-radius: 16px
+      grid-area: auto
+      width: 170px
+      display: inline
+
+    &_radio
+      background: transparent
+      display: flex
+
+      flex-wrap: wrap
+
+      div
+        cursor: pointer
+        margin-right: 10px
+        display: inline
+        text-align: center
+        color: $white-color
+        border-radius: 16px
+        padding-right: 10px
+        padding-left: 10px
+        padding-top: 5px
+        padding-bottom: 5px
+        margin-bottom: 10px
+        background: $purple-dark-color
+        label
+          margin: 5px 20px
+
+        &:hover,&:focus
+          transition: background 0.3s ease
+          background-color: $purple-light-color
+        *
+          cursor: pointer
+
+        input
+          display: none
+          &:active
+            background: $green-dark-color
+
+  &__title
+    text-align: center
+    font-family: $font-family
+    font-size: 30px
+    font-weight: 700
+    margin-bottom: 30px
+  &__bottom
+    margin-top: 50px
+    text-align: center
+  &__btn
+    padding: 10px 30px
+    margin: 0 auto
+    border-radius: 30px
+
+
+    &:hover
+     transition: background 0.3s ease
+     background: $purple-dark-color
+     -webkit-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+     -moz-box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+     box-shadow: 0px 0px 14px 5px rgba(56, 23, 165, 0.52)
+
+
+table
+  max-width: 1100px
+  margin:  0 auto
+  border-collapse: collapse
+  overflow: hidden
+  box-shadow: 0 0 20px rgba(0,0,0,0.1)
+  border-radius: 16px
+  margin-bottom: 50px
+  & img
+    width: 35px
+    height: 35px
+    cursor: pointer
+  & th,td
+    padding: 20px
+    background-color: rgba(255,255,255,0.2)
+    color: #fff
+    font-size: 20px
+    font-weight: bold
+  & th
+    text-align: center
+  & thead
+    border-radius: 16px 16px 0px 0px
+    th
+      background-color: $purple-dark-color
+  & tbody
+    & td
+      position: relative
+      color: $black-color
+      text-align: center
+      font-size: 18px
+      font-weight: bold
+      background: $gray-soft-color
+      & > input
+        padding: 10px
+        border-radius: 16px
+
+
+
+
+
+
+

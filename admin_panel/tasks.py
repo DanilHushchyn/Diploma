@@ -1,8 +1,5 @@
-import asyncio
-import time
 
 from celery import shared_task, current_task
-from celery.app import task
 from django.core.mail import EmailMultiAlternatives
 
 from Diploma.celery import app

@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
+@import '../zeroing.css';
+.btn-default {
+  font-family: "Arvo", sans-serif;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-primary {
+  background: #6C5CE7;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(38, 50, 56, 0.16), 0px 4px 8px rgba(38, 50, 56, 0.08);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transition: background 0.3s ease;
+  background-color: #A29BFE;
+}
+
+.btn-primary_corner {
+  border-radius: 999px;
+}
+
+.btn-default {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: #6C5CE7;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #989797;
+}
+.btn-default:hover, .btn-default:focus {
+  transition: background 0.3s ease;
+  background-color: #6C5CE7;
+  color: #ffffff;
+}
+
+.content {
+  background: #ffffff;
+}
+.content__banner {
+  height: 800px;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to right, RGBA(96, 96, 96, 0.7), RGBA(96, 96, 96, 0.7)), url("../imgs/cinemas.jpg");
+  background-position: 0% 100%, top;
+  background-size: 100% 150px, cover;
+  position: relative;
+  text-align: center;
+}
+.content__title {
+  margin: 0 auto;
+  padding-top: 700px;
+  font-size: 70px;
+  font-family: "Arvo", sans-serif;
+  color: #ffffff;
+}
+.content__grid {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  grid-template-areas: "main ads";
+}
+.content__main {
+  grid-area: main;
+  padding: 50px;
+}
+.content__item {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content__item img {
+  width: 600px;
+  height: 300px;
+  margin-bottom: 30px;
+}
+.content__text {
+  font-family: "Arvo", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+.content__ads {
+  grid-area: ads;
+  background: #d53031;
+  color: #ffffff;
+  text-align: center;
+}
+
+/*# sourceMappingURL=cinemas.css.map */

@@ -2,11 +2,25 @@ version: '3.8'
 
 services:
   web:
-    build: ./Diploma
+    build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./Diploma/:/usr/src/Diploma/
+      - .:/usr/src/Diploma/
     ports:
       - 8000:8000
+    depends_on:
+      - db
     env_file:
-      - ./.env.dev
+      - ./Diploma/.env.dev
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=buzaho4114
+      - POSTGRES_DB=kino_cms
+
+
+volumes:
+  postgres_data:

@@ -22,16 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6v-km5ek+98hkvq^wf!*h1yiyg6lqeknkixqj%m^-j-#4k@y+u'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#Hello
-ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = []
+DEBUG = int(os.environ.get("DEBUG", default=0))
+
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+
+ALLOWED_HOSTS = ['*']
 GOOGLE_MAPS_API_KEY = 'AIzaSyBCATtzO_qe6Iv19vT0x0eymL7DKuFzotI'
-# CSRF_TRUSTED_ORIGINS = ['https://diploma-production-4824.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://', 'http://','http://*', 'https://*']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -42,9 +42,9 @@ DEFAULT_FROM_EMAIL = 'dhushchyn@gmail.com'
 DEFAULT_TO_EMAIL = 'Your email'
 
 CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
@@ -123,11 +123,12 @@ WSGI_APPLICATION = 'Diploma.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'kino_cms',
-        'USER': 'postgres',
-        'PASSWORD': 'buzaho4114',
-        'HOST': '127.0.0.1',
-        'PORT': 5432
+        "NAME": os.environ.get("SQL_DATABASE"),
+        "USER": os.environ.get("SQL_USER"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD"),
+        "HOST": os.environ.get("SQL_HOST"),
+        "PORT": os.environ.get("SQL_PORT"),
+
     }
 }
 
@@ -175,7 +176,7 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = []
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

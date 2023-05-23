@@ -1,12 +1,6 @@
 from datetime import date
 
-import django.forms as forms
 from django.utils.translation import gettext_lazy as _
-
-from django_google_maps import widgets as map_widgets
-from django_google_maps import fields as map_fields
-from modeltranslation.forms import TranslationModelForm
-
 from admin_panel.models import *
 
 
@@ -80,7 +74,7 @@ class FilmForm(forms.ModelForm):
                 attrs={'maxlength': 10_000, 'size': 20, 'class': 'form__elem form__elem_textarea', }),
             'card_img': forms.FileInput(attrs={'size': 20, 'id': 'card-img', }),
             'released': forms.DateInput(attrs={'size': 20, 'class': 'form__elem form__elem_date', 'type': 'date'},
-                                        format=('%Y-%m-%d')),
+                                        format='%Y-%m-%d'),
             'trailer_link': forms.URLInput(attrs={'size': 20, 'class': 'form__elem form__elem_text', }),
             'banner': forms.FileInput(attrs={'size': 20, 'id': 'banner-img', }),
             'year': forms.TextInput(
@@ -105,7 +99,7 @@ class SeoBlockForm(forms.ModelForm):
     class Meta:
         model = SeoBlock
         fields = (
-        'url', 'title_ru', 'title_en', 'seo_description_ru', 'seo_description_en', 'keywords_ru', 'keywords_en',)
+            'url', 'title_ru', 'title_en', 'seo_description_ru', 'seo_description_en', 'keywords_ru', 'keywords_en',)
 
         widgets = {
             'url': forms.URLInput(attrs={'size': 20, 'class': 'form__elem', }),
@@ -122,8 +116,8 @@ class StockForm(forms.ModelForm):
     class Meta:
         model = Stock
         fields = (
-        'name_ru', 'name_en', 'short_description_ru', 'short_description_en', 'description_ru', 'description_en',
-        'turn_on', 'video_link', 'banner', 'card_img')
+            'name_ru', 'name_en', 'short_description_ru', 'short_description_en', 'description_ru', 'description_en',
+            'turn_on', 'video_link', 'banner', 'card_img')
         widgets = {
 
             'name_en': forms.TextInput(attrs={'size': 20, 'class': 'form__elem form__elem_text', }),
@@ -156,8 +150,8 @@ class PageForm(forms.ModelForm):
     class Meta:
         model = Page
         fields = (
-        'name_ru', 'name_en', 'banner', 'description_ru', 'description_en', 'first_pic', 'second_pic', 'third_pic',
-        'description2_ru', 'description2_en', 'turn_on',)
+            'name_ru', 'name_en', 'banner', 'description_ru', 'description_en', 'first_pic', 'second_pic', 'third_pic',
+            'description2_ru', 'description2_en', 'turn_on',)
         widgets = {
 
             'name_en': forms.TextInput(attrs={'size': 20, 'class': 'form__elem form__elem_text', }),
@@ -179,8 +173,8 @@ class PageUpdateForm(forms.ModelForm):
     class Meta:
         model = Page
         fields = (
-        'banner', 'description_ru', 'description_en', 'first_pic', 'second_pic', 'third_pic', 'description2_ru',
-        'description2_en', 'turn_on',)
+            'banner', 'description_ru', 'description_en', 'first_pic', 'second_pic', 'third_pic', 'description2_ru',
+            'description2_en', 'turn_on',)
         widgets = {
 
             'description_en': forms.Textarea(attrs={"maxlength": 10_000, 'size': 20, 'class': 'form__elem', }),
@@ -221,8 +215,8 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = (
-        'name_ru', 'name_en', 'short_description_ru', 'short_description_en', 'description_ru', 'description_en',
-        'turn_on', 'video_link', 'banner', 'card_img')
+            'name_ru', 'name_en', 'short_description_ru', 'short_description_en', 'description_ru', 'description_en',
+            'turn_on', 'video_link', 'banner', 'card_img')
         widgets = {
             'name_ru': forms.TextInput(attrs={'size': 20, 'class': 'form__elem form__elem_text', }),
             'name_en': forms.TextInput(attrs={'size': 20, 'class': 'form__elem form__elem_text', }),
@@ -415,6 +409,7 @@ class BookingForm(forms.Form):
 today_date = date.today()
 filmQuery = Film.objects.filter(released__lt=today_date)
 
+
 class SeanceForm(forms.ModelForm):
     class Meta:
         model = Seance
@@ -440,7 +435,7 @@ class SeanceForm(forms.ModelForm):
         widgets = {
             'hall': forms.RadioSelect(attrs={'class': 'form__elem form__elem_radio'}),
             'price': forms.TextInput(attrs={'class': 'form__elem'}),
-            'date': forms.DateInput(attrs={'class': 'form__elem','type':'date'}, format=('%Y-%m-%d')),
+            'date': forms.DateInput(attrs={'class': 'form__elem', 'type': 'date'}, format='%Y-%m-%d'),
             'film': forms.RadioSelect(attrs={'class': 'form__elem form__elem_radio'}),
             'time': forms.TimeInput(attrs={'class': 'form__elem'}),
             'tech_type': forms.RadioSelect(attrs={'class': 'form__elem form__elem_radio', }),

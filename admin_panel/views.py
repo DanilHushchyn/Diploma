@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView, DeleteView
 
 from admin_panel import forms as my_forms
@@ -63,14 +64,14 @@ def statistic(request):
     }
     return render(request, 'admin_panel/statistic.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def clients(request):
     data = {'users': Account.objects.all()}
     return render(request, 'admin_panel/clients.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_client(request, id):
@@ -87,13 +88,13 @@ def update_client(request, id):
     data = {'client_form': client_form, 'client_id': id}
     return render(request, 'admin_panel/update_client.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def delete_client(request, id):
     return render(request, 'admin_panel/clients.html', )
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def films(request):
@@ -133,7 +134,7 @@ def films(request):
 
     return render(request, 'admin_panel/films2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def cinemas(request):
@@ -162,7 +163,7 @@ def cinemas(request):
     data = {'cinemas': cinemas}
     return render(request, 'admin_panel/cinemas.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def choose_client(request):
@@ -172,7 +173,7 @@ def choose_client(request):
     }
     return render(request, 'admin_panel/choose_client.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def mailing(request):
@@ -197,12 +198,17 @@ def mailing(request):
                     'templates_html': templates_html,
                 }
                 return render(request, 'admin_panel/mailing.html', context=data)
-        import urllib.request
-        html_content = urllib.request.urlopen(f'{obj.template_html.url}').read()
-        html_content = html_content.decode()
+        with open(f'media/{obj.template_html}', 'r') as file:
+            html_content = file.read()
         to = []
         for i in users:
             to.append(i.email)
+        # import urllib.request
+        # html_content = urllib.request.urlopen(f'{obj.template_html.url}').read()
+        # html_content = html_content.decode()
+        # to = []
+        # for i in users:
+        #     to.append(i.email)
 
         task = send_email.delay(html_content, to)
         total_time = len(to)
@@ -220,7 +226,7 @@ def mailing(request):
     }
     return render(request, 'admin_panel/mailing.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def get_task_info(request):
@@ -237,7 +243,7 @@ def get_task_info(request):
     else:
         return HttpResponse('No job id given.')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def deleteHtmlTemplate(request, id):
@@ -245,7 +251,7 @@ def deleteHtmlTemplate(request, id):
     templates_html.delete()
     return redirect('mailing')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def stocks(request):
@@ -272,7 +278,7 @@ def stocks(request):
     data = {'stocks': stocks}
     return render(request, 'admin_panel/stocks2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def get_stock_form(request):
@@ -285,7 +291,7 @@ def get_stock_form(request):
     data = {'stock_form': stock_form, 'stock_gallery': stock_gallery, 'seo_form': seo_form}
     return render(request, 'admin_panel/stock_form.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_stock(request, id):
@@ -321,7 +327,7 @@ def update_stock(request, id):
     data = {'stock_form': stock_form, 'stock_id': stock.id, 'seo_form': seo_form, 'stock_gallery': stock_gallery}
     return render(request, 'admin_panel/stock_update2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def delete_stock(request, id):
@@ -332,7 +338,7 @@ def delete_stock(request, id):
 
     return redirect('stocks_table')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def news(request):
@@ -359,7 +365,7 @@ def news(request):
     data = {'news_list': news_list}
     return render(request, 'admin_panel/news2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def get_news_form(request):
@@ -372,7 +378,7 @@ def get_news_form(request):
     data = {'news_form': news_form, 'news_gallery': news_gallery, 'seo_form': seo_form}
     return render(request, 'admin_panel/news_form.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_news(request, id):
@@ -405,7 +411,7 @@ def update_news(request, id):
     data = {'news_form': news_form, 'news_id': news.id, 'seo_form': seo_form, 'news_gallery': news_gallery}
     return render(request, 'admin_panel/news_update2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def delete_news(request, id):
@@ -424,7 +430,6 @@ def delete_news(request, id):
 #     seo = my_forms.SeoBlockForm()
 #     data = {'form': film_form, 'filmImg_form': filmImgForm, 'seo_form': seo}
 #     return render(request, 'admin_panel/film_form.html', context=data)
-
 @method_decorator([login_required, staff_member_required], name='dispatch')
 class FilmForm(FormView):
     initial = {'name': 'Film name'}
@@ -444,7 +449,7 @@ class FilmForm(FormView):
     def get_success_url(self):
         return redirect('films')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def cinema_card(request, id):
@@ -483,7 +488,7 @@ def cinema_card(request, id):
             'cinema_gallery': cinema_gallery}
     return render(request, 'admin_panel/cinema_update.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def get_hall_form(request):
@@ -498,6 +503,7 @@ def get_hall_form(request):
     return render(request, 'admin_panel/hall_form.html', context=data)
 
 
+@csrf_exempt
 @login_required
 @staff_member_required
 def banners_sliders(request):
@@ -521,6 +527,7 @@ def banners_sliders(request):
     return render(request, 'admin_panel/banners_sliders2.html', context=data)
 
 
+@csrf_exempt
 @login_required
 @staff_member_required
 def top_carousel(request):
@@ -549,6 +556,7 @@ def top_carousel(request):
     return redirect('banners_sliders')
 
 
+@csrf_exempt
 @login_required
 @staff_member_required
 def bottom_carousel(request):
@@ -578,6 +586,7 @@ def bottom_carousel(request):
     return redirect('banners_sliders')
 
 
+@csrf_exempt
 @login_required
 @staff_member_required
 def back_img(request):
@@ -588,7 +597,7 @@ def back_img(request):
 
     return redirect('banners_sliders')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def pages(request):
@@ -614,7 +623,7 @@ def pages(request):
     data = {'page_list': page_list}
     return render(request, 'admin_panel/pages2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def get_page_form(request):
@@ -627,7 +636,7 @@ def get_page_form(request):
     data = {'page_form': page_form, 'page_gallery': page_gallery, 'seo_form': seo_form}
     return render(request, 'admin_panel/page_form.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_page(request, id):
@@ -699,7 +708,7 @@ def update_page(request, id):
         return render(request, 'admin_panel/update_cafe-bar.html', context=data)
     return render(request, 'admin_panel/page_update2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def delete_page(request, id):
@@ -710,7 +719,7 @@ def delete_page(request, id):
 
     return redirect('pages')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_film(request, id):
@@ -746,7 +755,7 @@ def update_film(request, id):
     data = {'form': film_form, 'film_name': film.name, 'film_gallery': film_gallery, 'seo_form': seo_form}
     return render(request, 'admin_panel/film_update.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_hall(request, number):
@@ -781,7 +790,7 @@ def update_hall(request, number):
     data = {'hall_form': hall_form, 'hall_number': hall.number, 'seo_form': seo_form, 'hall_gallery': hall_gallery}
     return render(request, 'admin_panel/hall_update2.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def delete_hall(request, number):
@@ -792,7 +801,7 @@ def delete_hall(request, number):
 
     return redirect('admin_cinemas')
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_main_page(request):
@@ -817,7 +826,7 @@ def update_main_page(request):
     data = {'main_page_form': main_page_form, 'seo_form': seo_form}
     return render(request, 'admin_panel/main_page.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def update_contacts(request):
@@ -834,7 +843,7 @@ def update_contacts(request):
     data = {'contacts_formset': contacts_formset}
     return render(request, 'admin_panel/update_contacts.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def seances(request):
@@ -899,7 +908,7 @@ def seances(request):
     }
     return render(request, template, context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def get_seance_form(request):
@@ -919,7 +928,7 @@ def get_seance_form(request):
     data = {'seance_form': seance_form, 'seo_form': seo_form}
     return render(request, 'admin_panel/seance_form.html', context=data)
 
-
+@csrf_exempt
 @login_required
 @staff_member_required
 def delete_seance(request, id):

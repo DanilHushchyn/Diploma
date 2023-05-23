@@ -1,10 +1,6 @@
-import datetime
 import os
 import uuid
-from django_google_maps import fields as map_fields
 from django.utils.translation import gettext_lazy as _
-
-import django.utils.timezone
 from django.core import validators
 from django.db import models
 

@@ -1,0 +1,34 @@
+.hall
+  text-align: center
+  margin: 0 auto
+  display: grid
+  justify-content: center
+  width: 100%
+  font-size: 12px
+  align-items: center
+  grid-gap: 3px
+  color: white
+  &__row
+    display: grid
+    grid-template-columns: repeat(15,25px)
+    grid-template-rows: 25px
+    grid-gap: 3px
+
+  &__item
+    padding: 10px
+    background: gray
+    visibility: hidden
+    &:hover
+      background: green
+  &__seat
+    visibility: visible
+    padding: 10px
+    cursor: pointer
+    background: green
+  &__booked
+    display: flex
+    align-items: center
+    justify-content: center
+    background: gray
+
+

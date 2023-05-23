@@ -3,23 +3,17 @@ import json
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.db.models import Q
-from django.forms import formset_factory
 from django.http import FileResponse, JsonResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, DetailView
 
 from Diploma import settings
-from admin_panel.models.film import *
-from admin_panel.models.cinema import *
-from admin_panel.models.main_page import *
+
 from user.forms import *
 from datetime import date, timedelta
 
-from admin_panel.forms import BookingForm
 
 
 def aboutCinema(request):
@@ -44,7 +38,7 @@ def page(request, page_id):
         return render(request, '../templates/kino_app/cafe_bar_page.html', context=data)
     return render(request, '../templates/kino_app/page.html', context=data)
 
-
+@csrf_exempt
 @login_required
 def cabinet(request):
     user = Account.objects.get(id=request.user.id)
@@ -61,7 +55,6 @@ def cabinet(request):
     data['form'] = form
     return render(request, '../templates/kino_app/cabinet.html', context=data)
 
-
 @method_decorator([login_required], name='dispatch')
 class SeanceDetail(DetailView):
     model = Seance
@@ -71,7 +64,7 @@ class SeanceDetail(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
-
+@csrf_exempt
 def getBookedTickets(request, seance_id):
     if is_ajax(request):
         tickets = Ticket.objects.filter(seance_id=seance_id)
@@ -84,7 +77,7 @@ def getBookedTickets(request, seance_id):
             ticket_list = []
         return JsonResponse(data=data)
 
-
+@csrf_exempt
 def booking(request):
     if request.POST:
         data = json.loads(request.POST.get('choosedTickets'))
@@ -96,7 +89,7 @@ def booking(request):
         return JsonResponse(data={'Success': 200})
     return render(request, '../templates/kino_app/booking.html', context=None)
 
-
+@csrf_exempt
 def main(request):
     top_carousel = TopCarousel.objects.all()
     bottom_carousel = BottomCarousel.objects.all()
@@ -136,7 +129,6 @@ class Poster(ListView):
         context['type'] = 'Афиша'
         return context
 
-
 class Soon(ListView):
     template_name = '../templates/kino_app/poster_soon.html'
     model = Film
@@ -150,7 +142,7 @@ class Soon(ListView):
         context['type'] = 'Скоро'
         return context
 
-
+@csrf_exempt
 def posterSoonAjax(request):
     if request.GET['page'] == 'poster':
         data = {
@@ -164,7 +156,7 @@ def posterSoonAjax(request):
         }
     return render(request, '../templates/kino_app/poster_soon_ajax.html', context=data)
 
-
+@csrf_exempt
 def schedule(request):
     template = '../templates/kino_app/schedule2.html'
     seances = Seance.objects.filter(date__gte=date.today())
@@ -234,7 +226,7 @@ def schedule(request):
     }
     return render(request, template, context=data)
 
-
+@csrf_exempt
 def schedule_for_film(request, id):
     seances = Seance.objects.filter(date__gte=date.today(),film_id=id)
 
@@ -298,7 +290,7 @@ def schedule_for_film(request, id):
     }
     return render(request, '../templates/kino_app/schedule_for_film.html', context=data)
 
-
+@csrf_exempt
 def card_cinema(request, name):
     cinema = Cinema.objects.get(name=name)
     cinema_imgs = CinemaImg.objects.filter(cinema_id=cinema.id)
@@ -313,7 +305,7 @@ def card_cinema(request, name):
     }
     return render(request, '../templates/kino_app/cinema_card2.html', context=data)
 
-
+@csrf_exempt
 def film_card(request, id):
     seances = Seance.objects.filter(film__id=id)
     date_filter = request.GET.get('date_filter')
@@ -470,13 +462,13 @@ def page_news(request, id):
     }
     return render(request, '../templates/kino_app/page_news.html', context=data)
 
-
+@csrf_exempt
 def search(request):
     film_name = request.GET['search_film']
     film = Film.objects.get(name=film_name)
     return film_card(request, film.name)
 
-
+@csrf_exempt
 def profile(request):
     tickets = Ticket.objects.filter(user_id=request.user.id)
     data = {

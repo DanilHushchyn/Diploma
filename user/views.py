@@ -1,15 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 
-from django.contrib.auth.mixins import AccessMixin
 
 # Create your views here.
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
 
-from admin_panel.models import *
 from user.forms import *
 
 
@@ -69,7 +67,7 @@ class SignUp(CreateView):
 #
 #     def get_success_url(self):
 #         return reverse_lazy('main')
-
+@csrf_exempt
 def loginView(request):
     if request.user.is_authenticated:
         return redirect('main')
@@ -100,11 +98,10 @@ def loginView(request):
     }
     return render(request, '../templates/user/signin.html', context=data)
 
-
+@csrf_exempt
 def logoutView(request):
     logout(request)
     return redirect('main')
-
 
 class SignOut(LogoutView):
     redirect_field_name = reverse_lazy('main')
